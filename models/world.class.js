@@ -11,7 +11,7 @@ class World {
     constructor(canvas) {
         this.ctx = ctx = canvas.getContext('2d');
         this.draw();
-        this.showEnemeies();
+
     }
 
     draw() {
