@@ -5,6 +5,15 @@ class World {
         new Chicken(),
         new Chicken(),
     ];
+    cloads = [
+        new Cload(),
+        new Cload(),
+    ];
+
+    landscape =[
+        new Landscape(),
+    ];
+
     canvas;
     ctx;
 
@@ -19,18 +28,19 @@ class World {
         //resetet/löscht mein Cnavas
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        //zeichnet mir meinen Character rein
-        this.ctx.drawImage(
-            this.character.img, this.character.x,
-            this.character.y, this.character.width, this.character.height);
+        this.addToMap(this.character);  //zeichnet mir meinen Character rein
 
-        // zeichnet mir meine Gegener rein
-        for (let i = 0; i < this.enemies.length; i++) {
-            let enemy = this.enemies[i];
-            this.ctx.drawImage(
-                enemy.img, enemy.x,
-                enemy.y, enemy.width, enemy.height)
-        }
+        this.enemies.forEach(enemy => { // zeichnet mir meine Gegener rein
+            this.addToMap(enemy);
+        });
+
+       this.cloads.forEach(cload => { //zeichnet mir die Wolken ein
+        this.addToMap(cload);
+       });
+
+       this.landscape.forEach(land => { //zeichnet mir die Landschaft ein
+        this.addToMap(land)
+       });
 
         //Draw() wid immer weider aufgerufen
         //Hier wird eine self Variable definiert weil im späteren Code this nicht als this erkannt werden kann
@@ -38,5 +48,10 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    //Zeichnet mir alle bewegten Elemente in die Welt ein
+    addToMap(mObj) {
+        this.ctx.drawImage(mObj.img, mObj.x, mObj.y, mObj.width, mObj.height);
     }
 }
