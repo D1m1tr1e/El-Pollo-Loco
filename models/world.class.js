@@ -7,7 +7,13 @@ class World {
     cloads = [
         new Cload(),
         new Cload()];
-    landscape = [new Landscape()];
+    landscape = [
+        new Landscape('img/5_background/layers/air.png', 0, 0, 480, 720),
+        new Landscape('img/5_background/layers/3_third_layer/1.png', 0, 160, 300, 720),
+        new Landscape('img/5_background/layers/2_second_layer/1.png', 0, 160, 300, 720),
+        new Landscape('img/5_background/layers/1_first_layer/2.png', 0, 190, 300, 720),
+
+    ];
 
     canvas;
     ctx;
@@ -23,6 +29,10 @@ class World {
         //resetet/löscht mein Cnavas
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.landscape.forEach(land => { //zeichnet mir die Landschaft ein
+            this.addToMap(land)
+        });
+
         this.addToMap(this.character);  //zeichnet mir meinen Character rein
 
         this.enemies.forEach(enemy => { // zeichnet mir meine Gegener rein
@@ -31,10 +41,6 @@ class World {
 
         this.cloads.forEach(cload => { //zeichnet mir die Wolken ein
             this.addToMap(cload);
-        });
-
-        this.landscape.forEach(land => { //zeichnet mir die Landschaft ein
-            this.addToMap(land)
         });
 
         //Draw() wid immer weider aufgerufen
