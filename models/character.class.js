@@ -27,8 +27,7 @@ animateCharacter() {
         let path = this.IMAGES_WALKING_CHARACTER[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-        this.x += 0.15;
-    }, 100 / 60);
+    }, 70);
 }
 
 jump() { }

@@ -1,5 +1,5 @@
 class MoveableObject {
-
+    speed = 0.15;
     img;
     imageCache = [];
 
@@ -15,5 +15,11 @@ class MoveableObject {
             moveActionImg.src = path;
             this.imageCache[path] = moveActionImg;
         });
+    }
+
+    moveLeft() {
+        setInterval(() => {
+            this.x -= this.speed;
+        }, 1000 / 60);
     }
 }
