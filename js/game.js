@@ -6,15 +6,11 @@ let keyboard = new Keyboard();
 
 function init(){
     canvas = document.getElementById('canvas');
-    world = new World(canvas);
-
-    console.log('my Charerter is', world.character);
-    
+    world = new World(canvas, keyboard);
 }
 
+
 window.addEventListener('keydown', (e) => {
-    console.log(keyboard);
-    console.log('lese mir den Code raus', e.code)
     if (e.code == 'ArrowLeft') {
         keyboard.LEFT = true; 
     } if (e.code == 'ArrowRight') {
@@ -25,5 +21,20 @@ window.addEventListener('keydown', (e) => {
         keyboard.DOWN = true;
     }if (e.code == 'Space') {
         keyboard.SPACE = true;
+    }
+});
+
+
+window.addEventListener('keyup', (e) => {
+    if (e.code == 'ArrowLeft') {
+        keyboard.LEFT = false; 
+    } if (e.code == 'ArrowRight') {
+        keyboard.RIGHT = false;
+    }if (e.code == 'ArrowUp') {
+        keyboard.UP = false;
+    }if (e.code == 'ArrowDown') {
+        keyboard.DOWN = false;
+    }if (e.code == 'Space') {
+        keyboard.SPACE = false;
     }
 });
