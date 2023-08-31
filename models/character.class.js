@@ -14,7 +14,7 @@ class Character extends MoveableObject {
         'img/2_character_pepe/2_walk/W-26.png'
     ];
     currentImage = 0;
-    mirrorImage = false; 
+    
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png')
