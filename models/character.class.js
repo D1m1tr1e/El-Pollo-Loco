@@ -14,6 +14,7 @@ class Character extends MoveableObject {
         'img/2_character_pepe/2_walk/W-26.png'
     ];
     currentImage = 0;
+    mirrorImage = false; 
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png')
@@ -26,8 +27,10 @@ class Character extends MoveableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speed;
+                this.mirrorImage = false;
             } if (this.world.keyboard.LEFT) {
                 this.x -= this.speed;
+                this.mirrorImage = true; 
             }
         }, 1000 / 60);
 

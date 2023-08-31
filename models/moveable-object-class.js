@@ -2,6 +2,7 @@ class MoveableObject {
     speed = 0.15;
     img;
     imageCache = [];
+    mirrorImage = false; 
 
     loadImage(path) {
         this.img = new Image(); // analog this.img = document.getElementById('image') <img id='image' src>
