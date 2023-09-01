@@ -28,10 +28,13 @@ class Character extends MoveableObject {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speed;
                 this.mirrorImage = false;
+
             } if (this.world.keyboard.LEFT) {
                 this.x -= this.speed;
                 this.mirrorImage = true; 
             }
+
+            this.world.camera_x = -this.x;
         }, 1000 / 60);
 
         setInterval(() => {
