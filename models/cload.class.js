@@ -1,6 +1,6 @@
 class Cload extends MoveableObject {
 
-    x = Math.random() * 500;
+    x = Math.random() * 2900;
     y = 0;
     height = 300;
     width = 400;

@@ -42,7 +42,7 @@ class World {
         this.cloads.forEach(cload => { //zeichnet mir die Wolken ein
             this.addToMap(cload);
         });
-
+        
         this.ctx.translate(-this.camera_x, 0);
 
         //Draw() wid immer weider aufgerufen
@@ -61,6 +61,7 @@ class World {
             this.ctx.scale(-1, 1);
             mObj.x = mObj.x * -1;
         }
+        
         this.ctx.drawImage(mObj.img, mObj.x, mObj.y, mObj.width, mObj.height);
         if (mObj.mirrorImage) {
             mObj.x = mObj.x * -1;
