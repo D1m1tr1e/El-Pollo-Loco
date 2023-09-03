@@ -1,12 +1,13 @@
 class Level {
     enemies;
-    cloads;
+    clouds;
     landscape;
     bottles;
+  
 
-    constructor(enemies, cloads, landscape, bottles) {
+    constructor(enemies, clouds, landscape, bottles) {
         this.enemies = enemies;
-        this.cloads = cloads;
+        this.clouds = clouds;
         this.landscape = landscape;
         this.bottles = bottles;
     }

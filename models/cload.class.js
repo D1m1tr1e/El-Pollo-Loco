@@ -1,4 +1,4 @@
-class Cload extends MoveableObject {
+class Cloud extends MoveableObject {
 
     x = Math.random() * 2900;
     y = 0;
@@ -7,10 +7,10 @@ class Cload extends MoveableObject {
 
     constructor() {
         super().loadImage('img/5_background/layers/4_clouds/1.png');
-        this.animateCloads()
+        this.animateClouds()
     }
 
-    animateCloads(){
+    animateClouds(){
         this.moveLeft();
     }
 }

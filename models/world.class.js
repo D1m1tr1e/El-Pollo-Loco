@@ -1,8 +1,9 @@
 class World {
     character = new Character();
     enemies = level1.enemies;
-    cloads = level1.cloads;
+    clouds = level1.clouds;
     landscape = level1.landscape;
+    bottles = level1.bottles;
     canvas;
     ctx;
     keyboard;
@@ -39,10 +40,14 @@ class World {
             this.addToMap(enemy);
         });
 
-        this.cloads.forEach(cload => { //zeichnet mir die Wolken ein
-            this.addToMap(cload);
+        this.clouds.forEach(cloud => { //zeichnet mir die Wolken ein
+            this.addToMap(cloud);
         });
-        
+
+        this.bottles.forEach(bottle => {
+            this.addToMap(bottle);
+        })
+
         this.ctx.translate(-this.camera_x, 0);
 
         //Draw() wid immer weider aufgerufen
@@ -61,7 +66,7 @@ class World {
             this.ctx.scale(-1, 1);
             mObj.x = mObj.x * -1;
         }
-        
+
         this.ctx.drawImage(mObj.img, mObj.x, mObj.y, mObj.width, mObj.height);
         if (mObj.mirrorImage) {
             mObj.x = mObj.x * -1;

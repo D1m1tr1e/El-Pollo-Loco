@@ -9,23 +9,18 @@ const level1 = new Level(
         new Chicken(),
         new Chicken(),
         new Boss(),
+        
     ],
-    
     [
-        new Cload(),
-        new Cload(),
-        new Cload(),
-        new Cload(),
-        new Cload(),
-        new Cload(),
-        new Cload(),
-        new Cload(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle()
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
     ],
-
     [
         new Landscape('img/5_background/layers/air.png', 0, 0, 480, 720),
         new Landscape('img/5_background/layers/air.png', 719, 0, 480, 720),
@@ -46,6 +41,12 @@ const level1 = new Level(
         new Landscape('img/5_background/layers/1_first_layer/2.png', 719, 190, 300, 720),
         new Landscape('img/5_background/layers/1_first_layer/1.png', 719 * 2, 190, 300, 720),
         new Landscape('img/5_background/layers/1_first_layer/2.png', 719 * 3, 190, 300, 720),
+    ],
+    [
+        new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
+        new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+        new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
+        new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
     ],
 
 )
