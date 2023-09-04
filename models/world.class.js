@@ -4,6 +4,7 @@ class World {
     clouds = level1.clouds;
     landscape = level1.landscape;
     bottles = level1.bottles;
+    coins = level1.coins;
     canvas;
     ctx;
     keyboard;
@@ -46,7 +47,11 @@ class World {
 
         this.bottles.forEach(bottle => {
             this.addToMap(bottle);
-        })
+        });
+
+        this.coins.forEach(coin => {
+            this.addToMap(coin);
+        });
 
         this.ctx.translate(-this.camera_x, 0);
 

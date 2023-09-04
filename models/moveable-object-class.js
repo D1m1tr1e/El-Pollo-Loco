@@ -18,15 +18,26 @@ class MoveableObject {
         });
     }
 
+
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
 
-    walkAnimation(images){
+
+    walkAnimation(){
         let i = this.currentImage % this.IMAGES_WALKING.length;
         let path = this.IMAGES_WALKING[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+        
+    }
+
+
+    jumpAnimation(){
+        let i = this.currentImage % this. IMAGES_JUMPING.length;
+        let path = this. IMAGES_JUMPING[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }
