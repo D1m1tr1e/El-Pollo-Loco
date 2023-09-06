@@ -9,6 +9,19 @@ class MoveableObject {
         this.img.src = path;
     }
 
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
 
     loadImages(arr) {
         arr.forEach((path) => {
@@ -17,7 +30,6 @@ class MoveableObject {
             this.imageCache[path] = moveActionImg;
         });
     }
-
 
     moveLeft() {
         this.x -= this.speed;
@@ -32,15 +44,12 @@ class MoveableObject {
         this.speedY = 30;
     }
 
-
     walkAnimation() {
         let i = this.currentImage % this.IMAGES_WALKING.length;
         let path = this.IMAGES_WALKING[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-
     }
-
 
     jumpAnimation() {
         let i = this.currentImage % this.IMAGES_JUMPING.length;
@@ -48,7 +57,6 @@ class MoveableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-
 
     applyGravity() {
         setInterval(() => {
@@ -58,7 +66,6 @@ class MoveableObject {
             }
         }, 1000 / 30);
     }
-
 
     isAboveGround() {
         return this.y < 170;

@@ -66,16 +66,27 @@ class World {
     //Zeichnet mir alle bewegten Elemente in die Welt ein
     addToMap(mObj) {
         if (mObj.mirrorImage) {
-            this.ctx.save();
-            this.ctx.translate(mObj.width, 0);
-            this.ctx.scale(-1, 1);
-            mObj.x = mObj.x * -1;
+            this.flipImage(mObj);
         }
 
-        this.ctx.drawImage(mObj.img, mObj.x, mObj.y, mObj.width, mObj.height);
+        mObj.draw(this.ctx);
+        mObj.drawFrame(this.ctx);
+
         if (mObj.mirrorImage) {
-            mObj.x = mObj.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mObj);
         }
     }
+
+    flipImage(mObj) {
+        this.ctx.save();
+        this.ctx.translate(mObj.width, 0);
+        this.ctx.scale(-1, 1);
+        mObj.x = mObj.x * -1;
+    }
+
+    flipImageBack(mObj) {
+        mObj.x = mObj.x * -1;
+        this.ctx.restore();
+    }
+
 }
