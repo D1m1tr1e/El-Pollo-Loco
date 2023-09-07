@@ -31,7 +31,7 @@ class Character extends MoveableObject {
     WALKING_SOUND = new Audio('audio/forest_footsteps.mp3');
 
     constructor() {
-        super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png')
+        super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.applyGravity();
@@ -73,7 +73,4 @@ class Character extends MoveableObject {
             }
         }, 70);
     }
-
-
-
 }

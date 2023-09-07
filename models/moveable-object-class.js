@@ -23,6 +23,14 @@ class MoveableObject {
         }
     }
 
+    //character.isColliding(chicken);
+    isColliding(mObj) {
+        return this.x + this.width > mObj.x &&
+        this.y + this.height > mObj.y &&
+        this.x < mObj.x &&
+        this.y < mObj.y + mObj.height;
+    }
+
     loadImages(arr) {
         arr.forEach((path) => {
             let moveActionImg = new Image();

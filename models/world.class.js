@@ -16,14 +16,24 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
-
 
     setWorld() {
         this.character.world = this;
         this.enemies.world = this;
     }
 
+    checkCollisions() {
+        setInterval(() => {
+            //console.log('colliding');
+            this.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    console.log('Collision with Character', enemy);
+                }
+            })
+        }, 1000);
+    }
 
     draw() {
         //resetet/löscht mein Cnavas
