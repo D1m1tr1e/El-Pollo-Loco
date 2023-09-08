@@ -10,6 +10,7 @@ class World {
     keyboard;
     camera_x = 0;
 
+
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -26,13 +27,13 @@ class World {
 
     checkCollisions() {
         setInterval(() => {
-            //console.log('colliding');
             this.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    console.log('Collision with Character', enemy);
+                    this.character.hit();
+                    console.log(this.character.lifeEnergy)
                 }
             })
-        }, 1000);
+        }, 200);
     }
 
     draw() {

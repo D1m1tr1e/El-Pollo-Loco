@@ -3,6 +3,8 @@ class MoveableObject {
     img;
     imageCache = [];
     mirrorImage = false;
+    lifeEnergy = 100;
+    pepeIsDead = false;
 
     loadImage(path) {
         this.img = new Image(); // analog this.img = document.getElementById('image') <img id='image' src>
@@ -26,9 +28,23 @@ class MoveableObject {
     //character.isColliding(chicken);
     isColliding(mObj) {
         return this.x + this.width > mObj.x &&
-        this.y + this.height > mObj.y &&
-        this.x < mObj.x &&
-        this.y < mObj.y + mObj.height;
+            this.y + this.height > mObj.y &&
+            this.x < mObj.x &&
+            this.y < mObj.y + mObj.height;
+    }
+
+    hit() {
+        this.lifeEnergy -= 5;
+        if (this.lifeEnergy <= 0) {
+            this.lifeEnergy = 0;
+            this.isDead();
+        }
+    }
+
+    isDead(){
+        if (this.lifeEnergy == 0) {
+            this.pepeIsDead = true;
+        }
     }
 
     loadImages(arr) {
@@ -62,6 +78,20 @@ class MoveableObject {
     jumpAnimation() {
         let i = this.currentImage % this.IMAGES_JUMPING.length;
         let path = this.IMAGES_JUMPING[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
+    hurtAnimation() {
+        let i = this.currentImage % this.IMAGES_HURTING.length;
+        let path = this.IMAGES_HURTING[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
+    deadAnimation(){
+        let i = this.currentImage % this.IMAGES_DEAD.length;
+        let path = this.IMAGES_DEAD[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }
