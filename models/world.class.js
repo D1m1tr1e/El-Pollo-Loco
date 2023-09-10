@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    statusbar = new Statusbar();
     enemies = level1.enemies;
     clouds = level1.clouds;
     landscape = level1.landscape;
@@ -30,6 +31,7 @@ class World {
             this.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
+                    this.statusbar.setPercentage(this.character.lifeEnergy);
                     console.log(this.character.lifeEnergy)
                 }
             })
@@ -42,17 +44,25 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
 
-        this.landscape.forEach(land => { //zeichnet mir die Landschaft ein
+        this.landscape.forEach(land => { 
             this.addToMap(land)
         });
 
-        this.addToMap(this.character);  //zeichnet mir meinen Character rein
+        this.addToMap(this.character);
+        this.ctx.translate(-this.camera_x, 0);
 
-        this.enemies.forEach(enemy => { // zeichnet mir meine Gegener rein
+
+        // ------  SPACE FOR FIXED OBJECTS ------
+        this.addToMap(this.statusbar);
+        this.ctx.translate(this.camera_x, 0);
+        // ------  SPACE FOR FIXED OBJECTS END------
+
+
+        this.enemies.forEach(enemy => { 
             this.addToMap(enemy);
         });
 
-        this.clouds.forEach(cloud => { //zeichnet mir die Wolken ein
+        this.clouds.forEach(cloud => { 
             this.addToMap(cloud);
         });
 
@@ -74,7 +84,6 @@ class World {
         });
     }
 
-    //Zeichnet mir alle bewegten Elemente in die Welt ein
     addToMap(mObj) {
         if (mObj.mirrorImage) {
             this.flipImage(mObj);

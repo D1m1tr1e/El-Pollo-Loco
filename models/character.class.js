@@ -1,6 +1,5 @@
 class Character extends MoveableObject {
     world;
-    currentImage = 0;
     x = 120;
     y = 180;
     speed = 5;
