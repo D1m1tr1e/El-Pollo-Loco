@@ -5,6 +5,7 @@ class MoveableObject {
     mirrorImage = false;
     lifeEnergy = 100;
     pepeIsDead = false;
+    lastHit = 0;
 
     loadImage(path) {
         this.img = new Image(); // analog this.img = document.getElementById('image') <img id='image' src>
@@ -37,14 +38,19 @@ class MoveableObject {
         this.lifeEnergy -= 5;
         if (this.lifeEnergy <= 0) {
             this.lifeEnergy = 0;
-            this.isDead();
+        } else {
+            this.lastHit = new Date().getTime();// Zeitpunkt an dem Pepe verletzt wurde
         }
     }
 
-    isDead(){
-        if (this.lifeEnergy == 0) {
-            this.pepeIsDead = true;
-        }
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit; //Zeitdifferenz die vergangen ist in ms von Jetzt bis zum letzten Schlag von PEPE 
+        timePassed = timePassed / 1000; // Time difference in sek.
+        return timePassed < 1;
+    }
+
+    isDead() {
+        return this.lifeEnergy == 0;
     }
 
     loadImages(arr) {
@@ -89,7 +95,7 @@ class MoveableObject {
         this.currentImage++;
     }
 
-    deadAnimation(){
+    deadAnimation() {
         let i = this.currentImage % this.IMAGES_DEAD.length;
         let path = this.IMAGES_DEAD[i];
         this.img = this.imageCache[path];
