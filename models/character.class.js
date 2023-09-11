@@ -77,6 +77,11 @@ class Character extends MoveableObject {
                 this.jump();
             }
 
+            if (this.world.keyboard.D) {
+                console.log('ich werfe eine falsche');
+                console.log('Wurdposition', this.x);
+            }
+
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
