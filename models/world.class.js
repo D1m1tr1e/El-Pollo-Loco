@@ -1,11 +1,13 @@
 class World {
     character = new Character();
     statusbar = new Statusbar();
+    throwableObject = [new ThrowableObject()];
     enemies = level1.enemies;
     clouds = level1.clouds;
     landscape = level1.landscape;
     bottles = level1.bottles;
     coins = level1.coins;
+    
     canvas;
     ctx;
     keyboard;
@@ -23,7 +25,6 @@ class World {
 
     setWorld() {
         this.character.world = this;
-        this.enemies.world = this;
     }
 
     checkCollisions() {
@@ -43,8 +44,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
-        this.landscape.forEach(land => { 
+        this.landscape.forEach(land => {
             this.addToMap(land)
         });
 
@@ -58,11 +58,15 @@ class World {
         // ------  SPACE FOR FIXED OBJECTS END------
 
 
-        this.enemies.forEach(enemy => { 
+        this.enemies.forEach(enemy => {
             this.addToMap(enemy);
         });
 
-        this.clouds.forEach(cloud => { 
+        this.throwableObject.forEach(thObj => {
+            this.addToMap(thObj)
+        });
+
+        this.clouds.forEach(cloud => {
             this.addToMap(cloud);
         });
 
@@ -81,7 +85,7 @@ class World {
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
-        });
+         });
     }
 
     addToMap(mObj) {

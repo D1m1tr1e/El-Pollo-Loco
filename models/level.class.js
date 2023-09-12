@@ -4,7 +4,6 @@ class Level {
     landscape;
     bottles;
     coins;
-  
 
     constructor(enemies, clouds, landscape, bottles, coins) {
         this.enemies = enemies;

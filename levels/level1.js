@@ -53,5 +53,5 @@ const level1 = new Level(
         new Coin('img/8_coin/coin_1.png', 550, 200, 170, 170),
         new Coin('img/8_coin/coin_1.png', 1000, 280, 170, 170),
         new Coin('img/8_coin/coin_1.png', 550, 120, 170, 170),
-    ],
+    ]
 )
