@@ -1,6 +1,8 @@
 class World {
     character = new Character();
     statusbar = new Statusbar();
+    coinbar = new CoinBar();
+    bottlebar = new BottleBar();
     throwableObject = [];
     enemies = level1.enemies;
     clouds = level1.clouds;
@@ -66,6 +68,8 @@ class World {
 
         // ------  SPACE FOR FIXED OBJECTS ------
         this.addToMap(this.statusbar);
+        this.addToMap(this.coinbar);
+        this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0);
         // ------  SPACE FOR FIXED OBJECTS END------
 
