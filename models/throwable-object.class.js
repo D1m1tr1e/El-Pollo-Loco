@@ -8,17 +8,20 @@ class ThrowableObject extends MoveableObject {
          'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
      ];*/
 
-    constructor() {
+    constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
-        this.x = 120;
-        this.y = 200;
-        // this.loadImages(this.IMAGES_BOTTLE_ROTATE);
-        //this.animateBottle();
+        this.x = x;
+        this.y = y;
+        this.width = 80;
+        this.height = 80;
+        this.throw();
     }
 
-    animateBottle() {
-        if (this.world.keyboard.D) {
-            console.log('ich werfe eine falsche');
-        }
+    throw() {
+        this.speedY = 30;
+        this.applyGravity();
+        setInterval(() => {
+            this.x += 10;
+        }, 30);
     }
 }
