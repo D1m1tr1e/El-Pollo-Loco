@@ -12,6 +12,7 @@ class BottleBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/80.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/100.png'
     ];
+    COLLECT_BOTTLE = new Audio('audio/collect_bottle.mp3');
 
     constructor() {
         super().loadImage('img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png');

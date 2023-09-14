@@ -3,8 +3,8 @@ class MoveableObject extends DrawableObject {
     mirrorImage = false;
     lifeEnergy = 100;
     lastHit = 0;
-
-
+    acceleration = 2;
+    offset = 50;
 
     //character.isColliding(chicken);
     isColliding(mObj) {
@@ -85,11 +85,10 @@ class MoveableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // ThrowableObject should alwas fall
-            return true;
+        if (this instanceof ThrowableObject) { // ThrowableObject should always fall
+            return this.y < 600;
         } else {
             return this.y < 170;
         }
     }
-
 }

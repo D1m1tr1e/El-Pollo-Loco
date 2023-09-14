@@ -7,7 +7,7 @@ class ThrowableObject extends MoveableObject {
          'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
          'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
      ];*/
-
+     THROW = new Audio('audio/throw.mp3');
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.x = x;
@@ -18,10 +18,11 @@ class ThrowableObject extends MoveableObject {
     }
 
     throw() {
-        this.speedY = 30;
+        this.speedY = 10;
         this.applyGravity();
         setInterval(() => {
             this.x += 10;
+            //console.log('x kooridnate', this.x, 'y koordinate', this.y);
         }, 30);
     }
 }

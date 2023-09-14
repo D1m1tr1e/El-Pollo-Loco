@@ -44,8 +44,6 @@ class Character extends MoveableObject {
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
     ];
-
-
     WALKING_SOUND = new Audio('audio/forest_footsteps.mp3');
 
     constructor() {

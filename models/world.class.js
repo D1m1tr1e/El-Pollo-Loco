@@ -9,12 +9,12 @@ class World {
     landscape = level1.landscape;
     bottles = level1.bottles;
     coins = level1.coins;
-
+   
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
-
+    
 
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
@@ -43,13 +43,34 @@ class World {
                 this.statusbar.setPercentage(this.character.lifeEnergy);
                 console.log(this.character.lifeEnergy)
             }
-        })
+        });
+        this.collisionCoin(); 
+        this.collisionBottle();       
     }
+
+    collisionCoin(){
+        this.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.coinbar.COLLECT_COIN.play();
+                console.log('coin berührt');
+            }
+        });
+    }
+
+   collisionBottle(){
+    this.bottles.forEach((bottle) =>{
+        if (this.character.isColliding(bottle)) {
+            this.bottlebar.COLLECT_BOTTLE.play();
+            console.log('flaschen berührt');
+        }
+    })
+   } 
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x, this.character.y);
+            let bottle = new ThrowableObject(this.character.x +100, this.character.y);
             this.throwableObject.push(bottle)
+            this.throwableObject.THROW.play();
         }
     }
 
@@ -60,6 +81,10 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.landscape.forEach(land => {
             this.addToMap(land)
+        });
+
+        this.clouds.forEach(cloud => {
+            this.addToMap(cloud);
         });
 
         this.addToMap(this.character);
@@ -82,10 +107,7 @@ class World {
             this.addToMap(thObj)
         });
 
-        this.clouds.forEach(cloud => {
-            this.addToMap(cloud);
-        });
-
+      
         this.bottles.forEach(bottle => {
             this.addToMap(bottle);
         });
