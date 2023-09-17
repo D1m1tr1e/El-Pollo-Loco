@@ -75,6 +75,13 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    throwBottleAnimation() {
+        let i = this.currentImage % this.IMAGES_BOTTLE_ROTATE.length;
+        let path = this.IMAGES_BOTTLE_ROTATE[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
