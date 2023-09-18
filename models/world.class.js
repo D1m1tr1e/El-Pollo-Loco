@@ -9,7 +9,7 @@ class World {
     landscape = level1.landscape;
     bottles = level1.bottles;
     coins = level1.coins;
-
+    
     canvas;
     ctx;
     keyboard;
@@ -56,6 +56,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 this.coinbar.COLLECT_COIN.play();
                 this.coinbar.collectCoin();
+                //this.coins.splice(0,1);
                 this.coinbar.setPercentage(this.coinbar.coinAmount);
             }
         });
@@ -64,8 +65,11 @@ class World {
     collisionBottle() {
         this.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
+                let i = bottle;
+                console.log('DAS ist eine flasche an der stelle',i);
                 this.bottlebar.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
+                //this.bottles.splice(0,1);
                 this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
             }
         });
@@ -74,8 +78,7 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y);
-            this.throwableObject.push(bottle)
-           // this.throwableObject.THROW.play();
+            this.throwableObject.push(bottle);
         }
     }
 

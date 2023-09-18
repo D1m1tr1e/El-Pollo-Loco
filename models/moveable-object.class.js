@@ -32,7 +32,7 @@ class MoveableObject extends DrawableObject {
     isDead() {
         return this.lifeEnergy == 0;
     }
-
+    
 
     moveLeft() {
         this.x -= this.speed;
@@ -47,44 +47,9 @@ class MoveableObject extends DrawableObject {
         this.speedY = 30;
     }
 
-    playAnimation(images){
+    playAnimation(images) {
         let i = this.currentImage % images.length;
-        let path = this.images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    walkAnimation() {
-        let i = this.currentImage % this.IMAGES_WALKING.length;
-        let path = this.IMAGES_WALKING[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    jumpAnimation() {
-        let i = this.currentImage % this.IMAGES_JUMPING.length;
-        let path = this.IMAGES_JUMPING[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    hurtAnimation() {
-        let i = this.currentImage % this.IMAGES_HURTING.length;
-        let path = this.IMAGES_HURTING[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    deadAnimation() {
-        let i = this.currentImage % this.IMAGES_DEAD.length;
-        let path = this.IMAGES_DEAD[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-    }
-
-    throwBottleAnimation() {
-        let i = this.currentImage % this.IMAGES_BOTTLE_ROTATE.length;
-        let path = this.IMAGES_BOTTLE_ROTATE[i];
+        let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }

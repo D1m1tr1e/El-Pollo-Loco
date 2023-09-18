@@ -79,14 +79,17 @@ class Character extends MoveableObject {
 
         setInterval(() => {
             if (this.isDead()) {
-                this.deadAnimation(this.IMAGES_DEAD);
+                this.playAnimation(this.IMAGES_DEAD);
+                this.speedY = 10;
+                this.applyGravity();    
+                return this.y = 600;
             } else if (this.isHurt()) {
-                this.hurtAnimation(this.IMAGES_HURTING);
+                this.playAnimation(this.IMAGES_HURTING);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.walkAnimation(this.IMAGES_WALKING);
+                    this.playAnimation(this.IMAGES_WALKING);
                 }
             }
         }, 70);
