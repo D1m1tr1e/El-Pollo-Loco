@@ -1,6 +1,6 @@
-class Coin extends MoveableObject{
+class Coin extends MoveableObject {
 
-    constructor(imagePath, x, y, height, width){
+    constructor(imagePath, x, y, height, width) {
         super().loadImage(imagePath);
         this.x = x;
         this.y = y;

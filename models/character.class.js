@@ -83,7 +83,7 @@ class Character extends MoveableObject {
             } else if (this.isHurt()) {
                 this.hurtAnimation(this.IMAGES_HURTING);
             } else if (this.isAboveGround()) {
-                this.jumpAnimation(this.IMAGES_JUMPING);
+                this.playAnimation(this.IMAGES_JUMPING);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.walkAnimation(this.IMAGES_WALKING);

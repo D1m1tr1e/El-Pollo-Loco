@@ -47,6 +47,13 @@ class MoveableObject extends DrawableObject {
         this.speedY = 30;
     }
 
+    playAnimation(images){
+        let i = this.currentImage % images.length;
+        let path = this.images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
     walkAnimation() {
         let i = this.currentImage % this.IMAGES_WALKING.length;
         let path = this.IMAGES_WALKING[i];

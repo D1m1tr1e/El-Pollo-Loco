@@ -4,7 +4,7 @@ class Bottle extends MoveableObject {
     height = 80;
     width = 80;
 
-    constructor(imagePath, keyboard) {
+    constructor(imagePath) {
         super().loadImage(imagePath);
     }
 }
