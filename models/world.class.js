@@ -9,7 +9,7 @@ class World {
     landscape = level1.landscape;
     bottles = level1.bottles;
     coins = level1.coins;
-    
+
     canvas;
     ctx;
     keyboard;
@@ -52,33 +52,35 @@ class World {
     }
 
     collisionCoin() {
-        this.coins.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
+        this.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin, index)) {
                 this.coinbar.COLLECT_COIN.play();
                 this.coinbar.collectCoin();
-                //this.coins.splice(0,1);
+                this.coins.splice(index, 1);
                 this.coinbar.setPercentage(this.coinbar.coinAmount);
             }
         });
     }
 
     collisionBottle() {
-        this.bottles.forEach((bottle) => {
-            if (this.character.isColliding(bottle)) {
-                let i = bottle;
-                console.log('DAS ist eine flasche an der stelle',i);
+        this.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle, index)) {
                 this.bottlebar.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
-                //this.bottles.splice(0,1);
+                this.bottles.splice(index, 1);
                 this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
             }
         });
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.bottlebar.bottleAmount > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y);
             this.throwableObject.push(bottle);
+            console.log('Anzahl gesammelten flaschen', this.bottlebar.bottleAmount);
+            this.bottlebar.bottleAmount -= 20;
+            this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
+            console.log('Neuer Wert vom BottleAmount', this.bottlebar.bottleAmount);
         }
     }
 
