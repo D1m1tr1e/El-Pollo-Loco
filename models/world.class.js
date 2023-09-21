@@ -3,12 +3,15 @@ class World {
     statusbar = new Statusbar();
     coinbar = new CoinBar();
     bottlebar = new BottleBar();
+    boss = new Boss();
     throwableObject = [];
+    level = level1;
     enemies = level1.enemies;
     clouds = level1.clouds;
     landscape = level1.landscape;
     bottles = level1.bottles;
     coins = level1.coins;
+    
 
     canvas;
     ctx;
@@ -27,6 +30,7 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        this.boss.world = this;
     }
 
     run() {
