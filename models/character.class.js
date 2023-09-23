@@ -8,6 +8,7 @@ class Character extends MoveableObject {
     speedY = 0;
     acceleration = 2;
     pepeIsDead = false;
+    endPositionPepe = false;
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -63,6 +64,11 @@ class Character extends MoveableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.WALKING_SOUND.play();
+                if (this.x == this.world.level.level_end_x) {
+                    this.endPositionPepe = true;
+                    console.log('Pepe had die Endposition erreicht',this.endPositionPepe);
+                }
+                
             }
 
             if (this.world.keyboard.LEFT && this.x > 100) {

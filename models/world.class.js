@@ -44,6 +44,7 @@ class World {
         this.collisionChicken();
         this.collisionCoin();
         this.collisionBottle();
+        this.collisionBoss();
     }
 
     collisionChicken() {
@@ -53,6 +54,13 @@ class World {
                 this.statusbar.setPercentage(this.character.lifeEnergy);
             }
         });
+    }
+
+    collisionBoss() {
+        if (this.character.isColliding(this.boss)) {
+            this.character.hit();
+            this.statusbar.setPercentage(this.character.lifeEnergy);
+        }
     }
 
     collisionCoin() {
@@ -81,10 +89,8 @@ class World {
         if (this.keyboard.D && this.bottlebar.bottleAmount > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y);
             this.throwableObject.push(bottle);
-            console.log('Anzahl gesammelten flaschen', this.bottlebar.bottleAmount);
             this.bottlebar.bottleAmount -= 20;
             this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
-            console.log('Neuer Wert vom BottleAmount', this.bottlebar.bottleAmount);
         }
     }
 
@@ -112,6 +118,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         // ------  SPACE FOR FIXED OBJECTS END------
 
+        this.addToMap(this.boss);
 
         this.enemies.forEach(enemy => {
             this.addToMap(enemy);
