@@ -5,7 +5,6 @@ class Boss extends MoveableObject {
     width = 300;
     speed = 1;
     currentImage = 0;
-    bossStartMoving = false;
     world;
     IMAGES_BOSS_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -46,19 +45,7 @@ class Boss extends MoveableObject {
                     this.moveLeft();
                     this.playAnimation(this.IMAGES_BOSS_WALKIG);
                 }
-               
-                //console.log(this.world.character.x)
-               // console.log('Endposition erreicht', this.bossStartMoving)
         }, 75);
-    }
-
-    bossStatsToMove() {
-        console.log(this.world.character.x);
-        if (this.world.character.x == 200 && ! this.bossStartMoving) {
-           // console.log('Endposition erreicht', this.bossStartMoving)
-            this.bossStartMoving = false;
-
-        }
     }
 
 
