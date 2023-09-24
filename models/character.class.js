@@ -66,7 +66,6 @@ class Character extends MoveableObject {
                 this.WALKING_SOUND.play();
                 if (this.x == this.world.level.level_end_x) {
                     this.endPositionPepe = true;
-                    console.log('Pepe had die Endposition erreicht',this.endPositionPepe);
                 }
                 
             }
