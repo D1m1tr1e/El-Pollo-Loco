@@ -23,7 +23,17 @@ class Boss extends MoveableObject {
         'img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
-    
+    IMAGES_BOSS_HURTING = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png'
+    ];
+
+    IMAGES_BOSS_DEAD =[
+        'img/4_enemie_boss_chicken/5_dead/G24.png',
+        'img/4_enemie_boss_chicken/5_dead/G25.png',
+        'img/4_enemie_boss_chicken/5_dead/G26.png'
+    ];
 
     BOSS_FIGHT_SOUND = new Audio('audio/boss_musik.mp3');
 
@@ -31,6 +41,8 @@ class Boss extends MoveableObject {
         super().loadImage(this.IMAGES_BOSS_ALERT[0]);
         this.loadImages(this.IMAGES_BOSS_ALERT);
         this.loadImages(this.IMAGES_BOSS_WALKIG);
+        this.loadImages(this.IMAGES_BOSS_HURTING);
+        this.loadImages(this.IMAGES_BOSS_DEAD);
         this.animateBoss();
 
     }
@@ -42,20 +54,22 @@ class Boss extends MoveableObject {
         }, 300);
 
         setInterval(() => {
-                if (this.world.character.endPositionPepe) {
-                    this.BOSS_FIGHT_SOUND.play();
-                    this.moveLeft();
-                    this.playAnimation(this.IMAGES_BOSS_WALKIG);
-                }
+            if (this.world.character.endPositionPepe) {
+                this.BOSS_FIGHT_SOUND.play();
+                this.moveLeft();
+                this.playAnimation(this.IMAGES_BOSS_WALKIG);
+            }
         }, 75);
 
         setInterval(() => {
             if (this.isDead()) {
                 console.log('Boss wurde besiegt');
-            }else if (this.isHurt()){
+                this.playAnimation(this.IMAGES_BOSS_DEAD);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_BOSS_HURTING);
                 console.log('boss wurde verletzt')
-            }
-        },1000/5);
+            } 
+        }, 1000 /5);
     }
 
 
