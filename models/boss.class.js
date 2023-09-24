@@ -23,6 +23,8 @@ class Boss extends MoveableObject {
         'img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
+    
+
     BOSS_FIGHT_SOUND = new Audio('audio/boss_musik.mp3');
 
     constructor() {
@@ -46,6 +48,14 @@ class Boss extends MoveableObject {
                     this.playAnimation(this.IMAGES_BOSS_WALKIG);
                 }
         }, 75);
+
+        setInterval(() => {
+            if (this.isDead()) {
+                console.log('Boss wurde besiegt');
+            }else if (this.isHurt()){
+                console.log('boss wurde verletzt')
+            }
+        },1000/5);
     }
 
 

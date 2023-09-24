@@ -1,6 +1,8 @@
 class World {
     character = new Character();
     statusbar = new Statusbar();
+    statusbarBoss = new StatusbarBoss();
+    stausIconBoss = new StatusIconBoss();
     coinbar = new CoinBar();
     bottlebar = new BottleBar();
     boss = new Boss();
@@ -11,7 +13,7 @@ class World {
     landscape = level1.landscape;
     bottles = level1.bottles;
     coins = level1.coins;
-    
+
 
     canvas;
     ctx;
@@ -45,6 +47,7 @@ class World {
         this.collisionCoin();
         this.collisionBottle();
         this.collisionBoss();
+        this.collisionThrowableObj();
     }
 
     collisionChicken() {
@@ -70,6 +73,16 @@ class World {
                 this.coinbar.collectCoin();
                 this.coins.splice(index, 1);
                 this.coinbar.setPercentage(this.coinbar.coinAmount);
+            }
+        });
+    }
+
+    collisionThrowableObj() { //collision of the thrown false with the boss
+        this.throwableObject.forEach((bottle) => {
+            if (this.boss.isColliding(bottle)) {
+                this.boss.hit();
+                this.statusbarBoss.setPercentage(this.boss.lifeEnergy);
+                this.boss.lifeEnergy -= 15;
             }
         });
     }
@@ -115,6 +128,8 @@ class World {
         this.addToMap(this.statusbar);
         this.addToMap(this.coinbar);
         this.addToMap(this.bottlebar);
+        this.addToMap(this.statusbarBoss);
+        this.addToMap(this.stausIconBoss);
         this.ctx.translate(this.camera_x, 0);
         // ------  SPACE FOR FIXED OBJECTS END------
 

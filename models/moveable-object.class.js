@@ -4,7 +4,7 @@ class MoveableObject extends DrawableObject {
     lifeEnergy = 100;
     lastHit = 0;
     acceleration = 2;
-    offset = 50;
+    
 
     //character.isColliding(chicken);
     isColliding(mObj) {
