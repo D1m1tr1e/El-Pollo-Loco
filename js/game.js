@@ -9,9 +9,11 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-function hiddenStartScreen(){
+function startGame(){
     document.getElementById('first-screen').classList.add('d-none');
     initLevel();
+    init();
+  
 }
 
 window.addEventListener('keydown', (e) => {
