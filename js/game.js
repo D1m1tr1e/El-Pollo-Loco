@@ -11,6 +11,7 @@ function init() {
 
 function hiddenStartScreen(){
     document.getElementById('first-screen').classList.add('d-none');
+    initLevel();
 }
 
 window.addEventListener('keydown', (e) => {

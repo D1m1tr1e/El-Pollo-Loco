@@ -8,13 +8,6 @@ class World {
     boss = new Boss();
     throwableObject = [];
     level = level1;
-    enemies = level1.enemies;
-    clouds = level1.clouds;
-    landscape = level1.landscape;
-    bottles = level1.bottles;
-    coins = level1.coins;
-
-
     canvas;
     ctx;
     keyboard;
@@ -51,7 +44,7 @@ class World {
     }
 
     collisionChicken() {
-        this.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.lifeEnergy);
@@ -67,11 +60,11 @@ class World {
     }
 
     collisionCoin() {
-        this.coins.forEach((coin, index) => {
+        this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin, index)) {
                 this.coinbar.COLLECT_COIN.play();
                 this.coinbar.collectCoin();
-                this.coins.splice(index, 1);
+                this.level.coins.splice(index, 1);
                 this.coinbar.setPercentage(this.coinbar.coinAmount);
             }
         });
@@ -88,11 +81,11 @@ class World {
     }
 
     collisionBottle() {
-        this.bottles.forEach((bottle, index) => {
+        this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle, index)) {
                 this.bottlebar.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
-                this.bottles.splice(index, 1);
+                this.level.bottles.splice(index, 1);
                 this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
             }
         });
@@ -112,11 +105,11 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-        this.landscape.forEach(land => {
+        this.level.landscape.forEach(land => {
             this.addToMap(land)
         });
 
-        this.clouds.forEach(cloud => {
+        this.level.clouds.forEach(cloud => {
             this.addToMap(cloud);
         });
 
@@ -135,7 +128,7 @@ class World {
 
         this.addToMap(this.boss);
 
-        this.enemies.forEach(enemy => {
+        this.level.enemies.forEach(enemy => {
             this.addToMap(enemy);
         });
 
@@ -144,11 +137,11 @@ class World {
         });
 
 
-        this.bottles.forEach(bottle => {
+        this.level.bottles.forEach(bottle => {
             this.addToMap(bottle);
         });
 
-        this.coins.forEach(coin => {
+        this.level.coins.forEach(coin => {
             this.addToMap(coin);
         });
 
