@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,4 +9,48 @@ body{
 
 canvas {
     background-color: black;
+}
+
+#main {
+    position: relative;
+}
+
+#first-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Set the left position to 0 to cover the entire #main */
+    width: 45rem;
+    /* Set the width of #firstscreen to 100% */
+    height: 30rem;
+    /* Set the height of #firstscreen to 100% */
+}
+
+.start-img img {
+    width: 45rem;
+    /* Ensure the image doesn't exceed the width of its parent */
+    height: 30rem;
+    /* Ensure the image doesn't exceed the height of its parent */
+}
+
+#start-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 45%;
+    background-color: rgb(222, 192, 0);
+    width: 5rem;
+    height: 2rem;
+    font-size: 1rem;
+    color: hsl(0, 0%, 3%);
+    border: 2px solid hsl(0, 0%, 36%);
+    cursor: pointer;
+}
+
+#start-btn:hover {
+    transition: 125ms ease-in-out;
+    background-color: rgb(222, 174, 0);
+}
+
+.d-none {
+    display: none;
 }

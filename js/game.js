@@ -9,6 +9,9 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
+function hiddenStartScreen(){
+    document.getElementById('first-screen').classList.add('d-none');
+}
 
 window.addEventListener('keydown', (e) => {
     if (e.code == 'ArrowLeft') {

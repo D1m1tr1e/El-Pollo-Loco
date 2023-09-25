@@ -52,7 +52,7 @@ class Boss extends MoveableObject {
     }
 
     animateBoss() {
-        setInterval(() => {
+        const angryBossInterval = setInterval(() => {
             // walk animation
             this.playAnimation(this.IMAGES_BOSS_ALERT);
         }, 300);
@@ -69,6 +69,7 @@ class Boss extends MoveableObject {
             if (this.isDead()) {
                 console.log('Boss wurde besiegt');
                 clearInterval(moveBossInterval);
+                clearInterval(angryBossInterval);
                 this.BOSS_FIGHT_SOUND.pause();
                 this.playAnimation(this.IMAGES_BOSS_DEAD);
             } else if (this.isHurt()) {
