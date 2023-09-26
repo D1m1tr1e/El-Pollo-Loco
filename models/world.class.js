@@ -57,9 +57,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 console.log('chicken am Kompf getorffen');
-                //this.level.enemie.chickenKilled = true;
                 enemy.chickenKilled = true; 
-                //console.log(this.chickenKilled);
             }
         });
     }
@@ -73,7 +71,7 @@ class World {
 
     collisionCoin() {
         this.level.coins.forEach((coin, index) => {
-            if (this.character.isColliding(coin, index)) {
+            if (this.character.isColliding(coin)) {
                 this.coinbar.COLLECT_COIN.play();
                 this.coinbar.collectCoin();
                 this.level.coins.splice(index, 1);
@@ -94,7 +92,7 @@ class World {
 
     collisionBottle() {
         this.level.bottles.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle, index)) {
+            if (this.character.isColliding(bottle)) {
                 this.bottlebar.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
                 this.level.bottles.splice(index, 1);

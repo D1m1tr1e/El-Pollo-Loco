@@ -5,7 +5,6 @@ class MoveableObject extends DrawableObject {
     lastHit = 0;
     acceleration = 2;
     
-
     //character.isColliding(chicken);
     isColliding(mObj) {
         return this.x + this.width > mObj.x &&
@@ -33,7 +32,6 @@ class MoveableObject extends DrawableObject {
         return this.lifeEnergy == 0;
     }
     
-
     moveLeft() {
         this.x -= this.speed;
     }
