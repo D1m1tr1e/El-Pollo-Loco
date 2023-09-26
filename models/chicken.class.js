@@ -1,10 +1,11 @@
 class Chicken extends MoveableObject {
-    world;
+ 
     speed = 0.15 + Math.random() * 0.5;
     x = 300 + Math.random() * 1800;
     y = 390;
     height = 70;
     width = 90;
+    chickenKilled = false;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -29,6 +30,12 @@ class Chicken extends MoveableObject {
         setInterval(() => {
             // walk animation
             this.playAnimation(this.IMAGES_WALKING);
+        }, 100);
+
+       setInterval(() => {
+            if (this.chickenKilled) {
+                console.log('chicken ist tot');
+            }
         }, 100);
     }
 

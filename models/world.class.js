@@ -12,7 +12,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-
+    
 
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
@@ -41,6 +41,7 @@ class World {
         this.collisionBottle();
         this.collisionBoss();
         this.collisionThrowableObj();
+        this.collisionChickenHead(); 
     }
 
     collisionChicken() {
@@ -48,6 +49,17 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.lifeEnergy);
+            }
+        });
+    }
+
+    collisionChickenHead() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                console.log('chicken am Kompf getorffen');
+                //this.level.enemie.chickenKilled = true;
+                this.level.enemies.chickenKilled = true;
+                //console.log(this.chickenKilled);
             }
         });
     }
