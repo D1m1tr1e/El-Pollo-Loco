@@ -1,5 +1,5 @@
 class Chicken extends MoveableObject {
- 
+
     speed = 0.15 + Math.random() * 0.5;
     x = 300 + Math.random() * 1800;
     y = 390;
@@ -11,7 +11,7 @@ class Chicken extends MoveableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
-  
+
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/2_w.png');
@@ -32,7 +32,7 @@ class Chicken extends MoveableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }, 100);
 
-       setInterval(() => {
+        setInterval(() => {
             if (this.chickenKilled) {
                 console.log('chicken ist tot');
             }

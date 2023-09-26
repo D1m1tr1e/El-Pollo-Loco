@@ -58,7 +58,7 @@ class World {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 console.log('chicken am Kompf getorffen');
                 //this.level.enemie.chickenKilled = true;
-                this.level.enemies.chickenKilled = true;
+                enemy.chickenKilled = true; 
                 //console.log(this.chickenKilled);
             }
         });
