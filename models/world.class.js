@@ -41,7 +41,7 @@ class World {
         this.collisionBottle();
         this.collisionBoss();
         this.collisionThrowableObj();
-        this.collisionChickenHead(); 
+        this.killChicken(); 
     }
 
     collisionChicken() {
@@ -53,11 +53,12 @@ class World {
         });
     }
 
-    collisionChickenHead() {
-        this.level.enemies.forEach((enemy) => {
+    killChicken() {
+        this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 console.log('chicken am Kompf getorffen');
                 enemy.chickenKilled = true; 
+                //this.level.enemies.splice(index, 1);
                 this.character.jump();
             }
         });

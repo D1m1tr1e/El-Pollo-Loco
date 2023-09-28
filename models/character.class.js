@@ -9,6 +9,7 @@ class Character extends MoveableObject {
     acceleration = 2;
     pepeIsDead = false;
     endPositionPepe = false;
+    startIdleTimer = 0;
 
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -21,6 +22,9 @@ class Character extends MoveableObject {
         'img/2_character_pepe/1_idle/idle/I-8.png',
         'img/2_character_pepe/1_idle/idle/I-9.png',
         'img/2_character_pepe/1_idle/idle/I-10.png',
+    ];
+
+    IMAGES_IDLE_LONG = [
         'img/2_character_pepe/1_idle/long_idle/I-11.png',
         'img/2_character_pepe/1_idle/long_idle/I-12.png',
         'img/2_character_pepe/1_idle/long_idle/I-13.png',
@@ -32,6 +36,7 @@ class Character extends MoveableObject {
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
         'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
+
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -76,6 +81,8 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURTING);
+        this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_IDLE_LONG);
         this.applyGravity();
         this.animateCharacter();
     }
@@ -107,20 +114,21 @@ class Character extends MoveableObject {
 
         setInterval(() => {
             if (this.isDead()) {
+                this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_DEAD);
-                this.speedY = 10;
-                this.applyGravity();
-                return this.y = 600;
             } else if (this.isHurt()) {
+                this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_HURTING);
             } else if (this.isAboveGround()) {
+                this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.isIdle();
             }
-        }, 70);
+        }, 90);
     }
 
     isIdle() {
@@ -128,9 +136,15 @@ class Character extends MoveableObject {
         let left = this.world.keyboard.LEFT;
         let up = this.world.keyboard.UP && this.world.keyboard.SPACE;
         let d = this.world.keyboard.D;
+        this.startIdleTimer += 250;
 
-        if (!this.right && !this.left && !this.up && !this.d) {
-           // this.playAnimation(this.IMAGES_IDLE);
+        if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer <= 7000) {
+            console.log(this.startIdleTimer);
+            this.playAnimation(this.IMAGES_IDLE);
+        }
+        if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer >= 7000) {
+            console.log(this.startIdleTimer);
+            this.playAnimation(this.IMAGES_IDLE_LONG);
         }
     }
 }

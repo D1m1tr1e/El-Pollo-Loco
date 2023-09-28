@@ -20,7 +20,7 @@ class Chicken extends MoveableObject {
 
 
     animateChicken() {
-        setInterval(() => {
+        const walkinInterval = setInterval(() => {
             this.moveLeft();
             this.x -= this.speed;
         }, 1000 / 60);
@@ -35,6 +35,7 @@ class Chicken extends MoveableObject {
             if (this.chickenKilled) {
                 console.log('chicken ist tot');
                 this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
+                clearInterval(walkinInterval);
             }
         }, 100);
     }
