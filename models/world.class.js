@@ -105,6 +105,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && this.bottlebar.bottleAmount > 0) {
+            this.character.startIdleTimer = 0;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y);
             this.throwableObject.push(bottle);
             this.bottlebar.bottleAmount -= 20;
