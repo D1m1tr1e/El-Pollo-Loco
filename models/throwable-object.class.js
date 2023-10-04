@@ -1,9 +1,10 @@
 class ThrowableObject extends MoveableObject {
-    animationStarted = false;
-    splashStarted = false;
+    rotationAnimationStarted = false;
+    splashAnimationStarted = false;
     speedY = 20;
     speed = 0.15;
     positionX = 12;
+    isThrow = false;
     IMAGES_BOTTLE_SPLASH = [
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
@@ -43,14 +44,13 @@ class ThrowableObject extends MoveableObject {
 
     animateBottle() {
         setInterval(() => {
-            this.stopPlaySound();
+            this.stopThrowPlaySound();
             this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
         }, 50);
 
         setInterval(() => {
             if (this.y >= 370) {
                 this.stopPlaySplashSound();
-                console.log('Falsche hat dne Grund erreicht');
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
                 this.positionX = 0;
             }
@@ -58,17 +58,17 @@ class ThrowableObject extends MoveableObject {
     }
 
     // code for sound control to avoid endless sound
-    stopPlaySound() {
-        if (!this.animationStarted) {
+    stopThrowPlaySound() {
+        if (!this.rotationAnimationStarted) {
             this.THROW_SOUND.play();
-            this.animationStarted = true;
+            this.rotationAnimationStarted = true;
         }
     }
 
     stopPlaySplashSound() {
-        if (!this.splashStarted) {
+        if (!this.splashAnimationStarted) {
             this.SPLASH_SOUND.play();
-            this.splashStarted = true;
+            this.splashAnimationStarted = true;
         }
     }
 
