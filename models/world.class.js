@@ -108,12 +108,6 @@ class World {
         });
     }
 
-    deleteThrownBottle() {
-        this.throwableObject.forEach((index) => {
-            
-        });
-    }
-
     checkThrowObjects() {
         if (this.keyboard.D && this.bottlebar.bottleAmount > 0) {
             this.character.startIdleTimer = 0;

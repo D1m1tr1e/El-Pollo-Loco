@@ -17,13 +17,11 @@ class Chicken extends MoveableObject {
         this.animateChicken();
     }
 
-
     animateChicken() {
         const walkinInterval = setInterval(() => {
             this.moveLeft();
             this.x -= this.speed;
         }, 1000 / 60);
-
 
         setInterval(() => {
             // walk animation
