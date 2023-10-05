@@ -88,6 +88,7 @@ class World {
                 this.boss.hit();
                 this.statusbarBoss.setPercentage(this.boss.lifeEnergy);
                 this.boss.lifeEnergy -= 15;
+                this.deleteThrownBottle();
             }
         });
     }
@@ -100,6 +101,14 @@ class World {
                 this.level.bottles.splice(index, 1);
                 this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
             }
+        });
+    }
+
+    deleteThrownBottle(){
+        this.throwableObject.forEach((btl, index) => {
+           setTimeout(() => {
+            this.throwableObject.splice(index, 1);
+           }, 500);    
         });
     }
 
