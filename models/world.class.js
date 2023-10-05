@@ -12,7 +12,6 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    
 
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
@@ -41,7 +40,7 @@ class World {
         this.collisionBottle();
         this.collisionBoss();
         this.collisionThrowableObj();
-        this.killChicken(); 
+        this.killChicken();
     }
 
     collisionChicken() {
@@ -57,9 +56,12 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 console.log('chicken am Kompf getorffen');
-                enemy.chickenKilled = true; 
-                //this.level.enemies.splice(index, 1);
+                enemy.chickenKilled = true;
                 this.character.jump();
+
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 500);
             }
         });
     }
@@ -83,12 +85,14 @@ class World {
     }
 
     collisionThrowableObj() { //collision of the thrown false with the boss
-        this.throwableObject.forEach((bottle) => {
+        this.throwableObject.forEach((bottle, index) => {
             if (this.boss.isColliding(bottle)) {
                 this.boss.hit();
                 this.statusbarBoss.setPercentage(this.boss.lifeEnergy);
                 this.boss.lifeEnergy -= 15;
-                this.deleteThrownBottle();
+                setTimeout(() => {
+                    this.throwableObject.splice(index, 1);
+                }, 500);
             }
         });
     }
@@ -104,11 +108,9 @@ class World {
         });
     }
 
-    deleteThrownBottle(){
-        this.throwableObject.forEach((btl, index) => {
-           setTimeout(() => {
-            this.throwableObject.splice(index, 1);
-           }, 500);    
+    deleteThrownBottle() {
+        this.throwableObject.forEach((index) => {
+            
         });
     }
 

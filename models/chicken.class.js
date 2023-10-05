@@ -1,5 +1,4 @@
 class Chicken extends MoveableObject {
-
     speed = 0.15 + Math.random() * 0.5;
     x = 300 + Math.random() * 1800;
     y = 390;
