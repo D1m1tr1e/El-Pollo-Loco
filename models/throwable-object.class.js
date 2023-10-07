@@ -4,7 +4,6 @@ class ThrowableObject extends MoveableObject {
     speedY = 20;
     speed = 0.15;
     positionX = 12;
-    isThrow = false;
     IMAGES_BOTTLE_SPLASH = [
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
@@ -35,7 +34,6 @@ class ThrowableObject extends MoveableObject {
     }
 
     throw() {
-        //this.speedY = 20;
         this.applyGravity();
         setInterval(() => {
             this.x += this.positionX;

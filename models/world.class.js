@@ -39,7 +39,7 @@ class World {
         this.collisionCoin();
         this.collisionBottle();
         this.collisionBoss();
-        this.collisionThrowableObj();
+        this.hitBossWithBottle();
         this.killChicken();
     }
 
@@ -55,10 +55,8 @@ class World {
     killChicken() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                console.log('chicken am Kompf getorffen');
                 enemy.chickenKilled = true;
                 this.character.jump();
-
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 500);
@@ -84,7 +82,7 @@ class World {
         });
     }
 
-    collisionThrowableObj() { //collision of the thrown false with the boss
+    hitBossWithBottle() { //collision of the thrown false with the boss
         this.throwableObject.forEach((bottle, index) => {
             if (this.boss.isColliding(bottle)) {
                 this.boss.hit();
@@ -115,6 +113,18 @@ class World {
             this.throwableObject.push(bottle);
             this.bottlebar.bottleAmount -= 20;
             this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
+            this.deleteThrownBottle();
+        }
+    }
+
+    deleteThrownBottle() {
+        const bottleOnGround = 370;
+        for (let i = this.throwableObject.length - 1; i >= 0; i--) {
+
+            if (this.throwableObject[i].y > bottleOnGround) {
+                console.log(this.throwableObject[i].y)
+                this.throwableObject.splice(i, 1);
+            }
         }
     }
 

@@ -68,6 +68,8 @@ class Character extends MoveableObject {
         'img/2_character_pepe/5_dead/D-57.png'
     ];
     WALKING_SOUND = new Audio('audio/forest_footsteps.mp3');
+    JUMP_SOUND = new Audio('audio/jump.mp3');
+    SNORING_SOUND = new Audio('audio/snoring.mp3');
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -102,6 +104,7 @@ class Character extends MoveableObject {
 
             if (!this.isAboveGround() && this.world.keyboard.UP || !this.isAboveGround() && this.world.keyboard.SPACE) {
                 this.jump();
+                this.JUMP_SOUND.play();
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
@@ -134,9 +137,12 @@ class Character extends MoveableObject {
 
         if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer <= 7000) {
             this.playAnimation(this.IMAGES_IDLE);
+            this.SNORING_SOUND.pause();
+
         }
         if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer >= 7000) {
             this.playAnimation(this.IMAGES_IDLE_LONG);
+            this.SNORING_SOUND.play();
         }
     }
 }
