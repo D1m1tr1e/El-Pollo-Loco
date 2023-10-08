@@ -82,15 +82,13 @@ class World {
         });
     }
 
-    hitBossWithBottle() { //collision of the thrown false with the boss
+    hitBossWithBottle() { //collision of the thrown bottle with the boss
         this.throwableObject.forEach((bottle, index) => {
             if (this.boss.isColliding(bottle)) {
                 this.boss.hit();
                 this.statusbarBoss.setPercentage(this.boss.lifeEnergy);
                 this.boss.lifeEnergy -= 15;
-                setTimeout(() => {
-                    this.throwableObject.splice(index, 1);
-                }, 500);
+                this.deleteThrownBottle();
             }
         });
     }
@@ -113,19 +111,18 @@ class World {
             this.throwableObject.push(bottle);
             this.bottlebar.bottleAmount -= 20;
             this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
-            this.deleteThrownBottle();
         }
+        this.deleteThrownBottle();
     }
 
     deleteThrownBottle() {
-        const bottleOnGround = 370;
-        for (let i = this.throwableObject.length - 1; i >= 0; i--) {
-
-            if (this.throwableObject[i].y > bottleOnGround) {
-                console.log(this.throwableObject[i].y)
-                this.throwableObject.splice(i, 1);
+        this.throwableObject.forEach((bottle, index) => {
+            if(bottle.deletable){
+                setTimeout(() => {
+                    this.throwableObject.splice(index, 1);
+                }, 500);
             }
-        }
+        });
     }
 
     draw() {

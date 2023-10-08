@@ -6,8 +6,8 @@ class Character extends MoveableObject {
     height = 300;
     width = 150;
     speedY = 0;
-    acceleratiodn = 2;
     pepeIsDead = false;
+    acceleratiodn = 2;
     endPositionPepe = false;
     startIdleTimer = 0;
     IMAGES_IDLE = [
@@ -93,7 +93,6 @@ class Character extends MoveableObject {
                 if (this.x == this.world.level.level_end_x) {
                     this.endPositionPepe = true;
                 }
-
             }
 
             if (this.world.keyboard.LEFT && this.x > 100) {
@@ -113,6 +112,9 @@ class Character extends MoveableObject {
             if (this.isDead()) {
                 this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_DEAD);
+                this.pepeIsDead = true;
+                this.gameOver();
+                console.log(this.pepeIsDead);
             } else if (this.isHurt()) {
                 this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_HURTING);
@@ -126,6 +128,7 @@ class Character extends MoveableObject {
                 this.isIdle();
             }
         }, 90);
+        
     }
 
     isIdle() {
@@ -144,6 +147,15 @@ class Character extends MoveableObject {
             this.playAnimation(this.IMAGES_IDLE_LONG);
             this.SNORING_SOUND.play();
         }
+    }
+
+    gameOver() {
+        if (this.pepeIsDead) {
+            document.getElementById('game-over-screen').classList.remove('d-none');
+
+        }else if (startGame());
+        this.pepeIsDead = false;
+        console.log(this.pepeIsDead)
     }
 }
 

@@ -4,6 +4,7 @@ class ThrowableObject extends MoveableObject {
     speedY = 20;
     speed = 0.15;
     positionX = 12;
+    deletable = false;
     IMAGES_BOTTLE_SPLASH = [
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
@@ -42,15 +43,14 @@ class ThrowableObject extends MoveableObject {
 
     animateBottle() {
         setInterval(() => {
-            this.stopThrowPlaySound();
-            this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
-        }, 50);
-
-        setInterval(() => {
             if (this.y >= 370) {
                 this.stopPlaySplashSound();
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
                 this.positionX = 0;
+                this.deletable = true;
+            } else {
+                this.stopThrowPlaySound();
+                this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
             }
         }, 50);
     }

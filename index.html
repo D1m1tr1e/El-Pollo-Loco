@@ -34,9 +34,16 @@
     <div id="main">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div id="first-screen">
-            <div class="start-img">
+            <div class="overlay-design">
                 <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
                 <button onclick="startGame()" id="start-btn">START</button>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="d-none">
+            <div class="overlay-design">
+                <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="">
+                <button onclick="startGame()" id="restart-btn">RESTART</button>
             </div>
         </div>
     </div>

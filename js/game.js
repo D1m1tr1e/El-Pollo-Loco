@@ -13,8 +13,9 @@ function startGame(){
     document.getElementById('first-screen').classList.add('d-none');
     initLevel();
     init();
-  
 }
+
+
 
 window.addEventListener('keydown', (e) => {
     if (e.code == 'ArrowLeft') {
