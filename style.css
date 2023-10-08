@@ -15,7 +15,8 @@ canvas {
     position: relative;
 }
 
-#first-screen, #game-over-screen {
+#first-screen,
+#game-over-screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -33,7 +34,8 @@ canvas {
     /* Ensure the image doesn't exceed the height of its parent */
 }
 
-#start-btn, #restart-btn {
+#start-btn,
+#restart-btn {
     position: absolute;
     bottom: 1rem;
     left: 45%;
@@ -46,9 +48,19 @@ canvas {
     cursor: pointer;
 }
 
-#start-btn, #restart-btn:hover {
+#start-btn,
+#restart-btn:hover {
     transition: 125ms ease-in-out;
     background-color: rgb(222, 174, 0);
+}
+
+#control-keys {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    background-color: red;
 }
 
 .d-none {

@@ -10,6 +10,12 @@ class Character extends MoveableObject {
     acceleratiodn = 2;
     endPositionPepe = false;
     startIdleTimer = 0;
+    offset = {
+        top: 130,
+        bottom: 0,
+        left: 0,
+        right: 10
+    }
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
         'img/2_character_pepe/1_idle/idle/I-2.png',
@@ -128,7 +134,7 @@ class Character extends MoveableObject {
                 this.isIdle();
             }
         }, 90);
-        
+
     }
 
     isIdle() {
@@ -152,10 +158,6 @@ class Character extends MoveableObject {
     gameOver() {
         if (this.pepeIsDead) {
             document.getElementById('game-over-screen').classList.remove('d-none');
-
-        }else if (startGame());
-        this.pepeIsDead = false;
-        console.log(this.pepeIsDead)
+        }
     }
 }
-

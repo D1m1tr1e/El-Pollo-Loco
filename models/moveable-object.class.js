@@ -4,13 +4,26 @@ class MoveableObject extends DrawableObject {
     lifeEnergy = 100;
     lastHit = 0;
     acceleration = 2;
-    
-    //character.isColliding(chicken);
-    isColliding(mObj) {
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    }
+
+   /* isColliding(mObj) {
         return this.x + this.width > mObj.x &&
             this.y + this.height > mObj.y &&
             this.x < mObj.x &&
             this.y < mObj.y + mObj.height;
+    }*/
+
+//character.isColliding(chicken);
+    isColliding(mObj) {
+        return this.x + this.width - this.offset.right > mObj.x + mObj.offset.left &&
+            this.y + this.height - this.offset.bottom > mObj.y + mObj.offset.top &&
+            this.x + this.offset.bottom < mObj.x + mObj.width - mObj.offset.right &&
+            this.y + this.offset.top < mObj.y + mObj.height - mObj.offset.bottom;
     }
 
     hit() {
@@ -31,7 +44,7 @@ class MoveableObject extends DrawableObject {
     isDead() {
         return this.lifeEnergy == 0;
     }
-    
+
     moveLeft() {
         this.x -= this.speed;
     }
