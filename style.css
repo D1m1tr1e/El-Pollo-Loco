@@ -5,6 +5,25 @@ body {
     background-image: url('img/5_background/complete_background.png');
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'zabars', 'Arial', 'Helvetica', 'sans-serif';
+}
+
+h1 {
+    font-size: 5rem;
+    letter-spacing: 0.5rem;
+    margin: 1rem;
+}
+
+h2 {
+    font-family: 'zabars';
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 canvas {
@@ -59,10 +78,27 @@ canvas {
     margin-top: 1rem;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid black;
-    background-color: red;
+    border: 1px solid gray;
+    backdrop-filter: blur(10px);
+}
+
+.element-direction {
+    display: flex;
+    align-items: center;
+}
+
+.element-direction span {
+    margin: 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
 }
 
 .d-none {
     display: none;
+}
+
+@font-face {
+    font-family: 'zabars';
+    src: url('fonts/zabars.ttf') format('truetype');
+
 }

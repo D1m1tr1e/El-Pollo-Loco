@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/10_fevicon/fevicon_chicken.ico">
     <script src="models/drawable-object.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/character.class.js"></script>
@@ -29,39 +30,38 @@
 </head>
 
 <body>
-
     <h1>El Pollo Loco</h1>
     <div id="main">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div id="first-screen">
             <div class="overlay-design">
                 <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
-                <button onclick="startGame()" id="start-btn">START</button>
+                <button onclick="startGame()" id="start-btn"><h2>START</h2></button>
             </div>
         </div>
 
         <div id="game-over-screen" class="d-none">
             <div class="overlay-design">
                 <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="">
-                <button onclick="startGame()" id="restart-btn">RESTART</button>
+                <button onclick="startGame()" id="restart-btn"><h2>RESTART</h2></button>
             </div>
         </div>
         <div id="control-keys">
-            <div>
+            <div class="element-direction">
                 <img src="img/10_control_keys/arrow_up.ico" alt="">
                 <img src="img/10_control_keys/slash.ico" alt="">
                 <img src="img/10_control_keys/space.ico" alt="">
                 <span>JUMP</span>
             </div>
-            <div>
+            <div class="element-direction">
                 <img src="img/10_control_keys/arrow_left.ico" alt="">
-                <span>MOVE LEFT</span>
+                <span>LEFT</span>
             </div>
-            <div>
+            <div class="element-direction">
                 <img src="img/10_control_keys/arrow_right.ico" alt="">
-                <span> MOVE RIGHT</span>
+                <span>RIGHT</span>
             </div>
-            <div>
+            <div class="element-direction">
                 <img src="img/10_control_keys/letter_d.ico" alt="">
                 <span>ATTACK</span>
             </div>

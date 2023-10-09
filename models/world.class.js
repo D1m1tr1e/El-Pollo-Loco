@@ -40,19 +40,9 @@ class World {
         this.collisionBottle();
         this.collisionBoss();
         this.hitBossWithBottle();
-        this.killChicken();
     }
 
     collisionChicken() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusbar.setPercentage(this.character.lifeEnergy);
-            }
-        });
-    }
-
-    killChicken() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 enemy.chickenKilled = true;
@@ -60,6 +50,9 @@ class World {
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 500);
+            } else if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusbar.setPercentage(this.character.lifeEnergy);      
             }
         });
     }

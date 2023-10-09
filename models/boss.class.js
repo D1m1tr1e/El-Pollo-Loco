@@ -6,6 +6,7 @@ class Boss extends MoveableObject {
     speed = 1;
     currentImage = 0;
     world;
+
     IMAGES_BOSS_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',

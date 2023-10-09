@@ -76,6 +76,7 @@ class Character extends MoveableObject {
     WALKING_SOUND = new Audio('audio/forest_footsteps.mp3');
     JUMP_SOUND = new Audio('audio/jump.mp3');
     SNORING_SOUND = new Audio('audio/snoring.mp3');
+    HURT_SOUND = new Audio('audio/hurt.mp3');
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -124,6 +125,7 @@ class Character extends MoveableObject {
             } else if (this.isHurt()) {
                 this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_HURTING);
+                this.HURT_SOUND.play();
             } else if (this.isAboveGround()) {
                 this.startIdleTimer = 0;
                 this.playAnimation(this.IMAGES_JUMPING);
