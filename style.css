@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'zabars';
+    src: url('fonts/zabars.ttf') format('truetype');
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -95,10 +100,4 @@ canvas {
 
 .d-none {
     display: none;
-}
-
-@font-face {
-    font-family: 'zabars';
-    src: url('fonts/zabars.ttf') format('truetype');
-
 }

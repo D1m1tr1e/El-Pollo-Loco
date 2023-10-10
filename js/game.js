@@ -15,6 +15,10 @@ function startGame(){
     init();
 }
 
+function restartGame(){
+    window.location.reload();
+}
+
 
 
 window.addEventListener('keydown', (e) => {

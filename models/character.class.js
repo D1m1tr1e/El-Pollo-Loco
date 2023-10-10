@@ -11,10 +11,10 @@ class Character extends MoveableObject {
     endPositionPepe = false;
     startIdleTimer = 0;
     offset = {
-        top: 130,
-        bottom: 0,
-        left: 0,
-        right: 10
+        top: 300, // y  + der Abstand von bottom bildet die höhen des chars
+        bottom: 180, // y bezieht sich auf das Koordinatensystem und ist oben im Himmel
+        left: 120, // x
+        right: 150 // x + breite 
     }
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -117,26 +117,41 @@ class Character extends MoveableObject {
 
         setInterval(() => {
             if (this.isDead()) {
-                this.startIdleTimer = 0;
-                this.playAnimation(this.IMAGES_DEAD);
-                this.pepeIsDead = true;
-                this.gameOver();
-                console.log(this.pepeIsDead);
+                this.animationDead();
             } else if (this.isHurt()) {
-                this.startIdleTimer = 0;
-                this.playAnimation(this.IMAGES_HURTING);
-                this.HURT_SOUND.play();
+                this.animationHurting();
             } else if (this.isAboveGround()) {
-                this.startIdleTimer = 0;
-                this.playAnimation(this.IMAGES_JUMPING);
+                this.animationJumping();
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.startIdleTimer = 0;
-                this.playAnimation(this.IMAGES_WALKING);
+                this.animationMoving();
             } else {
                 this.isIdle();
             }
         }, 90);
+    }
 
+    animationDead() {
+        this.startIdleTimer = 0;
+        this.playAnimation(this.IMAGES_DEAD);
+        this.pepeIsDead = true;
+        this.gameOver();
+        console.log(this.pepeIsDead);
+    }
+
+    animationHurting() {
+        this.startIdleTimer = 0;
+        this.playAnimation(this.IMAGES_HURTING);
+        this.HURT_SOUND.play();
+    }
+
+    animationJumping() {
+        this.startIdleTimer = 0;
+        this.playAnimation(this.IMAGES_JUMPING);
+    }
+
+    animationMoving() {
+        this.startIdleTimer = 0;
+        this.playAnimation(this.IMAGES_WALKING);
     }
 
     isIdle() {
@@ -159,6 +174,7 @@ class Character extends MoveableObject {
 
     gameOver() {
         if (this.pepeIsDead) {
+            this.world.game_paused = true;
             document.getElementById('game-over-screen').classList.remove('d-none');
         }
     }

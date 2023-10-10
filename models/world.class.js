@@ -12,6 +12,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    game_paused = false;
 
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
@@ -52,7 +53,7 @@ class World {
                 }, 500);
             } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusbar.setPercentage(this.character.lifeEnergy);      
+                this.statusbar.setPercentage(this.character.lifeEnergy);
             }
         });
     }
@@ -110,7 +111,7 @@ class World {
 
     deleteThrownBottle() {
         this.throwableObject.forEach((bottle, index) => {
-            if(bottle.deletable){
+            if (bottle.deletable) {
                 setTimeout(() => {
                     this.throwableObject.splice(index, 1);
                 }, 500);
@@ -119,58 +120,59 @@ class World {
     }
 
     draw() {
-        //resetet/löscht mein Cnavas
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if (this.game_paused == false) {
+            //resetet/löscht mein Cnavas
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.translate(this.camera_x, 0);
-        this.level.landscape.forEach(land => {
-            this.addToMap(land)
-        });
+            this.ctx.translate(this.camera_x, 0);
+            this.level.landscape.forEach(land => {
+                this.addToMap(land)
+            });
 
-        this.level.clouds.forEach(cloud => {
-            this.addToMap(cloud);
-        });
+            this.level.clouds.forEach(cloud => {
+                this.addToMap(cloud);
+            });
 
-        this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x, 0);
+            this.addToMap(this.character);
+            this.ctx.translate(-this.camera_x, 0);
+
+            // ------  SPACE FOR FIXED OBJECTS ------
+            this.addToMap(this.statusbar);
+            this.addToMap(this.coinbar);
+            this.addToMap(this.bottlebar);
+            this.addToMap(this.statusbarBoss);
+            this.addToMap(this.stausIconBoss);
+            this.ctx.translate(this.camera_x, 0);
+            // ------  SPACE FOR FIXED OBJECTS END------
+
+            this.addToMap(this.boss);
+
+            this.level.enemies.forEach(enemy => {
+                this.addToMap(enemy);
+            });
+
+            this.throwableObject.forEach(thObj => {
+                this.addToMap(thObj)
+            });
 
 
-        // ------  SPACE FOR FIXED OBJECTS ------
-        this.addToMap(this.statusbar);
-        this.addToMap(this.coinbar);
-        this.addToMap(this.bottlebar);
-        this.addToMap(this.statusbarBoss);
-        this.addToMap(this.stausIconBoss);
-        this.ctx.translate(this.camera_x, 0);
-        // ------  SPACE FOR FIXED OBJECTS END------
+            this.level.bottles.forEach(bottle => {
+                this.addToMap(bottle);
+            });
 
-        this.addToMap(this.boss);
+            this.level.coins.forEach(coin => {
+                this.addToMap(coin);
+            });
 
-        this.level.enemies.forEach(enemy => {
-            this.addToMap(enemy);
-        });
+            this.ctx.translate(-this.camera_x, 0);
 
-        this.throwableObject.forEach(thObj => {
-            this.addToMap(thObj)
-        });
-
-
-        this.level.bottles.forEach(bottle => {
-            this.addToMap(bottle);
-        });
-
-        this.level.coins.forEach(coin => {
-            this.addToMap(coin);
-        });
-
-        this.ctx.translate(-this.camera_x, 0);
-
-        //Draw() wid immer weider aufgerufen
-        //Hier wird eine self Variable definiert weil im späteren Code this nicht als this erkannt werden kann
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+            //Draw() wid immer weider aufgerufen
+            //Hier wird eine self Variable definiert weil im späteren Code this nicht als this erkannt werden kann
+            let self = this;
+            requestAnimationFrame(function () {
+                self.draw();
+            });
+        }
     }
 
     addToMap(mObj) {
