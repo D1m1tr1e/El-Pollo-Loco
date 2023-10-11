@@ -11,20 +11,27 @@ class MoveableObject extends DrawableObject {
         right: 0
     }
 
-   /* isColliding(mObj) {
+    /* isColliding(mObj) {
+         return this.x + this.width > mObj.x &&
+             this.y + this.height > mObj.y &&
+             this.x < mObj.x &&
+             this.y < mObj.y + mObj.height;
+     }*/
+
+    //character.isColliding(chicken);
+    isColliding(mObj) {
         return this.x + this.width > mObj.x &&
             this.y + this.height > mObj.y &&
-            this.x < mObj.x &&
+            this.x < mObj.x + mObj.width &&
             this.y < mObj.y + mObj.height;
-    }*/
-
-//character.isColliding(chicken);
+    }
+   /* //character.isColliding(chicken);
     isColliding(mObj) {
         return this.x + this.width - this.offset.right > mObj.x + mObj.offset.left &&
             this.y + this.height - this.offset.bottom > mObj.y + mObj.offset.top &&
             this.x + this.offset.bottom < mObj.x + mObj.width - mObj.offset.right &&
             this.y + this.offset.top < mObj.y + mObj.height - mObj.offset.bottom;
-    }
+    }*/
 
     hit() {
         this.lifeEnergy -= 5;

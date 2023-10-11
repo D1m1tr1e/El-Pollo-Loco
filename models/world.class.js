@@ -90,6 +90,7 @@ class World {
     collisionBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
+                console.log(this.character.isColliding(bottle));
                 this.bottlebar.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
                 this.level.bottles.splice(index, 1);

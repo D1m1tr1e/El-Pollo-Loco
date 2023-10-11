@@ -40,7 +40,8 @@ canvas {
 }
 
 #first-screen,
-#game-over-screen {
+#game-over-screen,
+#game-won-screen{
     position: absolute;
     top: 0;
     left: 0;

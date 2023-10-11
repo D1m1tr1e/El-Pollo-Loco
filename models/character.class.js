@@ -11,10 +11,10 @@ class Character extends MoveableObject {
     endPositionPepe = false;
     startIdleTimer = 0;
     offset = {
-        top: 300, // y  + der Abstand von bottom bildet die höhen des chars
-        bottom: 180, // y bezieht sich auf das Koordinatensystem und ist oben im Himmel
-        left: 120, // x
-        right: 150 // x + breite 
+        top: 275, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
+        bottom: 15, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
+        left: 135, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
+        right: -120 // x-Achse das ist der Abstand von left -> bildet die Breite vom Char
     }
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -135,7 +135,6 @@ class Character extends MoveableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.pepeIsDead = true;
         this.gameOver();
-        console.log(this.pepeIsDead);
     }
 
     animationHurting() {

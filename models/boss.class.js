@@ -5,6 +5,9 @@ class Boss extends MoveableObject {
     width = 300;
     speed = 1;
     currentImage = 0;
+    bossIsDead = false;
+    angryBossInterval;
+    moveBossInterval;
     world;
 
     IMAGES_BOSS_ALERT = [
@@ -45,12 +48,12 @@ class Boss extends MoveableObject {
     }
 
     animateBoss() {
-        const angryBossInterval = setInterval(() => {
+        this.angryBossInterval = setInterval(() => {
             // walk animation
             this.playAnimation(this.IMAGES_BOSS_ALERT);
         }, 300);
 
-        const moveBossInterval = setInterval(() => {
+        this.moveBossInterval = setInterval(() => {
             if (this.world.character.endPositionPepe) {
                 this.BOSS_FIGHT_SOUND.play();
                 this.moveLeft();
@@ -60,11 +63,13 @@ class Boss extends MoveableObject {
 
         setInterval(() => {
             if (this.isDead()) {
-                console.log('Boss wurde besiegt');
-                clearInterval(moveBossInterval);
-                clearInterval(angryBossInterval);
+                this.bossIsDead = true;
+                console.log('boss ist tot', this.bossIsDead)
+                clearInterval(this.moveBossInterval);
+                clearInterval(this.angryBossInterval);
                 this.BOSS_FIGHT_SOUND.pause();
                 this.playAnimation(this.IMAGES_BOSS_DEAD);
+                this.gameWon();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_BOSS_HURTING);
                 console.log('boss wurde verletzt')
@@ -72,6 +77,12 @@ class Boss extends MoveableObject {
         }, 1000 / 5);
     }
 
+    gameWon() {
+        if (this.bossIsDead) {
+            this.world.game_paused = true;
+            document.getElementById('game-won-screen').classList.remove('d-none');
+        }
+    }
 
 }
 
