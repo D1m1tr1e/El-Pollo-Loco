@@ -9,17 +9,39 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-function startGame(){
+function startGame() {
     document.getElementById('first-screen').classList.add('d-none');
     initLevel();
     init();
 }
 
-function restartGame(){
+function restartGame() {
     window.location.reload();
 }
 
+function openFullscreen() {
+    console.log('button funtkioniert');
+    let fullscreen = document.getElementById('test');
+    enterFullscreen(fullscreen);
+}
 
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}
 
 window.addEventListener('keydown', (e) => {
     if (e.code == 'ArrowLeft') {
