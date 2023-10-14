@@ -21,7 +21,11 @@ function restartGame() {
 
 function openFullscreen() {
     console.log('button funtkioniert');
-    let fullscreen = document.getElementById('test');
+    let fullscreen = document.getElementById('main');
+    document.getElementById('main').classList.add('fullscreen');
+    document.getElementById('canvas').classList.add('fullscreen-lvl');
+    document.getElementById('first-screen').classList.add('fullscreen');
+    document.getElementById('start-display').classList.add('fullscreen');
     enterFullscreen(fullscreen);
 }
 

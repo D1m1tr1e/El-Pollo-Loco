@@ -37,43 +37,43 @@
         <!--SART SCREEN-->
         <div id="first-screen">
             <div class="overlay-design">
-                <img  id="test" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
+                <img id="start-display" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
                 <button onclick="startGame()" id="start-btn">
                     <h2>START</h2>
                 </button>
             </div>
-            <div class="full-screen size">
+            <div class="fullscreen-btn size">
                 <img onclick="openFullscreen()" src="img/11_options/full_sreen.ico" alt="">
             </div>
             <div id="game-info" class="info-screen size">
-                <img onclick="openInfo()"src="img/11_options/question_mark.ico" alt="">
+                <img onclick="openInfo()" src="img/11_options/question_mark.ico" alt="">
+            </div>
+
+            <!--CONTROL KEY BAR-->
+            <div id="control-keys">
+                <div class="element-direction">
+                    <img src="img/10_control_keys/arrow_up.ico" alt="">
+                    <img src="img/10_control_keys/slash.ico" alt="">
+                    <img src="img/10_control_keys/space.ico" alt="">
+                    <span>JUMP</span>
+                </div>
+                <div class="element-direction">
+                    <img src="img/10_control_keys/arrow_left.ico" alt="">
+                    <span>LEFT</span>
+                </div>
+                <div class="element-direction">
+                    <img src="img/10_control_keys/arrow_right.ico" alt="">
+                    <span>RIGHT</span>
+                </div>
+                <div class="element-direction">
+                    <img src="img/10_control_keys/letter_d.ico" alt="">
+                    <span>ATTACK</span>
+                </div>
             </div>
         </div>
-
-        <!--CONTROL KEY BAR-->
-        <div id="control-keys">
-            <div class="element-direction">
-                <img src="img/10_control_keys/arrow_up.ico" alt="">
-                <img src="img/10_control_keys/slash.ico" alt="">
-                <img src="img/10_control_keys/space.ico" alt="">
-                <span>JUMP</span>
-            </div>
-            <div class="element-direction">
-                <img src="img/10_control_keys/arrow_left.ico" alt="">
-                <span>LEFT</span>
-            </div>
-            <div class="element-direction">
-                <img src="img/10_control_keys/arrow_right.ico" alt="">
-                <span>RIGHT</span>
-            </div>
-            <div class="element-direction">
-                <img src="img/10_control_keys/letter_d.ico" alt="">
-                <span>ATTACK</span>
-            </div>
-        </div>
-
+        
         <!--GAME WON SCREEN-->
-        <div id="game-won-screen" class="d-none">
+        <div id="game-won-screen" >
             <div class="overlay-design">
                 <img src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
                 <button onclick="restartGame()" id="restart-btn">
