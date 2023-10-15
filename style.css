@@ -84,7 +84,6 @@ canvas {
     margin-top: -3.5rem;
     justify-content: space-around;
     align-items: center;
-    backdrop-filter: blur(10px);
 }
 
 .fullscreen-btn {
@@ -137,11 +136,17 @@ canvas {
 .fullscreen {
     height: 100% !important;
     width: 100% !important;
+    
+}
+
+.z-index{
+    z-index: 1;
+    background-image: url("img/5_background/first_half_background.png");
 }
 
 .fullscreen-lvl {
     height: 60% !important;
-    max-width: 1000px !important;
+    max-width: 80% !important;
     position: absolute;
     top: 50%;
     left: 50%;

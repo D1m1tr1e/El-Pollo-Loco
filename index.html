@@ -73,9 +73,9 @@
         </div>
         
         <!--GAME WON SCREEN-->
-        <div id="game-won-screen" >
+        <div id="game-won-screen" class="d-none">
             <div class="overlay-design">
-                <img src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
+                <img id="gameover-img" src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
                 <button onclick="restartGame()" id="restart-btn">
                     <h2>BACK TO MENU</h2>
                 </button>
@@ -85,7 +85,7 @@
         <!--GAME OVER SCREEN-->
         <div id="game-over-screen" class="d-none">
             <div class="overlay-design">
-                <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="">
+                <img id="game-lost-img" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="">
                 <button onclick="restartGame()" id="restart-btn">
                     <h2>BACK TO MENU</h2>
                 </button>

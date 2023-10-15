@@ -2,7 +2,7 @@ let canvas;
 let world;
 let ctx;
 let keyboard = new Keyboard();
-
+let isFullscreenModus = false;
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -20,12 +20,16 @@ function restartGame() {
 }
 
 function openFullscreen() {
-    console.log('button funtkioniert');
+    isFullscreenModus = true;
     let fullscreen = document.getElementById('main');
     document.getElementById('main').classList.add('fullscreen');
     document.getElementById('canvas').classList.add('fullscreen-lvl');
     document.getElementById('first-screen').classList.add('fullscreen');
     document.getElementById('start-display').classList.add('fullscreen');
+    document.getElementById('game-won-screen').classList.add('fullscreen');
+    document.getElementById('gameover-img').classList.add('fullscreen');
+    document.getElementById('game-over-screen').classList.add('fullscreen');
+    document.getElementById('game-lost-img').classList.add('fullscreen');
     enterFullscreen(fullscreen);
 }
 
