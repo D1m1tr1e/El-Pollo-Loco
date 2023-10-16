@@ -45,8 +45,24 @@
             <div class="fullscreen-btn size">
                 <img onclick="openFullscreen()" src="img/11_options/full_sreen.ico" alt="">
             </div>
-            <div id="game-info" class="info-screen size">
+
+            <!--GAME INFO-->
+            <div id="game-info" class="info-screen-btn size">
                 <img onclick="openInfo()" src="img/11_options/question_mark.ico" alt="">
+            </div>
+            <div id="description" class="d-none">
+                <span>Pepe, the cheerful salsa chef, loves creating salsa concoctions in his small town. One day, his
+                    village was invaded by a horde of giant chickens. Bravely, Pepe takes his salsa bottles and
+                    confronts the feathered intruders.
+                    To defeat the Giant Chicken, Pepe must be clever enough to jump on the heads of small chickens,
+                    collecting extra salsa bottles along the way. Only with enough salsa bottles can Pepe defeat the
+                    Giant Chicken and free his village from the chicken menace.
+                    With Pepe leading the way, players must utilize his jumping skills and salsa know-how to save the
+                    village and celebrate the ultimate salsa party.
+                </span>
+                <button onclick="closeWindow()" id="close-btn">
+                    <h2>CLOSE</h2>
+                </button>
             </div>
 
             <!--CONTROL KEY BAR-->
@@ -71,7 +87,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--GAME WON SCREEN-->
         <div id="game-won-screen" class="d-none">
             <div class="overlay-design">

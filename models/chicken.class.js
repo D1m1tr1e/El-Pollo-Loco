@@ -32,13 +32,11 @@ class Chicken extends MoveableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            // walk animation
             this.playAnimation(this.IMAGES_WALKING);
         }, 100);
 
         setInterval(() => {
             if (this.chickenKilled) {
-                console.log('chicken ist tot');
                 this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
                 this.stopPlayKillingSound();
                 clearInterval(walkinInterval);

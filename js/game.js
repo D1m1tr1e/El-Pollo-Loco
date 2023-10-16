@@ -19,6 +19,16 @@ function restartGame() {
     window.location.reload();
 }
 
+function openInfo() {
+    console.log('button betätigt');
+    document.getElementById('description').classList.remove('d-none');
+}
+
+function closeWindow(){
+    document.getElementById('description').classList.add('d-none');
+    console.log('button aktiviert')
+}
+
 function openFullscreen() {
     isFullscreenModus = true;
     let fullscreen = document.getElementById('main');
