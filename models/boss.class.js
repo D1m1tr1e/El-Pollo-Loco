@@ -6,8 +6,8 @@ class Boss extends MoveableObject {
     speed = 1;
     currentImage = 0;
     bossIsDead = false;
-    angryBossInterval;
     moveBossInterval;
+    attack = false;
     world;
 
     IMAGES_BOSS_ALERT = [
@@ -36,6 +36,16 @@ class Boss extends MoveableObject {
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
+    IMAGES_BOSS_ATTACK = [
+        'img/4_enemie_boss_chicken/3_attack/G13.png',
+        'img/4_enemie_boss_chicken/3_attack/G14.png',
+        'img/4_enemie_boss_chicken/3_attack/G15.png',
+        'img/4_enemie_boss_chicken/3_attack/G16.png',
+        'img/4_enemie_boss_chicken/3_attack/G17.png',
+        'img/4_enemie_boss_chicken/3_attack/G18.png',
+        'img/4_enemie_boss_chicken/3_attack/G19.png',
+        'img/4_enemie_boss_chicken/3_attack/G20.png'
+    ];
     BOSS_FIGHT_SOUND = new Audio('audio/boss_musik.mp3');
 
     constructor() {
@@ -44,12 +54,12 @@ class Boss extends MoveableObject {
         this.loadImages(this.IMAGES_BOSS_WALKIG);
         this.loadImages(this.IMAGES_BOSS_HURTING);
         this.loadImages(this.IMAGES_BOSS_DEAD);
+        this.loadImages(this.IMAGES_BOSS_ATTACK);
         this.animateBoss();
     }
 
     animateBoss() {
-        this.angryBossInterval = setInterval(() => {
-            // walk animation
+        setInterval(() => {
             this.playAnimation(this.IMAGES_BOSS_ALERT);
         }, 300);
 
@@ -64,15 +74,23 @@ class Boss extends MoveableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.bossIsDead = true;
-                console.log('boss ist tot', this.bossIsDead)
-                clearInterval(this.moveBossInterval);
-                clearInterval(this.angryBossInterval);
                 this.BOSS_FIGHT_SOUND.pause();
                 this.playAnimation(this.IMAGES_BOSS_DEAD);
                 this.gameWon();
+                clearInterval(this.moveBossInterval)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_BOSS_HURTING);
                 console.log('boss wurde verletzt')
+            }
+        }, 1000 / 5);
+        this.bossAttack();
+    }
+
+    bossAttack() {
+        setInterval(() => {
+            if ((this.world.character.x + 150) > this.x) {
+                this.attack = true;
+                this.playAnimation(this.IMAGES_BOSS_ATTACK);
             }
         }, 1000 / 5);
     }
