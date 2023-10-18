@@ -47,6 +47,7 @@ class Boss extends MoveableObject {
         'img/4_enemie_boss_chicken/3_attack/G20.png'
     ];
     BOSS_FIGHT_SOUND = new Audio('audio/boss_musik.mp3');
+    ATTACK_SOUND = new Audio('audio/chicken-attack_sound.mp3');
 
     constructor() {
         super().loadImage(this.IMAGES_BOSS_ALERT[0]);
@@ -65,25 +66,38 @@ class Boss extends MoveableObject {
 
         this.moveBossInterval = setInterval(() => {
             if (this.world.character.endPositionPepe) {
-                this.BOSS_FIGHT_SOUND.play();
-                this.moveLeft();
-                this.playAnimation(this.IMAGES_BOSS_WALKIG);
+                this.handleBossActivation();
             }
         }, 75);
 
         setInterval(() => {
             if (this.isDead()) {
-                this.bossIsDead = true;
-                this.BOSS_FIGHT_SOUND.pause();
-                this.playAnimation(this.IMAGES_BOSS_DEAD);
-                this.gameWon();
-                clearInterval(this.moveBossInterval)
+                this.handleBossDeath();
             } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_BOSS_HURTING);
-                console.log('boss wurde verletzt')
+                this.handleBossHurting();
             }
         }, 1000 / 5);
+
         this.bossAttack();
+    }
+
+    handleBossActivation() {
+        this.BOSS_FIGHT_SOUND.play();
+        this.moveLeft();
+        this.playAnimation(this.IMAGES_BOSS_WALKIG);
+    }
+
+    handleBossDeath() {
+        this.bossIsDead = true;
+        this.BOSS_FIGHT_SOUND.pause();
+        this.playAnimation(this.IMAGES_BOSS_DEAD);
+        this.gameWon();
+        clearInterval(this.moveBossInterval)
+    }
+
+    handleBossHurting() {
+        this.playAnimation(this.IMAGES_BOSS_HURTING);
+        console.log('boss wurde verletzt')
     }
 
     bossAttack() {
@@ -91,8 +105,9 @@ class Boss extends MoveableObject {
             if ((this.world.character.x + 150) > this.x) {
                 this.attack = true;
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
+                this.ATTACK_SOUND.play();
             }
-        }, 1000 / 5);
+        }, 1000);
     }
 
     gameWon() {

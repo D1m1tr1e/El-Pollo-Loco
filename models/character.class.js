@@ -2,9 +2,9 @@ class Character extends MoveableObject {
     world;
     x = 120;
     y = 180;
-    speed = 5;
     height = 300;
     width = 150;
+    speed = 5;
     speedY = 0;
     pepeIsDead = false;
     acceleratiodn = 2;
@@ -93,24 +93,14 @@ class Character extends MoveableObject {
     animateCharacter() {
         setInterval(() => {
             this.WALKING_SOUND.pause();
-
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.WALKING_SOUND.play();
-                if (this.x == this.world.level.level_end_x) {
-                    this.endPositionPepe = true;
-                }
+                this.handleMovingRight();
             }
-
             if (this.world.keyboard.LEFT && this.x > 100) {
-                this.moveLeft();
-                this.mirrorImage = true;
-                this.WALKING_SOUND.play();
+                this.handleMovingLeft();
             }
-
             if (!this.isAboveGround() && this.world.keyboard.UP || !this.isAboveGround() && this.world.keyboard.SPACE) {
-                this.jump();
-                this.JUMP_SOUND.play();
+                this.handleJumping();
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
@@ -128,6 +118,25 @@ class Character extends MoveableObject {
                 this.isIdle();
             }
         }, 90);
+    }
+
+    handleMovingRight() {
+        this.moveRight();
+        this.WALKING_SOUND.play();
+        if (this.x == this.world.level.level_end_x) {
+            this.endPositionPepe = true;
+        }
+    }
+
+    handleMovingLeft() {
+        this.moveLeft();
+        this.mirrorImage = true;
+        this.WALKING_SOUND.play();
+    }
+
+    handleJumping() {
+        this.jump();
+        this.JUMP_SOUND.play();
     }
 
     animationDead() {
@@ -153,11 +162,8 @@ class Character extends MoveableObject {
         this.playAnimation(this.IMAGES_WALKING);
     }
 
-    isIdle() {
-        let right = this.world.keyboard.RIGHT;
-        let left = this.world.keyboard.LEFT;
-        let up = this.world.keyboard.UP && this.world.keyboard.SPACE;
-        let d = this.world.keyboard.D;
+    isIdle(right, left, up, d) {
+        this.activateVariables();
         this.startIdleTimer += 250;
 
         if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer <= 7000) {
@@ -176,5 +182,12 @@ class Character extends MoveableObject {
             this.world.game_paused = true;
             document.getElementById('game-over-screen').classList.remove('d-none');
         }
+    }
+
+    activateVariables() {
+        this.right = this.world.keyboard.RIGHT;
+        this.left = this.world.keyboard.LEFT;
+        this.up = this.world.keyboard.UP && this.world.keyboard.SPACE;
+        this.d = this.world.keyboard.D;
     }
 }
