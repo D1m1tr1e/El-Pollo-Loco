@@ -79,6 +79,7 @@ class World {
     hitBossWithBottle() { //collision of the thrown bottle with the boss
         this.throwableObject.forEach((bottle, index) => {
             if (this.boss.isColliding(bottle)) {
+                bottle.bottleHitsBoss = true;
                 this.boss.hit();
                 this.statusbarBoss.setPercentage(this.boss.lifeEnergy);
                 this.boss.lifeEnergy -= 15;
@@ -116,6 +117,11 @@ class World {
                 setTimeout(() => {
                     this.throwableObject.splice(index, 1);
                 }, 500);
+                if (bottle.bottleHitsBoss) {
+                    setTimeout(() => {
+                        this.throwableObject.splice(index, 1);
+                    }, 0);
+                }
             }
         });
     }

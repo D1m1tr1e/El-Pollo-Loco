@@ -20,18 +20,18 @@ class MoveableObject extends DrawableObject {
 
     //character.isColliding(chicken);
     isColliding(mObj) {
-        return this.x + this.width > mObj.x &&
-            this.y + this.height > mObj.y &&
-            this.x < mObj.x + mObj.width &&
-            this.y < mObj.y + mObj.height;
-    }
-   /* //character.isColliding(chicken);
-    isColliding(mObj) {
         return this.x + this.width - this.offset.right > mObj.x + mObj.offset.left &&
             this.y + this.height - this.offset.bottom > mObj.y + mObj.offset.top &&
             this.x + this.offset.bottom < mObj.x + mObj.width - mObj.offset.right &&
-            this.y + this.offset.top < mObj.y + mObj.height - mObj.offset.bottom;
-    }*/
+            this.y < mObj.y + mObj.height;
+    }
+    /* //character.isColliding(chicken);
+     isColliding(mObj) {
+         return this.x + this.width - this.offset.right > mObj.x + mObj.offset.left &&
+             this.y + this.height - this.offset.bottom > mObj.y + mObj.offset.top &&
+             this.x + this.offset.bottom < mObj.x + mObj.width - mObj.offset.right &&
+             this.y + this.offset.top < mObj.y + mObj.height - mObj.offset.bottom;
+     }*/
 
     hit() {
         this.lifeEnergy -= 5;
@@ -78,7 +78,7 @@ class MoveableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 30);
+        }, 1000 / 30); //1000 / 30
     }
 
     isAboveGround() {

@@ -28,7 +28,7 @@ class DrawableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
-        if (this instanceof Character || this instanceof Coin) {
+        if (this instanceof Character || this instanceof Boss) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'red';

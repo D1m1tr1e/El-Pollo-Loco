@@ -5,6 +5,7 @@ class ThrowableObject extends MoveableObject {
     speed = 0.15;
     positionX = 12;
     deletable = false;
+    bottleHitsBoss = false;
     IMAGES_BOTTLE_SPLASH = [
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
@@ -43,11 +44,12 @@ class ThrowableObject extends MoveableObject {
 
     animateBottle() {
         setInterval(() => {
-            if (this.y >= 370) {
+            if (this.y >= 370 || this.bottleHitsBoss) {
                 this.stopPlaySplashSound();
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
                 this.positionX = 0;
                 this.deletable = true;
+                console.log('diesen ansatz verfolgen wegen der y bewegung',this.speed);
             } else {
                 this.stopThrowPlaySound();
                 this.playAnimation(this.IMAGES_BOTTLE_ROTATE);

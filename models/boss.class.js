@@ -9,6 +9,12 @@ class Boss extends MoveableObject {
     moveBossInterval;
     attack = false;
     world;
+    offset = {
+        top: 430, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
+        bottom: 10, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
+        left: 150, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
+        right: 130// x-Achse das ist der Abstand von left -> bildet die Breite vom Char
+    }
 
     IMAGES_BOSS_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
