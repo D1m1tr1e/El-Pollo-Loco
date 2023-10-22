@@ -112,8 +112,45 @@ canvas {
     transition: 125ms ease-in-out;
 }
 
+.ingame-fullscreen-btn {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 1rem;
+    border: 2px solid hsl(0, 0%, 36%);
+    border-radius: 50%;
+    background-color: rgb(222, 192, 0);
+    transition: 125ms ease-in-out;
+}
+
+.sound-btn {
+    position: absolute;
+    top: 1rem;
+    right: 5rem;
+    border: 2px solid hsl(0, 0%, 36%);
+    border-radius: 50%;
+    background-color: rgb(222, 192, 0);
+    transition: 125ms ease-in-out;
+}
+
+.ingame-sound-btn {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 4rem;
+    border: 2px solid hsl(0, 0%, 36%);
+    border-radius: 50%;
+    background-color: rgb(222, 192, 0);
+    transition: 125ms ease-in-out;
+}
+
 .size img {
     height: 1.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    
+}
+
+.ingame-size img{
+    height: 0.9rem;
     margin: 0.5rem;
     cursor: pointer;
 }
@@ -130,7 +167,10 @@ canvas {
 
 .fullscreen-btn:hover,
 .fullscreen-btn:hover,
-.info-screen-btn:hover {
+.info-screen-btn:hover,
+.sound-btn:hover,
+.ingame-sound-btn:hover,
+.ingame-fullscreen-btn:hover {
     transition: 125ms ease-in-out;
     background-color: rgb(222, 174, 0);
 }

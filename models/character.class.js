@@ -162,8 +162,15 @@ class Character extends MoveableObject {
         this.playAnimation(this.IMAGES_WALKING);
     }
 
+    gameOver() {
+        if (this.pepeIsDead) {
+            this.world.game_paused = true;
+            document.getElementById('game-over-screen').classList.remove('d-none');
+        }
+    }
+
     isIdle(right, left, up, d) {
-        this.activateVariables();
+        this.cehckKeyControlAvtivities();
         this.startIdleTimer += 250;
 
         if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer <= 7000) {
@@ -177,14 +184,7 @@ class Character extends MoveableObject {
         }
     }
 
-    gameOver() {
-        if (this.pepeIsDead) {
-            this.world.game_paused = true;
-            document.getElementById('game-over-screen').classList.remove('d-none');
-        }
-    }
-
-    activateVariables() {
+    cehckKeyControlAvtivities() {
         this.right = this.world.keyboard.RIGHT;
         this.left = this.world.keyboard.LEFT;
         this.up = this.world.keyboard.UP && this.world.keyboard.SPACE;

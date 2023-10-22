@@ -49,7 +49,7 @@ class ThrowableObject extends MoveableObject {
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
                 this.positionX = 0;
                 this.deletable = true;
-                console.log('diesen ansatz verfolgen wegen der y bewegung',this.speed);
+                this.speedY = 0;
             } else {
                 this.stopThrowPlaySound();
                 this.playAnimation(this.IMAGES_BOTTLE_ROTATE);

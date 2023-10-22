@@ -7,10 +7,10 @@ class Chicken extends MoveableObject {
     chickenKilled = false;
     killAnimationStarted = false;
     offset = {
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0
+        top: 10, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
+        bottom: 50, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
+        left: 90, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
+        right: -60// x-Achse das ist der Abstand von left -> bildet die Breite vom Char
     }
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -22,7 +22,7 @@ class Chicken extends MoveableObject {
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/2_w.png');
         this.loadImages(this.IMAGES_WALKING);
-        this.animateChicken();
+        //this.animateChicken();
     }
 
     animateChicken() {

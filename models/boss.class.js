@@ -6,6 +6,7 @@ class Boss extends MoveableObject {
     speed = 1;
     currentImage = 0;
     bossIsDead = false;
+    bossHitted = false;
     moveBossInterval;
     attack = false;
     world;
@@ -82,28 +83,33 @@ class Boss extends MoveableObject {
             } else if (this.isHurt()) {
                 this.handleBossHurting();
             }
-        }, 1000 / 5);
+        }, 6000 / 30);
 
         this.bossAttack();
     }
 
     handleBossActivation() {
-        this.BOSS_FIGHT_SOUND.play();
-        this.moveLeft();
-        this.playAnimation(this.IMAGES_BOSS_WALKIG);
+        if (!this.bossHitted) {
+            this.BOSS_FIGHT_SOUND.play();
+            this.moveLeft();
+            this.playAnimation(this.IMAGES_BOSS_WALKIG);
+            console.log('getroffen?', this.bossHitted);
+        }
     }
 
     handleBossDeath() {
         this.bossIsDead = true;
         this.BOSS_FIGHT_SOUND.pause();
         this.playAnimation(this.IMAGES_BOSS_DEAD);
-        this.gameWon();
+        setTimeout(() => {
+            this.gameWon();
+        }, 1000);
         clearInterval(this.moveBossInterval)
     }
 
     handleBossHurting() {
         this.playAnimation(this.IMAGES_BOSS_HURTING);
-        console.log('boss wurde verletzt')
+        this.bossHitted = true;
     }
 
     bossAttack() {
@@ -112,6 +118,8 @@ class Boss extends MoveableObject {
                 this.attack = true;
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
                 this.ATTACK_SOUND.play();
+            } else {
+                this.bossHitted = false;
             }
         }, 1000);
     }
