@@ -3,6 +3,7 @@ class ThrowableObject extends MoveableObject {
     splashAnimationStarted = false;
     speedY = 20;
     speed = 0.15;
+    world;
     positionX = 12;
     deletable = false;
     bottleHitsBoss = false;

@@ -131,6 +131,15 @@ class Boss extends MoveableObject {
         }
     }
 
+    muteSound() {
+        this.BOSS_FIGHT_SOUND.muted = true;
+        this.ATTACK_SOUND.muted = true;
+    }
+
+    unmuteSound() {
+        this.BOSS_FIGHT_SOUND.muted = false;
+        this.ATTACK_SOUND.muted = false;
+    }
 }
 
 

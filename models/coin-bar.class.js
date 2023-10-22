@@ -14,8 +14,7 @@ class CoinBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/1_statusbar_coin/green/80.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png'
     ];
-    COLLECT_COIN = new Audio('audio/collect_coin.mp3');
-
+   
     constructor() {
         super().loadImage('img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png');
         this.loadImages(this.IMAGES_COIN_BAR);

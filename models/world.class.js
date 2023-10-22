@@ -14,6 +14,10 @@ class World {
     camera_x = 0;
     game_paused = false;
 
+    COLLECT_COIN = new Audio('audio/collect_coin.mp3');
+    COLLECT_BOTTLE = new Audio('audio/collect_bottle.mp3');
+    KILL_CHICKEN_SOUND = new Audio('audio/kill_enemy.mp3');
+
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -32,7 +36,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 70);
     }
 
     checkCollisions() {
@@ -48,6 +52,7 @@ class World {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 enemy.chickenKilled = true;
                 this.character.jump();
+                this.KILL_CHICKEN_SOUND.play();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
                 }, 500);
@@ -68,7 +73,7 @@ class World {
     collisionCoin() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
-                this.coinbar.COLLECT_COIN.play();
+                this.COLLECT_COIN.play();
                 this.coinbar.collectCoin();
                 this.level.coins.splice(index, 1);
                 this.coinbar.setPercentage(this.coinbar.coinAmount);
@@ -92,7 +97,7 @@ class World {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
                 console.log(this.character.isColliding(bottle));
-                this.bottlebar.COLLECT_BOTTLE.play();
+                this.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
                 this.level.bottles.splice(index, 1);
                 this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
@@ -126,23 +131,30 @@ class World {
         });
     }
 
+    muteSound() {
+        this.COLLECT_COIN.muted = true;
+        this.COLLECT_BOTTLE.muted = true;
+        this.KILL_CHICKEN_SOUND.muted = true;
+    }
+
+    unmuteSound(){
+        this.COLLECT_COIN.muted = false;
+        this.COLLECT_BOTTLE.muted = false;
+        this.KILL_CHICKEN_SOUND.muted = false;
+    }
+
     draw() {
         if (this.game_paused == false) {
-            //resetet/löscht mein Cnavas
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
             this.ctx.translate(this.camera_x, 0);
             this.level.landscape.forEach(land => {
                 this.addToMap(land)
             });
-
             this.level.clouds.forEach(cloud => {
                 this.addToMap(cloud);
             });
-
             this.addToMap(this.character);
             this.ctx.translate(-this.camera_x, 0);
-
             // ------  SPACE FOR FIXED OBJECTS ------
             this.addToMap(this.statusbar);
             this.addToMap(this.coinbar);
@@ -151,30 +163,21 @@ class World {
             this.addToMap(this.stausIconBoss);
             this.ctx.translate(this.camera_x, 0);
             // ------  SPACE FOR FIXED OBJECTS END------
-
             this.addToMap(this.boss);
-
             this.level.enemies.forEach(enemy => {
                 this.addToMap(enemy);
             });
-
             this.throwableObject.forEach(thObj => {
                 this.addToMap(thObj)
             });
-
-
             this.level.bottles.forEach(bottle => {
                 this.addToMap(bottle);
             });
-
             this.level.coins.forEach(coin => {
                 this.addToMap(coin);
             });
-
             this.ctx.translate(-this.camera_x, 0);
 
-            //Draw() wid immer weider aufgerufen
-            //Hier wird eine self Variable definiert weil im späteren Code this nicht als this erkannt werden kann
             let self = this;
             requestAnimationFrame(function () {
                 self.draw();
@@ -186,7 +189,6 @@ class World {
         if (mObj.mirrorImage) {
             this.flipImage(mObj);
         }
-
         mObj.draw(this.ctx);
         mObj.drawFrame(this.ctx);
 

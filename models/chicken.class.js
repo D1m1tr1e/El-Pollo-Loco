@@ -17,12 +17,12 @@ class Chicken extends MoveableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
-    KILL_CHICKEN_SOUND = new Audio('audio/kill_enemy.mp3')
+
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/2_w.png');
         this.loadImages(this.IMAGES_WALKING);
-        //this.animateChicken();
+        this.animateChicken();
     }
 
     animateChicken() {
@@ -38,16 +38,9 @@ class Chicken extends MoveableObject {
         setInterval(() => {
             if (this.chickenKilled) {
                 this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
-                this.stopPlayKillingSound();
                 clearInterval(walkinInterval);
             }
         }, 100);
     }
 
-    stopPlayKillingSound() {
-        if (!this.killAnimationStarted) {
-            this.KILL_CHICKEN_SOUND.play();
-            this.killAnimationStarted = true;
-        }
-    }
 }

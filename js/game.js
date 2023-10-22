@@ -24,7 +24,6 @@ function restartGame() {
 }
 
 function openInfo() {
-    console.log('button betätigt');
     document.getElementById('description').classList.remove('d-none');
 }
 
@@ -33,27 +32,34 @@ function closeWindow() {
 }
 
 function unmuteSound() {
-    document.getElementById('mute').classList.add('d-none');
-    document.getElementById('unmute').classList.remove('d-none');
-    document.getElementById('ingame-mute').classList.add('d-none');
-    document.getElementById('ingame-unmute').classList.remove('d-none');
-    BACKGROUD_MUSIC.pause();
+   updateSoundCotrolsUnmute();
+    BACKGROUD_MUSIC.muted = false;
+    world.character.unmuteSound();
+    world.boss.unmuteSound();
+    world.unmuteSound();
 }
 
 function muteSound() {
+    updateSoundCotrolsMute();
+    BACKGROUD_MUSIC.muted = true;
+    world.character.muteSound();
+    world.boss.muteSound();
+    world.muteSound();
+}
+
+function updateSoundCotrolsMute(){
     document.getElementById('mute').classList.remove('d-none');
     document.getElementById('unmute').classList.add('d-none');
     document.getElementById('ingame-mute').classList.remove('d-none');
     document.getElementById('ingame-unmute').classList.add('d-none');
-    BACKGROUD_MUSIC.play();
 }
 
-/*function openFullscreen() {
-    isFullscreenModus = true;
-    let fullscreen = document.getElementById('main');
-    setFullscreenModusOnElement();
-    enterFullscreen(fullscreen);
-}*/
+function updateSoundCotrolsUnmute(){
+    document.getElementById('mute').classList.add('d-none');
+    document.getElementById('unmute').classList.remove('d-none');
+    document.getElementById('ingame-mute').classList.add('d-none');
+    document.getElementById('ingame-unmute').classList.remove('d-none');
+}
 
 function openFullscreen() {
     let fullscreen = document.getElementById('main');
@@ -123,7 +129,6 @@ window.addEventListener('keydown', (e) => {
         keyboard.D = true;
     }
 });
-
 
 window.addEventListener('keyup', (e) => {
     if (e.code == 'ArrowLeft') {

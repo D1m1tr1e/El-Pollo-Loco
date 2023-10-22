@@ -190,4 +190,19 @@ class Character extends MoveableObject {
         this.up = this.world.keyboard.UP && this.world.keyboard.SPACE;
         this.d = this.world.keyboard.D;
     }
+    
+    muteSound(){
+        this.WALKING_SOUND.muted = true;
+        this.JUMP_SOUND.muted = true;
+        this.SNORING_SOUND.muted = true;
+        this.HURT_SOUND.muted = true;
+    }
+
+    unmuteSound(){
+        this.WALKING_SOUND.muted = false;
+        this.JUMP_SOUND.muted = false;
+        this.SNORING_SOUND.muted = false;
+        this.HURT_SOUND.muted = false;
+    }
+
 }
