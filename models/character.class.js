@@ -77,6 +77,7 @@ class Character extends MoveableObject {
     JUMP_SOUND = new Audio('audio/jump.mp3');
     SNORING_SOUND = new Audio('audio/snoring.mp3');
     HURT_SOUND = new Audio('audio/hurt.mp3');
+    BACKGROUD_MUSIC = new Audio('audio/backgroudmusic.mp3');
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -88,6 +89,8 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_IDLE_LONG);
         this.applyGravity();
         this.animateCharacter();
+        this.BACKGROUD_MUSIC.play();
+        this.BACKGROUD_MUSIC.loop = true;
     }
 
     animateCharacter() {
@@ -125,6 +128,7 @@ class Character extends MoveableObject {
         this.WALKING_SOUND.play();
         if (this.x == this.world.level.level_end_x) {
             this.endPositionPepe = true;
+            this.BACKGROUD_MUSIC.volume = 0;
         }
     }
 
@@ -190,15 +194,17 @@ class Character extends MoveableObject {
         this.up = this.world.keyboard.UP && this.world.keyboard.SPACE;
         this.d = this.world.keyboard.D;
     }
-    
-    muteSound(){
+
+    muteSound() {
+        this.BACKGROUD_MUSIC.muted = true;
         this.WALKING_SOUND.muted = true;
         this.JUMP_SOUND.muted = true;
         this.SNORING_SOUND.muted = true;
         this.HURT_SOUND.muted = true;
     }
 
-    unmuteSound(){
+    unmuteSound() {
+        this.BACKGROUD_MUSIC.muted = false;
         this.WALKING_SOUND.muted = false;
         this.JUMP_SOUND.muted = false;
         this.SNORING_SOUND.muted = false;

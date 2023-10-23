@@ -17,6 +17,8 @@ class World {
     COLLECT_COIN = new Audio('audio/collect_coin.mp3');
     COLLECT_BOTTLE = new Audio('audio/collect_bottle.mp3');
     KILL_CHICKEN_SOUND = new Audio('audio/kill_enemy.mp3');
+    THROW_SOUND = new Audio('audio/throw.mp3');
+    SPLASH_SOUND = new Audio('audio/splash.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = ctx = canvas.getContext('2d');
@@ -36,7 +38,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 70);
+        }, 60);
     }
 
     checkCollisions() {
@@ -68,6 +70,7 @@ class World {
             this.character.hit();
             this.statusbar.setPercentage(this.character.lifeEnergy);
         }
+        
     }
 
     collisionCoin() {
@@ -81,7 +84,7 @@ class World {
         });
     }
 
-    hitBossWithBottle() { //collision of the thrown bottle with the boss
+    hitBossWithBottle() {
         this.throwableObject.forEach((bottle, index) => {
             if (this.boss.isColliding(bottle)) {
                 bottle.bottleHitsBoss = true;
@@ -96,7 +99,6 @@ class World {
     collisionBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
-                console.log(this.character.isColliding(bottle));
                 this.COLLECT_BOTTLE.play();
                 this.bottlebar.collectBottle();
                 this.level.bottles.splice(index, 1);
@@ -107,6 +109,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && this.bottlebar.bottleAmount > 0) {
+            this.THROW_SOUND.play();
             this.character.startIdleTimer = 0;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y);
             this.throwableObject.push(bottle);
@@ -119,6 +122,7 @@ class World {
     deleteThrownBottle() {
         this.throwableObject.forEach((bottle, index) => {
             if (bottle.deletable) {
+                this.SPLASH_SOUND.play()
                 setTimeout(() => {
                     this.throwableObject.splice(index, 1);
                 }, 500);
@@ -135,12 +139,16 @@ class World {
         this.COLLECT_COIN.muted = true;
         this.COLLECT_BOTTLE.muted = true;
         this.KILL_CHICKEN_SOUND.muted = true;
+        this.SPLASH_SOUND.muted = true;
+        this.THROW_SOUND.muted = true;
     }
 
-    unmuteSound(){
+    unmuteSound() {
         this.COLLECT_COIN.muted = false;
         this.COLLECT_BOTTLE.muted = false;
         this.KILL_CHICKEN_SOUND.muted = false;
+        this.SPLASH_SOUND.muted = false;
+        this.THROW_SOUND.muted = false;
     }
 
     draw() {

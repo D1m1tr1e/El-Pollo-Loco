@@ -1,6 +1,4 @@
 class ThrowableObject extends MoveableObject {
-    rotationAnimationStarted = false;
-    splashAnimationStarted = false;
     speedY = 20;
     speed = 0.15;
     world;
@@ -21,8 +19,6 @@ class ThrowableObject extends MoveableObject {
         'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ];
-    THROW_SOUND = new Audio('audio/throw.mp3');
-    SPLASH_SOUND = new Audio('audio/splash.mp3');
 
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
@@ -46,31 +42,13 @@ class ThrowableObject extends MoveableObject {
     animateBottle() {
         setInterval(() => {
             if (this.y >= 370 || this.bottleHitsBoss) {
-                this.stopPlaySplashSound();
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
                 this.positionX = 0;
                 this.deletable = true;
                 this.speedY = 0;
             } else {
-                this.stopThrowPlaySound();
                 this.playAnimation(this.IMAGES_BOTTLE_ROTATE);
             }
         }, 50);
     }
-
-    // code for sound control to avoid endless sound
-    stopThrowPlaySound() {
-        if (!this.rotationAnimationStarted) {
-            this.THROW_SOUND.play();
-            this.rotationAnimationStarted = true;
-        }
-    }
-
-    stopPlaySplashSound() {
-        if (!this.splashAnimationStarted) {
-            this.SPLASH_SOUND.play();
-            this.splashAnimationStarted = true;
-        }
-    }
-
 }

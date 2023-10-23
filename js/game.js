@@ -3,9 +3,7 @@ let world;
 let ctx;
 let keyboard = new Keyboard();
 let isFullscreenModus = false;
-BACKGROUD_MUSIC = new Audio('audio/backgroudmusic.mp3');
-BACKGROUD_MUSIC.volume = 0.5;
-BACKGROUD_MUSIC.loop = true;
+
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -16,7 +14,6 @@ function startGame() {
     document.getElementById('first-screen').classList.add('d-none');
     initLevel();
     init();
-    BACKGROUD_MUSIC.play();
 }
 
 function restartGame() {
@@ -32,8 +29,7 @@ function closeWindow() {
 }
 
 function unmuteSound() {
-   updateSoundCotrolsUnmute();
-    BACKGROUD_MUSIC.muted = false;
+    updateSoundCotrolsUnmute();
     world.character.unmuteSound();
     world.boss.unmuteSound();
     world.unmuteSound();
@@ -41,20 +37,19 @@ function unmuteSound() {
 
 function muteSound() {
     updateSoundCotrolsMute();
-    BACKGROUD_MUSIC.muted = true;
     world.character.muteSound();
     world.boss.muteSound();
     world.muteSound();
 }
 
-function updateSoundCotrolsMute(){
+function updateSoundCotrolsMute() {
     document.getElementById('mute').classList.remove('d-none');
     document.getElementById('unmute').classList.add('d-none');
     document.getElementById('ingame-mute').classList.remove('d-none');
     document.getElementById('ingame-unmute').classList.add('d-none');
 }
 
-function updateSoundCotrolsUnmute(){
+function updateSoundCotrolsUnmute() {
     document.getElementById('mute').classList.add('d-none');
     document.getElementById('unmute').classList.remove('d-none');
     document.getElementById('ingame-mute').classList.add('d-none');
@@ -85,7 +80,7 @@ function setFullscreenModusOnElement() {
     document.getElementById('game-lost-img').classList.add('fullscreen');
 }
 
-function removeFullscreenModusOnElement(){
+function removeFullscreenModusOnElement() {
     document.getElementById('main').classList.remove('fullscreen');
     document.getElementById('canvas').classList.remove('fullscreen-lvl');
     document.getElementById('first-screen').classList.remove('fullscreen');
