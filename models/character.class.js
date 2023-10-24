@@ -170,6 +170,7 @@ class Character extends MoveableObject {
         if (this.pepeIsDead) {
             this.world.game_paused = true;
             document.getElementById('game-over-screen').classList.remove('d-none');
+            this.stopPlayingPepeSounds();
         }
     }
 
@@ -186,6 +187,16 @@ class Character extends MoveableObject {
             this.playAnimation(this.IMAGES_IDLE_LONG);
             this.SNORING_SOUND.play();
         }
+    }
+
+    stopPlayingPepeSounds(){
+        this.BACKGROUD_MUSIC.pause();
+        this.WALKING_SOUND.pause();
+        this.JUMP_SOUND.pause();
+        this.SNORING_SOUND.pause();
+        this.HURT_SOUND.pause();
+        this.world.boss.BOSS_FIGHT_SOUND.volume = 0;
+        this.world.boss.ATTACK_SOUND.volume = 0;
     }
 
     cehckKeyControlAvtivities() {

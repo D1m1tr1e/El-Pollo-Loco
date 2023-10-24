@@ -55,7 +55,6 @@ class Boss extends MoveableObject {
     ];
     BOSS_FIGHT_SOUND = new Audio('audio/boss_musik.mp3');
     ATTACK_SOUND = new Audio('audio/chicken-attack_sound.mp3');
-    BACKGROUD_MUSIC = new Audio('audio/backgroudmusic.mp3');
 
     constructor() {
         super().loadImage(this.IMAGES_BOSS_ALERT[0]);
@@ -128,7 +127,13 @@ class Boss extends MoveableObject {
         if (this.bossIsDead) {
             this.world.game_paused = true;
             document.getElementById('game-won-screen').classList.remove('d-none');
+            this.stopPlayingBossSounds();
         }
+    }
+
+    stopPlayingBossSounds() {
+        this.BOSS_FIGHT_SOUND.pause();
+        this.ATTACK_SOUND.pause();
     }
 
     muteSound() {

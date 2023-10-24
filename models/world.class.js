@@ -70,7 +70,6 @@ class World {
             this.character.hit();
             this.statusbar.setPercentage(this.character.lifeEnergy);
         }
-        
     }
 
     collisionCoin() {
