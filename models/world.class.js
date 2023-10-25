@@ -13,6 +13,7 @@ class World {
     keyboard;
     camera_x = 0;
     game_paused = false;
+    canThrow = true;
 
     COLLECT_COIN = new Audio('audio/collect_coin.mp3');
     COLLECT_BOTTLE = new Audio('audio/collect_bottle.mp3');
@@ -107,13 +108,19 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.bottlebar.bottleAmount > 0) {
+        if (this.keyboard.D && this.bottlebar.bottleAmount > 0 && this.canThrow) {
             this.THROW_SOUND.play();
             this.character.startIdleTimer = 0;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y);
             this.throwableObject.push(bottle);
             this.bottlebar.bottleAmount -= 20;
             this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
+
+            // Verhinder dass zwei falschen gleitzeitig geworfen werden können wenn man auf die taste D zu lange drückt 
+            this.canThrow = false;
+            setTimeout(() => {
+                this.canThrow = true;
+            }, 2000); 
         }
         this.deleteThrownBottle();
     }

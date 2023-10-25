@@ -108,6 +108,7 @@ class Boss extends MoveableObject {
 
     handleBossHurting() {
         this.playAnimation(this.IMAGES_BOSS_HURTING);
+        console.log(this.lifeEnergy);
         this.bossHitted = true;
     }
 
@@ -120,7 +121,7 @@ class Boss extends MoveableObject {
             } else {
                 this.bossHitted = false;
             }
-        }, 1000);
+        }, 1000 / 30);
     }
 
     gameWon() {
