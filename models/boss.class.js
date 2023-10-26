@@ -9,6 +9,7 @@ class Boss extends MoveableObject {
     bossHitted = false;
     moveBossInterval;
     attack = false;
+    gameWonSoundPlayed = false;
     world;
     offset = {
         top: 430, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
@@ -55,6 +56,9 @@ class Boss extends MoveableObject {
     ];
     BOSS_FIGHT_SOUND = new Audio('audio/boss_musik.mp3');
     ATTACK_SOUND = new Audio('audio/chicken-attack_sound.mp3');
+    HIT_BOSS_SOUND = new Audio('audio/hit_boss.mp3');
+    GAME_WON_SOUND = new Audio('audio/game_won.mp3');
+
 
     constructor() {
         super().loadImage(this.IMAGES_BOSS_ALERT[0]);
@@ -84,7 +88,6 @@ class Boss extends MoveableObject {
                 this.handleBossHurting();
             }
         }, 6000 / 30);
-
         this.bossAttack();
     }
 
@@ -102,6 +105,7 @@ class Boss extends MoveableObject {
         this.playAnimation(this.IMAGES_BOSS_DEAD);
         setTimeout(() => {
             this.gameWon();
+            this.GAME_WON_SOUND.play();
         }, 1000);
         clearInterval(this.moveBossInterval);
     }
@@ -110,6 +114,8 @@ class Boss extends MoveableObject {
         this.playAnimation(this.IMAGES_BOSS_HURTING);
         console.log(this.lifeEnergy);
         this.bossHitted = true;
+        this.HIT_BOSS_SOUND.play();
+        this.HIT_BOSS_SOUND.playbackRate = 3;
     }
 
     bossAttack() {
@@ -135,16 +141,25 @@ class Boss extends MoveableObject {
     stopPlayingBossSounds() {
         this.BOSS_FIGHT_SOUND.pause();
         this.ATTACK_SOUND.pause();
+        this.HIT_BOSS_SOUND.pause();
+        this.GAME_WON_SOUND.pause();
+        this.world.character.BACKGROUD_MUSIC.volume = 0;
+        this.world.character.WALKING_SOUND.volume = 0;
+        this.world.character.JUMP_SOUND.volume = 0;
+        this.world.character.SNORING_SOUND.volume = 0;
+        this.world.character.HURT_SOUND.volume = 0;
     }
 
     muteSound() {
         this.BOSS_FIGHT_SOUND.muted = true;
         this.ATTACK_SOUND.muted = true;
+        this.HIT_BOSS_SOUND.muted = true;
     }
 
     unmuteSound() {
         this.BOSS_FIGHT_SOUND.muted = false;
         this.ATTACK_SOUND.muted = false;
+        this.HIT_BOSS_SOUND.muted = false;
     }
 }
 

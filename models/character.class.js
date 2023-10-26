@@ -197,6 +197,7 @@ class Character extends MoveableObject {
         this.HURT_SOUND.pause();
         this.world.boss.BOSS_FIGHT_SOUND.volume = 0;
         this.world.boss.ATTACK_SOUND.volume = 0;
+        this.world.boss.HIT_BOSS_SOUND.volume = 0;
     }
 
     cehckKeyControlAvtivities() {
