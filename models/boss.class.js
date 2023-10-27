@@ -173,7 +173,6 @@ class Boss extends MoveableObject {
         clearInterval(this.moveBossInterval);
         clearInterval(this.hurtInterval);
         clearInterval(this.attackInterval);
-        // Hier weitere clearInterval-Aufrufe für andere Intervalle, falls vorhanden
     }
 }
 
