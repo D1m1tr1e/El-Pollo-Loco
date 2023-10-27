@@ -123,7 +123,7 @@ class Boss extends MoveableObject {
 
     bossAttack() {
         this.attackInterval = setInterval(() => {
-            if ((this.world.character.x + 150) > this.x) {
+            if ((this.world.character.x + 120) > this.x) {
                 this.attack = true;
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
                 this.ATTACK_SOUND.play();
