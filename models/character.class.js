@@ -159,8 +159,6 @@ class Character extends MoveableObject {
         }, 3000);
     }
 
-
-
     animationHurting() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_HURTING);
@@ -200,17 +198,6 @@ class Character extends MoveableObject {
         }
     }
 
-    /*stopPlayingPepeSounds(){
-        this.BACKGROUD_MUSIC.pause();
-        this.WALKING_SOUND.pause();
-        this.JUMP_SOUND.pause();
-        this.SNORING_SOUND.pause();
-        this.HURT_SOUND.pause();
-        this.world.boss.BOSS_FIGHT_SOUND.volume = 0;
-        this.world.boss.ATTACK_SOUND.volume = 0;
-        this.world.boss.HIT_BOSS_SOUND.volume = 0;
-    }*/
-
     cehckKeyControlAvtivities() {
         this.right = this.world.keyboard.RIGHT;
         this.left = this.world.keyboard.LEFT;
@@ -224,6 +211,7 @@ class Character extends MoveableObject {
         this.JUMP_SOUND.muted = true;
         this.SNORING_SOUND.muted = true;
         this.HURT_SOUND.muted = true;
+        this.GAME_LOST_SOUND.muted = true;
     }
 
     unmuteSound() {
@@ -232,6 +220,7 @@ class Character extends MoveableObject {
         this.JUMP_SOUND.muted = false;
         this.SNORING_SOUND.muted = false;
         this.HURT_SOUND.muted = false;
-    }
+        this.GAME_LOST_SOUND.muted = false;
+f    }
 
 }

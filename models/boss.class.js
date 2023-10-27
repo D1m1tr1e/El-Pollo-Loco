@@ -158,12 +158,14 @@ class Boss extends MoveableObject {
         this.BOSS_FIGHT_SOUND.muted = true;
         this.ATTACK_SOUND.muted = true;
         this.HIT_BOSS_SOUND.muted = true;
+        this.GAME_WON_SOUND.muted = true;
     }
 
     unmuteSound() {
         this.BOSS_FIGHT_SOUND.muted = false;
         this.ATTACK_SOUND.muted = false;
         this.HIT_BOSS_SOUND.muted = false;
+        this.GAME_WON_SOUND.muted = false;
     }
 
     stopAnimateBoss() {
