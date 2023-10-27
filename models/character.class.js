@@ -221,6 +221,6 @@ class Character extends MoveableObject {
         this.SNORING_SOUND.muted = false;
         this.HURT_SOUND.muted = false;
         this.GAME_LOST_SOUND.muted = false;
-f    }
+    }
 
 }
