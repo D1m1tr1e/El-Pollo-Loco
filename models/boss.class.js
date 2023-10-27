@@ -8,6 +8,8 @@ class Boss extends MoveableObject {
     bossIsDead = false;
     bossHitted = false;
     moveBossInterval;
+    alertInterval;
+    attackInterval;
     attack = false;
     gameWonSoundPlayed = false;
     world;
@@ -71,7 +73,7 @@ class Boss extends MoveableObject {
     }
 
     animateBoss() {
-        setInterval(() => {
+        this.alertInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_BOSS_ALERT);
         }, 300);
 
@@ -103,10 +105,11 @@ class Boss extends MoveableObject {
         this.bossIsDead = true;
         this.BOSS_FIGHT_SOUND.pause();
         this.playAnimation(this.IMAGES_BOSS_DEAD);
+        this.y += 30;
+        this.GAME_WON_SOUND.play();
         setTimeout(() => {
             this.gameWon();
-            this.GAME_WON_SOUND.play();
-        }, 1000);
+        }, 3000);
         clearInterval(this.moveBossInterval);
     }
 
@@ -119,7 +122,7 @@ class Boss extends MoveableObject {
     }
 
     bossAttack() {
-        setInterval(() => {
+        this.attackInterval = setInterval(() => {
             if ((this.world.character.x + 150) > this.x) {
                 this.attack = true;
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
@@ -134,15 +137,16 @@ class Boss extends MoveableObject {
         if (this.bossIsDead) {
             this.world.game_paused = true;
             document.getElementById('game-won-screen').classList.remove('d-none');
-            this.stopPlayingBossSounds();
+            this.stopPlayingSounds();
         }
     }
 
-    stopPlayingBossSounds() {
-        this.BOSS_FIGHT_SOUND.pause();
-        this.ATTACK_SOUND.pause();
-        this.HIT_BOSS_SOUND.pause();
-        this.GAME_WON_SOUND.pause();
+    stopPlayingSounds() {
+        this.BOSS_FIGHT_SOUND.volume = 0;
+        this.ATTACK_SOUND.volume = 0;
+        this.HIT_BOSS_SOUND.volume = 0;
+        this.GAME_WON_SOUND.volume = 0;
+        this.world.character.GAME_LOST_SOUND.volume = 0;
         this.world.character.BACKGROUD_MUSIC.volume = 0;
         this.world.character.WALKING_SOUND.volume = 0;
         this.world.character.JUMP_SOUND.volume = 0;
@@ -161,6 +165,16 @@ class Boss extends MoveableObject {
         this.ATTACK_SOUND.muted = false;
         this.HIT_BOSS_SOUND.muted = false;
     }
+
+    stopAnimateBoss() {
+        clearInterval(this.alertInterval);
+        clearInterval(this.moveBossInterval);
+        clearInterval(this.hurtInterval);
+        clearInterval(this.attackInterval);
+        // Hier weitere clearInterval-Aufrufe für andere Intervalle, falls vorhanden
+    }
 }
+
+
 
 

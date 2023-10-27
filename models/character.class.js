@@ -9,6 +9,7 @@ class Character extends MoveableObject {
     pepeIsDead = false;
     acceleratiodn = 2;
     endPositionPepe = false;
+    moveCharIntervall;
     startIdleTimer = 0;
     offset = {
         top: 275, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
@@ -78,6 +79,7 @@ class Character extends MoveableObject {
     SNORING_SOUND = new Audio('audio/snoring.mp3');
     HURT_SOUND = new Audio('audio/hurt.mp3');
     BACKGROUD_MUSIC = new Audio('audio/backgroudmusic.mp3');
+    GAME_LOST_SOUND = new Audio('audio/game_lost.mp3');
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -94,7 +96,7 @@ class Character extends MoveableObject {
     }
 
     animateCharacter() {
-        setInterval(() => {
+        this.moveCharIntervall = setInterval(() => {
             this.WALKING_SOUND.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.handleMovingRight();
@@ -110,7 +112,7 @@ class Character extends MoveableObject {
 
         setInterval(() => {
             if (this.isDead()) {
-                this.animationDead();
+                this.handleAnimationDead();
             } else if (this.isHurt()) {
                 this.animationHurting();
             } else if (this.isAboveGround()) {
@@ -143,12 +145,21 @@ class Character extends MoveableObject {
         this.JUMP_SOUND.play();
     }
 
-    animationDead() {
+    handleAnimationDead() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_DEAD);
+        this.GAME_LOST_SOUND.play();
         this.pepeIsDead = true;
-        this.gameOver();
+        this.world.boss.stopAnimateBoss();
+        clearInterval(this.moveCharIntervall);
+        this.y += 50;
+        setTimeout(() => {
+            this.gameOver();
+
+        }, 3000);
     }
+
+
 
     animationHurting() {
         this.startIdleTimer = 0;
@@ -170,7 +181,7 @@ class Character extends MoveableObject {
         if (this.pepeIsDead) {
             this.world.game_paused = true;
             document.getElementById('game-over-screen').classList.remove('d-none');
-            this.stopPlayingPepeSounds();
+            this.world.boss.stopPlayingSounds();
         }
     }
 
@@ -189,7 +200,7 @@ class Character extends MoveableObject {
         }
     }
 
-    stopPlayingPepeSounds(){
+    /*stopPlayingPepeSounds(){
         this.BACKGROUD_MUSIC.pause();
         this.WALKING_SOUND.pause();
         this.JUMP_SOUND.pause();
@@ -198,7 +209,7 @@ class Character extends MoveableObject {
         this.world.boss.BOSS_FIGHT_SOUND.volume = 0;
         this.world.boss.ATTACK_SOUND.volume = 0;
         this.world.boss.HIT_BOSS_SOUND.volume = 0;
-    }
+    }*/
 
     cehckKeyControlAvtivities() {
         this.right = this.world.keyboard.RIGHT;
