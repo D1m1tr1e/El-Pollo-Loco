@@ -116,11 +116,10 @@ class World {
             this.bottlebar.bottleAmount -= 20;
             this.bottlebar.setPercentage(this.bottlebar.bottleAmount);
 
-            // Verhinder dass zwei falschen gleitzeitig geworfen werden können wenn man auf die taste D zu lange drückt 
             this.canThrow = false;
             setTimeout(() => {
                 this.canThrow = true;
-            }, 2000); 
+            }, 2000);
         }
         this.deleteThrownBottle();
     }
@@ -139,6 +138,24 @@ class World {
                 }
             }
         });
+    }
+
+    stopPlayingSounds() {
+        this.boss.BOSS_FIGHT_SOUND.volume = 0;
+        this.boss.ATTACK_SOUND.volume = 0;
+        this.boss.HIT_BOSS_SOUND.volume = 0;
+        this.boss.GAME_WON_SOUND.volume = 0;
+        this.character.GAME_LOST_SOUND.volume = 0;
+        this.character.BACKGROUD_MUSIC.volume = 0;
+        this.character.WALKING_SOUND.volume = 0;
+        this.character.JUMP_SOUND.volume = 0;
+        this.character.SNORING_SOUND.volume = 0;
+        this.character.HURT_SOUND.volume = 0;
+        this.COLLECT_COIN.volume = 0;
+        this.COLLECT_BOTTLE.volume = 0;
+        this.KILL_CHICKEN_SOUND.volume = 0;
+        this.THROW_SOUND.volume = 0;
+        this.SPLASH_SOUND.volume = 0;
     }
 
     muteSound() {
@@ -161,35 +178,12 @@ class World {
         if (this.game_paused == false) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.translate(this.camera_x, 0);
-            this.level.landscape.forEach(land => {
-                this.addToMap(land)
-            });
-            this.level.clouds.forEach(cloud => {
-                this.addToMap(cloud);
-            });
-            this.addToMap(this.character);
+            this.drawBackground();
+            this.drawCharacter();
             this.ctx.translate(-this.camera_x, 0);
-            // ------  SPACE FOR FIXED OBJECTS ------
-            this.addToMap(this.statusbar);
-            this.addToMap(this.coinbar);
-            this.addToMap(this.bottlebar);
-            this.addToMap(this.statusbarBoss);
-            this.addToMap(this.stausIconBoss);
-            this.ctx.translate(this.camera_x, 0);
-            // ------  SPACE FOR FIXED OBJECTS END------
-            this.addToMap(this.boss);
-            this.level.enemies.forEach(enemy => {
-                this.addToMap(enemy);
-            });
-            this.throwableObject.forEach(thObj => {
-                this.addToMap(thObj)
-            });
-            this.level.bottles.forEach(bottle => {
-                this.addToMap(bottle);
-            });
-            this.level.coins.forEach(coin => {
-                this.addToMap(coin);
-            });
+            this.drawFixedElements();
+            this.drawBossAndEnemies();
+            this.drawThrownObjects();
             this.ctx.translate(-this.camera_x, 0);
 
             let self = this;
@@ -197,6 +191,47 @@ class World {
                 self.draw();
             });
         }
+    }
+
+    drawBackground() {
+        this.level.landscape.forEach(land => {
+            this.addToMap(land)
+        });
+        this.level.clouds.forEach(cloud => {
+            this.addToMap(cloud);
+        });
+    }
+
+    drawCharacter() {
+        this.addToMap(this.character);
+    }
+
+    drawFixedElements() {
+        this.addToMap(this.statusbar);
+        this.addToMap(this.coinbar);
+        this.addToMap(this.bottlebar);
+        this.addToMap(this.statusbarBoss);
+        this.addToMap(this.stausIconBoss);
+        this.ctx.translate(this.camera_x, 0);
+    }
+
+    drawBossAndEnemies() {
+        this.addToMap(this.boss);
+        this.level.enemies.forEach(enemy => {
+            this.addToMap(enemy);
+        });
+    }
+
+    drawThrownObjects() {
+        this.throwableObject.forEach(thObj => {
+            this.addToMap(thObj)
+        });
+        this.level.bottles.forEach(bottle => {
+            this.addToMap(bottle);
+        });
+        this.level.coins.forEach(coin => {
+            this.addToMap(coin);
+        });
     }
 
     addToMap(mObj) {

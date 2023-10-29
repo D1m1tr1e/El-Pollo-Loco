@@ -6,6 +6,7 @@ class Chicken extends MoveableObject {
     width = 90;
     chickenKilled = false;
     killAnimationStarted = false;
+    walkinInterval;
     offset = {
         top: 10, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
         bottom: 50, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
@@ -26,7 +27,7 @@ class Chicken extends MoveableObject {
     }
 
     animateChicken() {
-        const walkinInterval = setInterval(() => {
+        this.walkinInterval = setInterval(() => {
             this.moveLeft();
             this.x -= this.speed;
         }, 1000 / 60);
@@ -38,7 +39,7 @@ class Chicken extends MoveableObject {
         setInterval(() => {
             if (this.chickenKilled) {
                 this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
-                clearInterval(walkinInterval);
+                clearInterval(this.walkinInterval);
             }
         }, 100);
     }

@@ -97,32 +97,52 @@ class Character extends MoveableObject {
 
     animateCharacter() {
         this.moveCharIntervall = setInterval(() => {
-            this.WALKING_SOUND.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.handleMovingRight();
-            }
-            if (this.world.keyboard.LEFT && this.x > 100) {
-                this.handleMovingLeft();
-            }
-            if (!this.isAboveGround() && this.world.keyboard.UP || !this.isAboveGround() && this.world.keyboard.SPACE) {
-                this.handleJumping();
-            }
-            this.world.camera_x = -this.x + 100;
+            this.movingCharacter();
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.isDead()) {
-                this.handleAnimationDead();
-            } else if (this.isHurt()) {
-                this.animationHurting();
-            } else if (this.isAboveGround()) {
-                this.animationJumping();
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.animationMoving();
-            } else {
-                this.isIdle();
-            }
+            this.playAnimationsOfCharacter();
         }, 90);
+    }
+
+    movingCharacter() {
+        this.WALKING_SOUND.pause();
+        if (this.canMoveRight()) {
+            this.handleMovingRight();
+        }
+        if (this.canMoveLeft()) {
+            this.handleMovingLeft();
+        }
+        if (this.canJump()) {
+            this.handleJumping();
+        }
+        this.world.camera_x = -this.x + 100;
+    }
+
+    canMoveRight() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
+    }
+
+    canMoveLeft() {
+        return this.world.keyboard.LEFT && this.x > 100;
+    }
+
+    canJump(){
+        return !this.isAboveGround() && this.world.keyboard.UP || !this.isAboveGround() && this.world.keyboard.SPACE;
+    }
+
+    playAnimationsOfCharacter() {
+        if (this.isDead()) {
+            this.handleAnimationDead();
+        } else if (this.isHurt()) {
+            this.animationHurting();
+        } else if (this.isAboveGround()) {
+            this.animationJumping();
+        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.animationMoving();
+        } else {
+            this.isIdle();
+        }
     }
 
     handleMovingRight() {
@@ -148,6 +168,8 @@ class Character extends MoveableObject {
     handleAnimationDead() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_DEAD);
+        this.BACKGROUD_MUSIC.pause();
+        this.world.boss.BOSS_FIGHT_SOUND.pause();
         this.GAME_LOST_SOUND.play();
         this.pepeIsDead = true;
         this.world.boss.stopAnimateBoss();
@@ -155,7 +177,6 @@ class Character extends MoveableObject {
         this.y += 50;
         setTimeout(() => {
             this.gameOver();
-
         }, 3000);
     }
 
@@ -179,7 +200,7 @@ class Character extends MoveableObject {
         if (this.pepeIsDead) {
             this.world.game_paused = true;
             document.getElementById('game-over-screen').classList.remove('d-none');
-            this.world.boss.stopPlayingSounds();
+            this.world.stopPlayingSounds();
         }
     }
 
@@ -187,15 +208,19 @@ class Character extends MoveableObject {
         this.cehckKeyControlAvtivities();
         this.startIdleTimer += 250;
 
-        if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer <= 7000) {
+        if (this.anyButtonPressed() && this.startIdleTimer <= 10000) {
             this.playAnimation(this.IMAGES_IDLE);
             this.SNORING_SOUND.pause();
 
         }
-        if (!this.right && !this.left && !this.up && !this.d && this.startIdleTimer >= 7000) {
+        if (this.anyButtonPressed() && this.startIdleTimer >= 10000) {
             this.playAnimation(this.IMAGES_IDLE_LONG);
             this.SNORING_SOUND.play();
         }
+    }
+
+    anyButtonPressed(){
+        return !this.right && !this.left && !this.up && !this.d;
     }
 
     cehckKeyControlAvtivities() {
@@ -222,5 +247,4 @@ class Character extends MoveableObject {
         this.HURT_SOUND.muted = false;
         this.GAME_LOST_SOUND.muted = false;
     }
-
 }

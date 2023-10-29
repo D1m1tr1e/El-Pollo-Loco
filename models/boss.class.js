@@ -78,19 +78,27 @@ class Boss extends MoveableObject {
         }, 300);
 
         this.moveBossInterval = setInterval(() => {
-            if (this.world.character.endPositionPepe) {
+            if (this.characterOnEndposition()) {
                 this.handleBossActivation();
             }
         }, 75);
 
         setInterval(() => {
-            if (this.isDead()) {
-                this.handleBossDeath();
-            } else if (this.isHurt()) {
-                this.handleBossHurting();
-            }
+            this.palyBossAnimation();
         }, 6000 / 30);
         this.bossAttack();
+    }
+
+    palyBossAnimation() {
+        if (this.isDead()) {
+            this.handleBossDeath();
+        } else if (this.isHurt()) {
+            this.handleBossHurting();
+        }
+    }
+
+    characterOnEndposition() {
+        return this.world.character.endPositionPepe;
     }
 
     handleBossActivation() {
@@ -103,9 +111,9 @@ class Boss extends MoveableObject {
 
     handleBossDeath() {
         this.bossIsDead = true;
-        this.BOSS_FIGHT_SOUND.pause();
         this.playAnimation(this.IMAGES_BOSS_DEAD);
         this.y += 30;
+        this.BOSS_FIGHT_SOUND.pause();
         this.GAME_WON_SOUND.play();
         setTimeout(() => {
             this.gameWon();
@@ -123,7 +131,7 @@ class Boss extends MoveableObject {
 
     bossAttack() {
         this.attackInterval = setInterval(() => {
-            if ((this.world.character.x + 120) > this.x) {
+            if (this.bossOnAttackPosition()) {
                 this.attack = true;
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
                 this.ATTACK_SOUND.play();
@@ -133,25 +141,16 @@ class Boss extends MoveableObject {
         }, 1000 / 30);
     }
 
+    bossOnAttackPosition() {
+        return (this.world.character.x + 120) > this.x;
+    }
+
     gameWon() {
         if (this.bossIsDead) {
             this.world.game_paused = true;
             document.getElementById('game-won-screen').classList.remove('d-none');
-            this.stopPlayingSounds();
+            this.world.stopPlayingSounds();
         }
-    }
-
-    stopPlayingSounds() {
-        this.BOSS_FIGHT_SOUND.volume = 0;
-        this.ATTACK_SOUND.volume = 0;
-        this.HIT_BOSS_SOUND.volume = 0;
-        this.GAME_WON_SOUND.volume = 0;
-        this.world.character.GAME_LOST_SOUND.volume = 0;
-        this.world.character.BACKGROUD_MUSIC.volume = 0;
-        this.world.character.WALKING_SOUND.volume = 0;
-        this.world.character.JUMP_SOUND.volume = 0;
-        this.world.character.SNORING_SOUND.volume = 0;
-        this.world.character.HURT_SOUND.volume = 0;
     }
 
     muteSound() {
