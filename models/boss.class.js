@@ -7,7 +7,6 @@ class Boss extends MoveableObject {
     currentImage = 0;
     bossIsDead = false;
     bossHitted = false;
-    moveBossInterval;
     alertInterval;
     attackInterval;
     attack = false;
@@ -19,7 +18,6 @@ class Boss extends MoveableObject {
         left: 150, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
         right: 130// x-Achse das ist der Abstand von left -> bildet die Breite vom Char
     }
-
     IMAGES_BOSS_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -72,43 +70,57 @@ class Boss extends MoveableObject {
         this.animateBoss();
     }
 
+    /**
+    * Animates the boss with intervals.
+    */
     animateBoss() {
-        this.alertInterval = setInterval(() => {
-            this.playAnimation(this.IMAGES_BOSS_ALERT);
-        }, 300);
-
-        this.moveBossInterval = setInterval(() => {
+        this.mainInterval = setInterval(() => {
             if (this.characterOnEndposition()) {
                 this.handleBossActivation();
             }
-        }, 75);
+            if (this.isDead()) {
+                this.handleBossDeath();
+            } else if (this.isHurt()) {
+                this.handleBossHurting();
+            }
+            if (this.bossOnAttackPosition()) {
+                this.attack = true;
+                this.playAnimation(this.IMAGES_BOSS_ATTACK);
+                this.ATTACK_SOUND.play();
+            } else {
+                this.bossHitted = false;
+            }
+        }, 100);
 
-        setInterval(() => {
-            this.palyBossAnimation();
-        }, 6000 / 30);
-        this.bossAttack();
+        this.alertInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_BOSS_ALERT);
+        }, 300);
     }
 
-    palyBossAnimation() {
-        if (this.isDead()) {
-            this.handleBossDeath();
-        } else if (this.isHurt()) {
-            this.handleBossHurting();
-        }
-    }
 
+    /**
+    * Checks if the character is on the end position.
+    * @returns {boolean} Indicates if the character is on the end position.
+    */
     characterOnEndposition() {
         return this.world.character.endPositionPepe;
     }
 
+    /**
+    * Handles the boss activation when not hit.
+    */
     handleBossActivation() {
         if (!this.bossHitted) {
             this.BOSS_FIGHT_SOUND.play();
+            clearInterval(this.alertInterval);
             this.moveLeft();
             this.playAnimation(this.IMAGES_BOSS_WALKIG);
         }
     }
 
+    /**
+    * Handles the boss's death.
+    */
     handleBossDeath() {
         this.bossIsDead = true;
         this.playAnimation(this.IMAGES_BOSS_DEAD);
@@ -118,17 +130,21 @@ class Boss extends MoveableObject {
         setTimeout(() => {
             this.gameWon();
         }, 3000);
-        clearInterval(this.moveBossInterval);
     }
 
+    /**
+    * Handles the boss when it's hurting.
+    */
     handleBossHurting() {
         this.playAnimation(this.IMAGES_BOSS_HURTING);
-        console.log(this.lifeEnergy);
         this.bossHitted = true;
         this.HIT_BOSS_SOUND.play();
         this.HIT_BOSS_SOUND.playbackRate = 3;
     }
 
+    /**
+    * Initiates the boss attack.
+    */
     bossAttack() {
         this.attackInterval = setInterval(() => {
             if (this.bossOnAttackPosition()) {
@@ -138,13 +154,20 @@ class Boss extends MoveableObject {
             } else {
                 this.bossHitted = false;
             }
-        }, 1000 / 30);
+        }, 100);
     }
 
+    /**
+    * Checks if the boss is in an attack position.
+    * @returns {boolean} Indicates if the boss is in an attack position.
+    */
     bossOnAttackPosition() {
         return (this.world.character.x + 120) > this.x;
     }
 
+    /**
+    * Handles the game state when the boss is dead.
+    */
     gameWon() {
         if (this.bossIsDead) {
             this.world.game_paused = true;
@@ -153,6 +176,9 @@ class Boss extends MoveableObject {
         }
     }
 
+    /**
+    * Mutes all boss-related sounds.
+    */
     muteSound() {
         this.BOSS_FIGHT_SOUND.muted = true;
         this.ATTACK_SOUND.muted = true;
@@ -160,6 +186,9 @@ class Boss extends MoveableObject {
         this.GAME_WON_SOUND.muted = true;
     }
 
+    /**
+    * Unmutes all boss-related sounds.
+    */
     unmuteSound() {
         this.BOSS_FIGHT_SOUND.muted = false;
         this.ATTACK_SOUND.muted = false;
@@ -167,10 +196,12 @@ class Boss extends MoveableObject {
         this.GAME_WON_SOUND.muted = false;
     }
 
+    /**
+    * Stops the boss animation intervals.
+    */
     stopAnimateBoss() {
+        clearInterval(this.mainInterval);
         clearInterval(this.alertInterval);
-        clearInterval(this.moveBossInterval);
-        clearInterval(this.hurtInterval);
         clearInterval(this.attackInterval);
     }
 }
