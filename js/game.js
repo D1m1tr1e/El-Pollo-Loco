@@ -3,6 +3,7 @@ let world;
 let ctx;
 let keyboard = new Keyboard();
 let isFullscreenModus = false;
+let gameIsStarted = false;
 
 
 function init() {
@@ -12,6 +13,8 @@ function init() {
 
 function startGame() {
     document.getElementById('first-screen').classList.add('d-none');
+    gameIsStarted = true;
+    console.log('game gestarted', gameIsStarted)
     initLevel();
     init();
 }

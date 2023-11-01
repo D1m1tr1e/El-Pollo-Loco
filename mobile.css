@@ -1,0 +1,64 @@
+/* Web ------------*/
+@media only screen and (max-width: 1100px) {
+    .fullscreen {
+        object-fit: contain;
+    }
+
+#game-lost-img{
+    object-fit: unset;
+}
+
+.fullscreen-lvl{
+    height: auto !important;
+    width: 100% !important;
+}
+
+       /* #control-keys {
+        display: table;
+        margin-top: -40rem;
+    }
+
+.element-direction span {
+        margin: 1rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.1rem;
+    }*/
+}
+
+@media only screen and (max-width: 700px) {
+    #description span {
+        font-size: 1rem !important;
+    }
+}
+
+/* Smartphone ------------*/
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    .overlay-design img {
+        width: 100% !important;
+    }
+
+    #first-screen {
+        display: block;
+        width: 100% !important;
+    }
+}
+
+/* Smartphone ------------*/
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .overlay-design img {
+        height: 100vh;
+    }
+
+    #first-screen {
+        display: block;
+        height: 100vh;
+    }
+}

@@ -33,6 +33,7 @@ button {
 
 canvas {
     background-color: black;
+    display: block !important;
 }
 
 #main {
@@ -146,10 +147,10 @@ canvas {
     height: 1.5rem;
     margin: 0.5rem;
     cursor: pointer;
-    
+
 }
 
-.ingame-size img{
+.ingame-size img {
     height: 0.9rem;
     margin: 0.5rem;
     cursor: pointer;
@@ -188,7 +189,7 @@ canvas {
 
 #description {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 20%;
     transform: translate(-12%, -50%);
     background-color: rgb(240, 171, 32);
