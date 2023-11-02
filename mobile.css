@@ -1,19 +1,18 @@
-/* Web ------------*/
 @media only screen and (max-width: 1100px) {
     .fullscreen {
         object-fit: contain;
     }
 
-#game-lost-img{
-    object-fit: unset;
-}
+    #game-lost-img {
+        object-fit: unset;
+    }
 
-.fullscreen-lvl{
-    height: auto !important;
-    width: 100% !important;
-}
+    .fullscreen-lvl {
+        height: auto !important;
+        width: 100% !important;
+    }
 
-       /* #control-keys {
+    /* #control-keys {
         display: table;
         margin-top: -40rem;
     }
@@ -31,7 +30,7 @@
     }
 }
 
-/* Smartphone ------------*/
+
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
@@ -45,9 +44,42 @@
         display: block;
         width: 100% !important;
     }
+
 }
 
-/* Smartphone ------------*/
+@media only screen and (max-width: 700px) {
+    #description span {
+        font-size: 1rem !important;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    #start-btn,
+    #restart-btn {
+        height: 3rem;
+    }
+
+    #start-btn:hover,
+    #restart-btn:hover {
+        height: 4rem;
+    }
+
+    #control-keys {
+        margin-top: -3rem;
+    }
+
+
+    .element-direction img {
+        height: 1rem;
+    }
+
+    .element-direction span {
+        font-size: 1rem;
+    }
+}
+
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
@@ -60,5 +92,50 @@
     #first-screen {
         display: block;
         height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 445px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    #start-btn,
+    #restart-btn {
+        height: 2rem;
+    }
+
+    #start-btn:hover,
+    #restart-btn:hover {
+        height: 3rem;
+    }
+
+    #control-keys {
+        margin-top: -2.5rem;
+    }
+
+    .element-direction img {
+        height: .7rem;
+    }
+
+    .element-direction span {
+        font-size: .7rem;
+    }
+
+    .size img{
+        height: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+
+    #start-btn,
+    #restart-btn {
+        height: 1.5rem;
+    }
+
+    #start-btn:hover,
+    #restart-btn:hover {
+        height: 2.4rem;
     }
 }

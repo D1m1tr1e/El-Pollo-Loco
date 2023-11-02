@@ -46,38 +46,50 @@ canvas {
     position: absolute;
     top: 0;
     left: 0;
-    /* Set the left position to 0 to cover the entire #main */
-    width: 45rem;
-    /* Set the width of #firstscreen to 100% */
-    height: 30rem;
-    /* Set the height of #firstscreen to 100% */
+    width: 100%;
+    height: 100%;
 }
 
 .overlay-design img {
-    width: 45rem;
-    /* Ensure the image doesn't exceed the width of its parent */
-    height: 30rem;
-    /* Ensure the image doesn't exceed the height of its parent */
+    width: 100%;
+    height: 100%;
 }
 
 #start-btn,
 #restart-btn {
     position: absolute;
-    top: 1rem;
+    top: 2rem;
     left: 45%;
-    background-color: rgb(222, 192, 0);
-    min-width: 5rem;
-    height: 2rem;
-    font-size: 1rem;
-    color: hsl(0, 0%, 3%);
-    border: 2px solid hsl(0, 0%, 36%);
+    /* background-color: rgb(222, 192, 0); */
+    /* min-width: 5rem; */
+    height: 4rem;
+    /* font-size: 1rem; */
+    /* color: hsl(0, 0%, 3%); */
+    /* border: 2px solid hsl(0deg 97.09% 47.62%); */
     cursor: pointer;
+    transition: 125ms ease-in-out;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 #start-btn:hover,
 #restart-btn:hover {
     transition: 125ms ease-in-out;
-    background-color: rgb(222, 174, 0);
+    left: 44%;
+    top: 1.5rem;
+    /*background-color: rgb(222, 174, 0);*/
+    height: 5rem;
 }
 
 #close-btn {
@@ -184,6 +196,7 @@ canvas {
     margin: 1rem;
     font-size: 1.5rem;
     letter-spacing: 0.1rem;
+    color:#E8E8E8;
 }
 
 #description {
