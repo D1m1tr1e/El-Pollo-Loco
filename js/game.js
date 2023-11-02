@@ -9,16 +9,24 @@ let gameIsStarted = false;
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    hideIngameButtons();
 }
 
 function startGame() {
     document.getElementById('first-screen').classList.add('d-none');
     gameIsStarted = true;
-    console.log('game gestarted', gameIsStarted)
     initLevel();
     init();
 }
 
+function hideIngameButtons() {
+    if (gameIsStarted) {
+        console.log('das spiel ist gestarted');
+        document.getElementById('ingame-fullscreen').classList.remove('d-none');
+        document.getElementById('ingame-unmute').classList.remove('d-none');
+    }
+
+}
 function restartGame() {
     window.location.reload();
 }

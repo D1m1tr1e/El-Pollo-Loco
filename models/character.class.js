@@ -78,7 +78,7 @@ class Character extends MoveableObject {
     JUMP_SOUND = new Audio('audio/jump.mp3');
     SNORING_SOUND = new Audio('audio/snoring.mp3');
     HURT_SOUND = new Audio('audio/hurt.mp3');
-    BACKGROUD_MUSIC = new Audio('audio/backgroudmusic.mp3');
+    BACKGROUD_MUSIC = new Audio('audio/backgroundmusic.mp3');
     GAME_LOST_SOUND = new Audio('audio/game_lost.mp3');
 
     constructor() {
