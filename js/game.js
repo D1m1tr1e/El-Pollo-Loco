@@ -14,6 +14,9 @@ function init() {
 
 function startGame() {
     document.getElementById('first-screen').classList.add('d-none');
+    document.getElementById('game-info').classList.add('d-none');
+    document.getElementById('game-setting').classList.add('d-none');
+    document.getElementById('fullscreen-button-start-screen').classList.add('d-none');
     gameIsStarted = true;
     initLevel();
     init();
@@ -21,12 +24,11 @@ function startGame() {
 
 function hideIngameButtons() {
     if (gameIsStarted) {
-        console.log('das spiel ist gestarted');
         document.getElementById('ingame-fullscreen').classList.remove('d-none');
         document.getElementById('ingame-unmute').classList.remove('d-none');
     }
-
 }
+
 function restartGame() {
     window.location.reload();
 }
@@ -35,8 +37,14 @@ function openInfo() {
     document.getElementById('description').classList.remove('d-none');
 }
 
+function openSettings(){
+    document.getElementById('settings').classList.remove('d-none');
+    console.log('button funktionert');
+}
+
 function closeWindow() {
     document.getElementById('description').classList.add('d-none');
+    document.getElementById('settings').classList.add('d-none');
 }
 
 function unmuteSound() {
@@ -105,9 +113,9 @@ function removeFullscreenModusOnElement() {
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    } else if (element.msRequestFullscreen) {  
         element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+    } else if (element.webkitRequestFullscreen) { 
         element.webkitRequestFullscreen();
     }
 }
