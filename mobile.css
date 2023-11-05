@@ -38,6 +38,10 @@
     #description span {
         font-size: 1rem !important;
     }
+
+    .pop-up-design span {
+        font-size: 1rem;
+    }
 }
 
 @media only screen and (max-width: 600px) {

@@ -13,13 +13,17 @@ function init() {
 }
 
 function startGame() {
+    gameIsStarted = true;
+    hideStartScreen();
+    initLevel();
+    init();
+}
+
+function hideStartScreen() {
     document.getElementById('first-screen').classList.add('d-none');
     document.getElementById('game-info').classList.add('d-none');
     document.getElementById('game-setting').classList.add('d-none');
     document.getElementById('fullscreen-button-start-screen').classList.add('d-none');
-    gameIsStarted = true;
-    initLevel();
-    init();
 }
 
 function hideIngameButtons() {
@@ -37,7 +41,7 @@ function openInfo() {
     document.getElementById('description').classList.remove('d-none');
 }
 
-function openSettings(){
+function openSettings() {
     document.getElementById('settings').classList.remove('d-none');
     console.log('button funktionert');
 }
@@ -62,15 +66,15 @@ function muteSound() {
 }
 
 function updateSoundCotrolsMute() {
-    document.getElementById('mute').classList.remove('d-none');
-    document.getElementById('unmute').classList.add('d-none');
+    //document.getElementById('mute').classList.remove('d-none');
+    // document.getElementById('unmute').classList.add('d-none');
     document.getElementById('ingame-mute').classList.remove('d-none');
     document.getElementById('ingame-unmute').classList.add('d-none');
 }
 
 function updateSoundCotrolsUnmute() {
-    document.getElementById('mute').classList.add('d-none');
-    document.getElementById('unmute').classList.remove('d-none');
+    //document.getElementById('mute').classList.add('d-none');
+    // document.getElementById('unmute').classList.remove('d-none');
     document.getElementById('ingame-mute').classList.add('d-none');
     document.getElementById('ingame-unmute').classList.remove('d-none');
 }
@@ -113,9 +117,9 @@ function removeFullscreenModusOnElement() {
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {  
+    } else if (element.msRequestFullscreen) {
         element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) { 
+    } else if (element.webkitRequestFullscreen) {
         element.webkitRequestFullscreen();
     }
 }

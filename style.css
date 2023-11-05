@@ -267,3 +267,14 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#hud{
+    height: 3rem;
+    width: 100%;
+    background-color: black;
+    z-index: 999;
+}
+
+#hud span{
+color: black;
+}
