@@ -16,10 +16,15 @@ class DrawableObject {
         });
     }
 
+    /**
+     * Draws the object on the canvas.
+     * @param {CanvasRenderingContext2D} ctx - The 2D rendering context of the canvas.
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
+    // WIRD SPÄTER BEI FREIGE VOM PROJEKT GELÖSCHT 
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof ThrowableObject || this instanceof Boss) {
             ctx.beginPath();

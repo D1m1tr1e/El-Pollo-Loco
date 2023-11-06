@@ -30,11 +30,17 @@ class World {
         this.run();
     }
 
+    /**
+     * Sets up the game world.
+     */
     setWorld() {
         this.character.world = this;
         this.boss.world = this;
     }
 
+    /**
+     * Runs collision and throw animation at regular intervals.
+     */
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -42,6 +48,9 @@ class World {
         }, 60);
     }
 
+    /**
+     * Checks for collisions between game objects.
+     */
     checkCollisions() {
         this.collisionChicken();
         this.collisionCoin();
@@ -50,6 +59,9 @@ class World {
         this.hitBossWithBottle();
     }
 
+    /**
+     * Checks for collisions between chciken and character.
+     */
     collisionChicken() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
@@ -66,6 +78,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between boss and character.
+     */
     collisionBoss() {
         if (this.character.isColliding(this.boss)) {
             this.character.hit();
@@ -73,6 +88,9 @@ class World {
         }
     }
 
+    /**
+     * Checks for collisions between coins and character.
+     */
     collisionCoin() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
@@ -84,6 +102,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between boss and thrown bottle.
+     */
     hitBossWithBottle() {
         this.throwableObject.forEach((bottle, index) => {
             if (this.boss.isColliding(bottle)) {
@@ -96,6 +117,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between bottle and character for collecting action.
+     */
     collisionBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
@@ -107,6 +131,9 @@ class World {
         });
     }
 
+    /**
+     * Checks if the player is attempting to throw objects and handles the throwing process.
+     */
     checkThrowObjects() {
         if (this.keyboard.D && this.bottlebar.bottleAmount > 0 && this.canThrow) {
             this.THROW_SOUND.play();
@@ -124,6 +151,9 @@ class World {
         this.deleteThrownBottle();
     }
 
+    /**
+     * Deletes the thrown bottle from the list of throwable objects based on specific conditions.
+     */
     deleteThrownBottle() {
         this.throwableObject.forEach((bottle, index) => {
             if (bottle.deletable) {
@@ -140,6 +170,9 @@ class World {
         });
     }
 
+    /**
+     * Stops the playback of all sounds in the game.
+     */
     stopPlayingSounds() {
         this.boss.BOSS_FIGHT_SOUND.volume = 0;
         this.boss.ATTACK_SOUND.volume = 0;
@@ -158,6 +191,9 @@ class World {
         this.SPLASH_SOUND.volume = 0;
     }
 
+    /**
+     * Mutes the sound effects in the game.
+     */
     muteSound() {
         this.COLLECT_COIN.muted = true;
         this.COLLECT_BOTTLE.muted = true;
@@ -166,6 +202,9 @@ class World {
         this.THROW_SOUND.muted = true;
     }
 
+    /**
+     * Unmutes the sound effects in the game.
+     */
     unmuteSound() {
         this.COLLECT_COIN.muted = false;
         this.COLLECT_BOTTLE.muted = false;
@@ -174,6 +213,9 @@ class World {
         this.THROW_SOUND.muted = false;
     }
 
+    /**
+     * Renders the game elements on the canvas.
+     */
     draw() {
         if (this.game_paused == false) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -193,6 +235,9 @@ class World {
         }
     }
 
+    /**
+     * Draws the background elements of the game.
+     */
     drawBackground() {
         this.level.landscape.forEach(land => {
             this.addToMap(land)
@@ -202,10 +247,16 @@ class World {
         });
     }
 
+    /**
+     * Draws the character in the game.
+     */
     drawCharacter() {
         this.addToMap(this.character);
     }
 
+    /**
+     * Draws the fixed elements in the game.
+     */
     drawFixedElements() {
         this.addToMap(this.statusbar);
         this.addToMap(this.coinbar);
@@ -215,6 +266,9 @@ class World {
         this.ctx.translate(this.camera_x, 0);
     }
 
+    /**
+     * Draws the boss and enemies in the game.
+     */
     drawBossAndEnemies() {
         this.addToMap(this.boss);
         this.level.enemies.forEach(enemy => {
@@ -222,6 +276,9 @@ class World {
         });
     }
 
+    /**
+     * Draws the thrown objects in the game.
+     */
     drawThrownObjects() {
         this.throwableObject.forEach(thObj => {
             this.addToMap(thObj)
@@ -234,18 +291,26 @@ class World {
         });
     }
 
+    /**
+     * Adds the specified object to the map.
+     * @param {any} mObj - The object to be added to the map.
+     */
     addToMap(mObj) {
         if (mObj.mirrorImage) {
             this.flipImage(mObj);
         }
         mObj.draw(this.ctx);
-        mObj.drawFrame(this.ctx);
+       // mObj.drawFrame(this.ctx);
 
         if (mObj.mirrorImage) {
             this.flipImageBack(mObj);
         }
     }
 
+    /**
+     * Flips the image of the specified object.
+     * @param {any} mObj - The object whose image should be flipped.
+     */
     flipImage(mObj) {
         this.ctx.save();
         this.ctx.translate(mObj.width, 0);
@@ -253,6 +318,10 @@ class World {
         mObj.x = mObj.x * -1;
     }
 
+    /**
+     * Reverts the flipped image of the specified object.
+     * @param {any} mObj - The object whose flipped image should be reverted.
+     */
     flipImageBack(mObj) {
         mObj.x = mObj.x * -1;
         this.ctx.restore();

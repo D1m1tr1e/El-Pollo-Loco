@@ -9,6 +9,9 @@ class Cloud extends MoveableObject {
         this.animateClouds()
     }
 
+    /**
+     * Animates the movement of the cloud.
+     */
     animateClouds(){
         setInterval(() => {
             this.moveLeft();

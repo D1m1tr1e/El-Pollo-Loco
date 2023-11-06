@@ -32,6 +32,9 @@ class ThrowableObject extends MoveableObject {
         this.animateBottle();
     }
 
+    /**
+     * Throws the object and applies gravity to it.
+     */
     throw() {
         this.applyGravity();
         setInterval(() => {
@@ -39,6 +42,9 @@ class ThrowableObject extends MoveableObject {
         }, 30);
     }
 
+    /**
+     * Animates the throwable bottle.
+     */
     animateBottle() {
         setInterval(() => {
             if (this.y >= 370 || this.bottleHitsBoss) {

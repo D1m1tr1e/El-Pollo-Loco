@@ -95,6 +95,9 @@ class Character extends MoveableObject {
         this.BACKGROUD_MUSIC.loop = true;
     }
 
+    /**
+     * Starts the character animation.
+     */
     animateCharacter() {
         this.moveCharIntervall = setInterval(() => {
             this.movingCharacter();
@@ -105,6 +108,9 @@ class Character extends MoveableObject {
         }, 90);
     }
 
+    /**
+     * Moves the character based on user input and game conditions.
+     */
     movingCharacter() {
         this.WALKING_SOUND.pause();
         if (this.canMoveRight()) {
@@ -119,18 +125,33 @@ class Character extends MoveableObject {
         this.world.camera_x = -this.x + 100;
     }
 
+    /**
+     * Checks if the character can move to the right.
+     * @returns {boolean} - Indicates whether the character can move to the right.
+     */
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 
+    /**
+     * Checks if the character can move to the left.
+     * @returns {boolean} - Indicates whether the character can move to the left.
+     */
     canMoveLeft() {
         return this.world.keyboard.LEFT && this.x > 100;
     }
 
-    canJump(){
+    /**
+     * Checks if the character can jump.
+     * @returns {boolean} - Indicates whether the character can jump.
+     */
+    canJump() {
         return !this.isAboveGround() && this.world.keyboard.UP || !this.isAboveGround() && this.world.keyboard.SPACE;
     }
 
+    /**
+     * Plays different animations of the character based on game conditions.
+     */
     playAnimationsOfCharacter() {
         if (this.isDead()) {
             this.handleAnimationDead();
@@ -145,6 +166,9 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Handles the character's movement to the right.
+     */
     handleMovingRight() {
         this.moveRight();
         this.WALKING_SOUND.play();
@@ -154,17 +178,26 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Handles the character's movement to the left.
+     */
     handleMovingLeft() {
         this.moveLeft();
         this.mirrorImage = true;
         this.WALKING_SOUND.play();
     }
 
+    /**
+     * Handles the character's jumping action.
+     */
     handleJumping() {
         this.jump();
         this.JUMP_SOUND.play();
     }
 
+    /**
+     * Handles the animation when the character is dead.
+     */
     handleAnimationDead() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_DEAD);
@@ -180,22 +213,34 @@ class Character extends MoveableObject {
         }, 3000);
     }
 
+    /**
+     * Handles the animation when the character is hurting.
+     */
     animationHurting() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_HURTING);
         this.HURT_SOUND.play();
     }
 
+    /**
+     * Handles the animation when the character is jumping.
+     */
     animationJumping() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_JUMPING);
     }
 
+    /**
+     * Handles the animation when the character is moving.
+     */
     animationMoving() {
         this.startIdleTimer = 0;
         this.playAnimation(this.IMAGES_WALKING);
     }
 
+    /**
+     * Handles the game over state when the character is dead.
+     */
     gameOver() {
         if (this.pepeIsDead) {
             this.world.game_paused = true;
@@ -204,6 +249,13 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Checks if the character is idle and performs appropriate actions.
+     * @param {boolean} right - Indicates if the right key is pressed.
+     * @param {boolean} left - Indicates if the left key is pressed.
+     * @param {boolean} up - Indicates if the up key is pressed.
+     * @param {boolean} d - Indicates if the d key is pressed.
+     */
     isIdle(right, left, up, d) {
         this.cehckKeyControlAvtivities();
         this.startIdleTimer += 250;
@@ -219,10 +271,17 @@ class Character extends MoveableObject {
         }
     }
 
-    anyButtonPressed(){
+    /**
+     * Checks if any button is currently pressed.
+     * @returns {boolean} - Indicates if any button is pressed.
+     */
+    anyButtonPressed() {
         return !this.right && !this.left && !this.up && !this.d;
     }
 
+    /**
+     * Checks the key control activities for the character.
+     */
     cehckKeyControlAvtivities() {
         this.right = this.world.keyboard.RIGHT;
         this.left = this.world.keyboard.LEFT;
@@ -230,6 +289,9 @@ class Character extends MoveableObject {
         this.d = this.world.keyboard.D;
     }
 
+    /**
+     * Mutes all the sounds associated with the character.
+     */
     muteSound() {
         this.BACKGROUD_MUSIC.muted = true;
         this.WALKING_SOUND.muted = true;
@@ -239,6 +301,9 @@ class Character extends MoveableObject {
         this.GAME_LOST_SOUND.muted = true;
     }
 
+    /**
+     * Unmutes all the sounds associated with the character.
+     */
     unmuteSound() {
         this.BACKGROUD_MUSIC.muted = false;
         this.WALKING_SOUND.muted = false;
