@@ -10,6 +10,7 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     hideIngameButtons();
+    mobileBtnTouchEvents();
 }
 
 function startGame() {
@@ -30,6 +31,8 @@ function hideIngameButtons() {
     if (gameIsStarted) {
         document.getElementById('ingame-fullscreen').classList.remove('d-none');
         document.getElementById('ingame-unmute').classList.remove('d-none');
+        document.getElementById('ingame-settings').classList.remove('d-none');
+        document.getElementById('joystick-mobile').classList.remove('d-none');
     }
 }
 
@@ -43,7 +46,6 @@ function openInfo() {
 
 function openSettings() {
     document.getElementById('settings').classList.remove('d-none');
-    console.log('button funktionert');
 }
 
 function closeWindow() {
@@ -163,3 +165,38 @@ window.addEventListener('keyup', (e) => {
         keyboard.D = false;
     }
 });
+
+function mobileBtnTouchEvents(){
+    document.getElementById('mobile-btn-left').addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    document.getElementById('mobile-btn-left').addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+    document.getElementById('mobile-btn-right').addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    document.getElementById('mobile-btn-right').addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+    document.getElementById('mobile-btn-jump').addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.UP = true;
+    });
+    document.getElementById('mobile-btn-jump').addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.UP = false;
+    });
+    document.getElementById('mobile-btn-attack').addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.D = true;
+    });
+    document.getElementById('mobile-btn-attack').addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.D = false;
+    });
+}

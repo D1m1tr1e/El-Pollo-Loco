@@ -130,7 +130,7 @@ canvas {
 
 .ingame-fullscreen-btn {
     position: absolute;
-    bottom: 0.4rem;
+    top: 4rem;
     right: 1rem;
     border: 2px solid hsl(0, 0%, 36%);
     border-radius: 50%;
@@ -150,7 +150,7 @@ canvas {
 
 .ingame-sound-btn {
     position: absolute;
-    bottom: 0.4rem;
+    top:4rem;
     right: 4rem;
     border: 2px solid hsl(0, 0%, 36%);
     border-radius: 50%;
@@ -170,7 +170,7 @@ canvas {
 
 .ingame-control-keys-btn {
     position: absolute;
-    bottom: 0.4rem;
+    top: 4rem;
     right: 7rem;
     border: 2px solid hsl(0, 0%, 36%);
     border-radius: 50%;
@@ -268,13 +268,43 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
-#hud{
+#hud {
     height: 3rem;
     width: 100%;
     background-color: black;
     z-index: 999;
 }
 
-#hud span{
-color: black;
+.mobile-btn-size img {
+    height: 3.5rem;
+    opacity: 0.7;
+}
+
+#mobile-btn-left {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+}
+
+#mobile-btn-right {
+    position: absolute;
+    bottom: 1rem;
+    left: 10rem;
+}
+
+#mobile-btn-jump {
+    position: absolute;
+    bottom: 1rem;
+    right: 10rem;
+}
+
+#mobile-btn-attack {
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+}
+
+
+#hud span {
+    color: black;
 }

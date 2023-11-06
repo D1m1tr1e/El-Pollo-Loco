@@ -35,11 +35,11 @@
     <div id="main">
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <!--BUTTONS IM GAME-->
+        <!--INGAME BUTTONS-->
         <div class="ingame-fullscreen-btn ingame-size d-none" id="ingame-fullscreen">
             <img onclick="openFullscreen()" src="img/11_options/full_sreen.ico" alt="">
         </div>
-        <div class="ingame-control-keys-btn ingame-size">
+        <div class="ingame-control-keys-btn ingame-size d-none" id="ingame-settings">
             <img onclick="openSettings()" src="img/11_options/settings.ico" alt="">
         </div>
         <div class="ingame-sound-btn ingame-size d-none" id="ingame-mute">
@@ -140,9 +140,19 @@
         </div>
 
         <!--MOBILE KEY BAR-->
-        <div id="hud">
-            <span>asdasdasdasdasd
-            </span>
+        <div id="joystick-mobile" class="d-none" >
+            <div id="mobile-btn-left" class="mobile-btn-size">
+                <img src="img/10_control_keys/mobile_left.ico" alt="">
+            </div>
+            <div id="mobile-btn-right" class="mobile-btn-size">
+                <img src="img/10_control_keys/mobile_right.ico" alt="">
+            </div>
+            <div id="mobile-btn-jump" class="mobile-btn-size">
+                <img src="img/10_control_keys/mobile_jump.ico" alt="">
+            </div>
+            <div id="mobile-btn-attack" class="mobile-btn-size">
+                <img src="img/10_control_keys/mobile_attack.ico" alt="">
+            </div>
         </div>
 
         <!--GAME WON SCREEN-->
