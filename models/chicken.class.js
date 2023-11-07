@@ -7,11 +7,20 @@ class Chicken extends MoveableObject {
     chickenKilled = false;
     killAnimationStarted = false;
     walkinInterval;
+
+    /**
+    * An object representing the offset in a coordinate system.
+    * @typedef {Object} Offset
+    * @property {number} top - The distance from the bottom, forming the height of the character.
+    * @property {number} bottom - The y-axis point in the coordinate system (Canvas orientation).
+    * @property {number} left - The x-axis point in the coordinate system (Canvas orientation).
+    * @property {number} right - The distance from the left, forming the width of the character.
+    */
     offset = {
-        top: 10, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
-        bottom: 50, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
-        left: 90, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
-        right: -60// x-Achse das ist der Abstand von left -> bildet die Breite vom Char
+        top: 10,
+        bottom: 50,
+        left: 100, //90
+        right: -50 //-60
     }
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',

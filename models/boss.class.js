@@ -3,7 +3,7 @@ class Boss extends MoveableObject {
     y = 20;
     height = 470;
     width = 300;
-    speed = 1;
+    speed = 12;
     currentImage = 0;
     bossIsDead = false;
     bossHitted = false;
@@ -12,11 +12,20 @@ class Boss extends MoveableObject {
     attack = false;
     gameWonSoundPlayed = false;
     world;
+
+    /**
+    * An object representing the offset in a coordinate system.
+    * @typedef {Object} Offset
+    * @property {number} top - The distance from the bottom, forming the height of the character.
+    * @property {number} bottom - The y-axis point in the coordinate system (Canvas orientation).
+    * @property {number} left - The x-axis point in the coordinate system (Canvas orientation).
+    * @property {number} right - The distance from the left, forming the width of the character.
+    */
     offset = {
-        top: 430, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
-        bottom: 10, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
-        left: 150, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
-        right: 130// x-Achse das ist der Abstand von left -> bildet die Breite vom Char
+        top: 430, 
+        bottom: 10, 
+        left: 150,
+        right: 130
     }
     IMAGES_BOSS_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -125,6 +134,7 @@ class Boss extends MoveableObject {
         this.bossIsDead = true;
         this.playAnimation(this.IMAGES_BOSS_DEAD);
         this.y += 30;
+        this.speed = 0;
         this.BOSS_FIGHT_SOUND.pause();
         this.GAME_WON_SOUND.play();
         setTimeout(() => {

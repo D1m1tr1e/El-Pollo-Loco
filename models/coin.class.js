@@ -6,11 +6,20 @@ class Coin extends MoveableObject {
         'img/8_coin/coin_2.png'
     ];
     currentImage = 0;
+
+    /**
+    * An object representing the offset in a coordinate system.
+    * @typedef {Object} Offset
+    * @property {number} top - The distance from the bottom, forming the height of the character.
+    * @property {number} bottom - The y-axis point in the coordinate system (Canvas orientation).
+    * @property {number} left - The x-axis point in the coordinate system (Canvas orientation).
+    * @property {number} right - The distance from the left, forming the width of the character.
+    */
     offset = {
-        top: 20, // y-achse   das ist der Abstand von bottom -> bildet die Höhe des Chars
-        bottom: 10, // y-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
-        left: 150, // x-Achse Punkt im Koordinatensystem (Cavas Ausrichtung) 
-        right: -130 // x-Achse das ist der Abstand von left -> bildet die Breite vom Char
+        top: 20, 
+        bottom: 10, 
+        left: 140,  //150
+        right: -120 //-130
     }
     
     constructor(imagePath, x, y, height, width) {

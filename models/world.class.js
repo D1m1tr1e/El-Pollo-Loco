@@ -300,7 +300,7 @@ class World {
             this.flipImage(mObj);
         }
         mObj.draw(this.ctx);
-       // mObj.drawFrame(this.ctx);
+        //mObj.drawFrame(this.ctx);
 
         if (mObj.mirrorImage) {
             this.flipImageBack(mObj);

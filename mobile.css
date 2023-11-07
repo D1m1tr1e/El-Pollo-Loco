@@ -129,6 +129,10 @@
         margin-top: -2.5rem;
     }
 
+    .rotateDevice span{
+        font-size: 3rem;
+    }
+
     .element-direction img {
         height: .7rem;
     }

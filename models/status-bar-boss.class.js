@@ -5,10 +5,10 @@ class StatusbarBoss extends DrawableObject {
     width = 190;
     percentage = 100;
     IMAGES_HEALTH_STATUS_BOSS = [
-        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png', //--> Index 0
-        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png', //--> Index 1
-        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/60.png', //--> Index 2
-        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png' //--> Index 3
+        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png', 
+        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png', 
+        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/60.png', 
+        'img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png'
     ];
 
     constructor() {

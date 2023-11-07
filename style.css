@@ -214,6 +214,7 @@ canvas {
 
 .element-direction img {
     margin-bottom: 0.5rem;
+    height: 1.5rem;
 }
 
 .element-direction span {
@@ -226,8 +227,8 @@ canvas {
 .pop-up-design {
     position: absolute;
     top: 50%;
-    left: 20%;
-    transform: translate(-12%, -50%);
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     background-color: rgb(240, 171, 32);
     border-radius: 1rem;
     border: 3px solid black;
@@ -241,6 +242,7 @@ canvas {
 .pop-up-design span {
     font-size: 1.3rem;
     word-spacing: 0.5rem;
+    color: white;
     font-family: Helvetica;
 }
 

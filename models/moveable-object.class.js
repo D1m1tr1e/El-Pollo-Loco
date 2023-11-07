@@ -27,7 +27,7 @@ class MoveableObject extends DrawableObject {
      * Reduces the life energy of the object and updates the last hit time.
      */
     hit() {
-        this.lifeEnergy -= 5;
+        this.lifeEnergy -= 2;
         if (this.lifeEnergy <= 0) {
             this.lifeEnergy = 0;
         } else {
@@ -40,8 +40,8 @@ class MoveableObject extends DrawableObject {
      * @returns {boolean} - Whether the object is hurt or not.
      */
     isHurt() {
-        let timePassed = new Date().getTime() - this.lastHit; 
-        timePassed = timePassed / 1000; 
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
         return timePassed < 1;
     }
 
@@ -95,7 +95,7 @@ class MoveableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 30); 
+        }, 1000 / 30);
     }
 
     /**
@@ -103,7 +103,7 @@ class MoveableObject extends DrawableObject {
      * @returns {boolean} - Whether the object is above the ground or not.
      */
     isAboveGround() {
-        if (this instanceof ThrowableObject) { 
+        if (this instanceof ThrowableObject) {
             return this.y < 370;
         } else {
             return this.y < 170;

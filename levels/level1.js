@@ -7,10 +7,7 @@ function initLevel() {
             new Chicken(),
             new Chicken(),
             new Chicken(),
-            new Chicken(),
-            //new Chicken(),
-            //new Chicken(),
-            // new Chicken(),
+            new Chicken()
         ],
         [
             new Cloud(),
@@ -20,7 +17,7 @@ function initLevel() {
             new Cloud(),
             new Cloud(),
             new Cloud(),
-            new Cloud(),
+            new Cloud()
         ],
         [
             new Landscape('img/5_background/layers/air.png', 0, 0, 480, 720),
@@ -51,7 +48,7 @@ function initLevel() {
             new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png')
         ],
         [
-            new Coin('img/8_coin/coin_1.png', 550, 200, 170, 170),
+            new Coin('img/8_coin/coin_1.png', 550, 0, 170, 170),
             new Coin('img/8_coin/coin_1.png', 800, 0, 170, 170),
             new Coin('img/8_coin/coin_1.png', 1000, 280, 170, 170),
             new Coin('img/8_coin/coin_1.png', 2000, 280, 170, 170),
