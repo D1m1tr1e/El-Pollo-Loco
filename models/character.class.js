@@ -102,6 +102,7 @@ class Character extends MoveableObject {
         this.animateCharacter();
         this.BACKGROUD_MUSIC.play();
         this.BACKGROUD_MUSIC.loop = true;
+        this.BACKGROUD_MUSIC.volume = 0.3;
     }
 
     /**

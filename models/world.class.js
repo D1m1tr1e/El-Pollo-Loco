@@ -70,7 +70,7 @@ class World {
                 this.KILL_CHICKEN_SOUND.play();
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
-                }, 500);
+                }, 200);
             } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.lifeEnergy);
@@ -300,7 +300,7 @@ class World {
             this.flipImage(mObj);
         }
         mObj.draw(this.ctx);
-        //mObj.drawFrame(this.ctx);
+        mObj.drawFrame(this.ctx);
 
         if (mObj.mirrorImage) {
             this.flipImageBack(mObj);

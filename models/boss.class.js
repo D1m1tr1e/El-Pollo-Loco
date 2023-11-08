@@ -96,8 +96,10 @@ class Boss extends MoveableObject {
                 this.attack = true;
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
                 this.ATTACK_SOUND.play();
+                this.speed = 0;
             } else {
                 this.bossHitted = false;
+                this.speed = 12;
             }
         }, 100);
 
@@ -105,7 +107,6 @@ class Boss extends MoveableObject {
             this.playAnimation(this.IMAGES_BOSS_ALERT);
         }, 300);
     }
-
 
     /**
     * Checks if the character is on the end position.
@@ -150,21 +151,6 @@ class Boss extends MoveableObject {
         this.bossHitted = true;
         this.HIT_BOSS_SOUND.play();
         this.HIT_BOSS_SOUND.playbackRate = 3;
-    }
-
-    /**
-    * Initiates the boss attack.
-    */
-    bossAttack() {
-        this.attackInterval = setInterval(() => {
-            if (this.bossOnAttackPosition()) {
-                this.attack = true;
-                this.playAnimation(this.IMAGES_BOSS_ATTACK);
-                this.ATTACK_SOUND.play();
-            } else {
-                this.bossHitted = false;
-            }
-        }, 100);
     }
 
     /**

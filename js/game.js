@@ -59,6 +59,7 @@ function restartGame() {
  */
 function openInfo() {
     document.getElementById('description').classList.remove('d-none');
+    document.getElementById('settings').classList.add('d-none');
 }
 
 /**
@@ -66,6 +67,7 @@ function openInfo() {
  */
 function openSettings() {
     document.getElementById('settings').classList.remove('d-none');
+    document.getElementById('description').classList.add('d-none');
 }
 
 /**
