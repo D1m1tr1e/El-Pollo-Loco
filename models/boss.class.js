@@ -158,7 +158,7 @@ class Boss extends MoveableObject {
     * @returns {boolean} Indicates if the boss is in an attack position.
     */
     bossOnAttackPosition() {
-        return (this.world.character.x + 120) > this.x;
+        return (this.world.character.x + 30) > this.x;
     }
 
     /**

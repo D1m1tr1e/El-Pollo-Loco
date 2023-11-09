@@ -21,10 +21,10 @@ class Character extends MoveableObject {
     * @property {number} right - The distance from the left, forming the width of the character.
     */
     offset = {
-        top: 275, 
-        bottom: 15, 
-        left: 135, 
-        right: -120 
+        top: 275, // 275
+        bottom: 15, // 15
+        left: 80, // 135
+        right: -40  // -80 -120
     }
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -203,6 +203,7 @@ class Character extends MoveableObject {
     handleJumping() {
         this.jump();
         this.JUMP_SOUND.play();
+        this.y = 182;
     }
 
     /**

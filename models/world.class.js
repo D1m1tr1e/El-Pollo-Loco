@@ -64,18 +64,28 @@ class World {
      */
     collisionChicken() {
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                enemy.chickenKilled = true;
-                this.character.jump();
-                this.KILL_CHICKEN_SOUND.play();
-                setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
-                }, 200);
-            } else if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusbar.setPercentage(this.character.lifeEnergy);
+            if (!this.character.isHurt() && this.character.isColliding(enemy) && !enemy.chickenKilled) {
+                if (this.character.isAboveGround()) {
+                    this.handleEnemiesDeath(enemy, index);
+                } else {
+                    this.character.hit();
+                    this.statusbar.setPercentage(this.character.lifeEnergy);
+                }
             }
         });
+    }
+
+    /**
+     * Handles the death of enemies.
+     */
+    handleEnemiesDeath(enemy, index) {
+        enemy.chickenKilled = true;
+        this.character.jump();
+        this.KILL_CHICKEN_SOUND.play();
+        setTimeout(() => {
+            let index = this.level.enemies.indexOf(enemy);
+            this.level.enemies.splice(index, 1);
+        }, 200);
     }
 
     /**
@@ -300,7 +310,7 @@ class World {
             this.flipImage(mObj);
         }
         mObj.draw(this.ctx);
-        mObj.drawFrame(this.ctx);
+        //mObj.drawFrame(this.ctx);
 
         if (mObj.mirrorImage) {
             this.flipImageBack(mObj);
