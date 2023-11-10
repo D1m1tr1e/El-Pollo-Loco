@@ -7,6 +7,7 @@ function initLevel() {
             new Chicken(),
             new Chicken(),
             new Chicken(),
+            new Chicken(),
             new Chicken()
         ],
         [
@@ -49,7 +50,7 @@ function initLevel() {
         ],
         [
             new Coin('img/8_coin/coin_1.png', 550, 0, 170, 170),
-            new Coin('img/8_coin/coin_1.png', 800, 0, 170, 170),
+            new Coin('img/8_coin/coin_1.png', 800, 280, 170, 170),
             new Coin('img/8_coin/coin_1.png', 1000, 280, 170, 170),
             new Coin('img/8_coin/coin_1.png', 2000, 280, 170, 170),
             new Coin('img/8_coin/coin_1.png', 300, 280, 170, 170)

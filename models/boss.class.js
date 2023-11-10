@@ -3,7 +3,7 @@ class Boss extends MoveableObject {
     y = 20;
     height = 470;
     width = 300;
-    speed = 12;
+    speed = 14;
     currentImage = 0;
     bossIsDead = false;
     bossHitted = false;
@@ -24,7 +24,7 @@ class Boss extends MoveableObject {
     offset = {
         top: 430, 
         bottom: 10, 
-        left: 150,
+        left: 80, //150
         right: 130
     }
     IMAGES_BOSS_ALERT = [
@@ -99,7 +99,7 @@ class Boss extends MoveableObject {
                 this.speed = 0;
             } else {
                 this.bossHitted = false;
-                this.speed = 12;
+                this.speed = 14;
             }
         }, 100);
 

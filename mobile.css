@@ -13,6 +13,13 @@
     }
 }
 
+@media only screen and (max-width: 920px),
+(max-height: 700px) {
+    #joystick-mobile {
+        display: block !important;
+    }
+}
+
 @media only screen and (max-width: 860px) {
     canvas {
         width: 100%;
@@ -79,7 +86,7 @@
         opacity: 0.5;
     }
 
-    .ingame-control-keys-btn{
+    .ingame-control-keys-btn {
         top: 3rem;
         right: 4rem;
         height: 2rem;
@@ -129,7 +136,7 @@
         margin-top: -2.5rem;
     }
 
-    .rotateDevice span{
+    .rotateDevice span {
         font-size: 3rem;
     }
 
@@ -179,7 +186,7 @@
         letter-spacing: 0.2rem;
     }
 
-    .rotateDevice img{
+    .rotateDevice img {
         height: 6rem;
     }
 }

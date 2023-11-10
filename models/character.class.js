@@ -23,8 +23,8 @@ class Character extends MoveableObject {
     offset = {
         top: 275, // 275
         bottom: 15, // 15
-        left: 80, // 135
-        right: -40  // -80 -120
+        left: 80, // 80
+        right: 20  // -30 
     }
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',

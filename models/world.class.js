@@ -57,6 +57,7 @@ class World {
         this.collisionBottle();
         this.collisionBoss();
         this.hitBossWithBottle();
+        this.handleHittingCharacter();
     }
 
     /**
@@ -64,13 +65,8 @@ class World {
      */
     collisionChicken() {
         this.level.enemies.forEach((enemy, index) => {
-            if (!this.character.isHurt() && this.character.isColliding(enemy) && !enemy.chickenKilled) {
-                if (this.character.isAboveGround()) {
-                    this.handleEnemiesDeath(enemy, index);
-                } else {
-                    this.character.hit();
-                    this.statusbar.setPercentage(this.character.lifeEnergy);
-                }
+            if (this.character.isAboveGround() && !this.character.isHurt() && this.character.isColliding(enemy) && !enemy.chickenKilled) {
+                this.handleEnemiesDeath(enemy, index);
             }
         });
     }
@@ -86,6 +82,18 @@ class World {
             let index = this.level.enemies.indexOf(enemy);
             this.level.enemies.splice(index, 1);
         }, 200);
+    }
+
+    /**
+     * Handles the logic when the character collides with enemies.
+     */
+    handleHittingCharacter() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusbar.setPercentage(this.character.lifeEnergy);
+            }
+        })
     }
 
     /**
@@ -310,7 +318,7 @@ class World {
             this.flipImage(mObj);
         }
         mObj.draw(this.ctx);
-        //mObj.drawFrame(this.ctx);
+        mObj.drawFrame(this.ctx); //WIRD NACH DER FREIGABE GELÖSCHT
 
         if (mObj.mirrorImage) {
             this.flipImageBack(mObj);
