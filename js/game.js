@@ -13,7 +13,6 @@ function init() {
     world = new World(canvas, keyboard);
     hideIngameButtons();
     mobileBtnTouchEvents();
-    activateButtonsForMobile();
 }
 
 /**
@@ -260,31 +259,5 @@ function mobileBtnTouchEvents() {
         e.preventDefault();
         keyboard.D = false;
     });
-}
-
-function activateButtonsForMobile() {
-    // Vorausgesetzt, 'joystick-mobile' ist die korrekte ID für dein Element mit den mobilen Buttons
-    let mobileButtons = document.getElementById('joystick-mobile');
-
-    // Überprüfe, ob das Element existiert, bevor du die 'd-none'-Klasse entfernst
-    if (mobileButtons) {
-        mobileButtons.classList.remove('d-none');
-        console.log('Mobile Buttons aktiviert!');
-    } else {
-        console.error('Element mit der ID "joystick-mobile" wurde nicht gefunden.');
-    }
-}
-
-function checkMobileView() {
-    let widthForMobile = 748;
-
-    // Protokolliere die Fensterbreite zu Debugging-Zwecken
-    console.log('Fensterbreite:', window.innerWidth);
-
-    // Überprüfe, ob die Fensterbreite kleiner oder gleich dem angegebenen Wert ist
-    if (window.innerWidth <= widthForMobile) {
-        activateButtonsForMobile();
-        window.addEventListener('resize', checkMobileView);
-    }
 }
 

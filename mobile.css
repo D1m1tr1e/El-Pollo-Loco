@@ -13,12 +13,16 @@
     }
 }
 
-/*@media only screen and (max-width: 920px),
-(max-height: 700px) {
+@media only screen and (max-width: 932px) and (orientation: landscape) {
     #joystick-mobile {
         display: block !important;
     }
-}*/
+
+    .pop-up-design {
+        z-index: 1;
+        width: 70%;
+    }
+}
 
 @media only screen and (max-width: 860px) {
     canvas {
@@ -52,7 +56,6 @@
 }
 
 @media only screen and (max-width: 600px) {
-
     #start-btn,
     #restart-btn {
         height: 3rem;
@@ -65,6 +68,10 @@
 
     .element-direction span {
         font-size: 1rem;
+    }
+
+    .pop-up-design {
+        width: 100% !important;
     }
 }
 
@@ -121,7 +128,6 @@
 }
 
 @media only screen and (max-width: 445px) {
-
     #start-btn,
     #restart-btn {
         height: 2rem;
@@ -154,7 +160,6 @@
 }
 
 @media only screen and (max-width: 390px) {
-
     #start-btn,
     #restart-btn {
         height: 1.5rem;
@@ -196,10 +201,8 @@
         display: none;
     }
 
-
     canvas {
         object-fit: contain;
         background-color: unset;
     }
-
 }

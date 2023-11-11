@@ -24,7 +24,7 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    // WIRD SPÄTER BEI FREIGE VOM PROJEKT GELÖSCHT 
+    // WIRD SPÄTER BEI FREIGABE VOM PROJEKT GELÖSCHT 
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Coin) {
             ctx.beginPath();
