@@ -89,7 +89,7 @@ class World {
      */
     handleHittingCharacter() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.lifeEnergy);
             }
@@ -318,7 +318,7 @@ class World {
             this.flipImage(mObj);
         }
         mObj.draw(this.ctx);
-        mObj.drawFrame(this.ctx); //WIRD NACH DER FREIGABE GELÖSCHT
+       // mObj.drawFrame(this.ctx); //WIRD NACH DER FREIGABE GELÖSCHT
 
         if (mObj.mirrorImage) {
             this.flipImageBack(mObj);

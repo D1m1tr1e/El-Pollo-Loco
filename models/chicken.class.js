@@ -40,8 +40,8 @@ class Chicken extends MoveableObject {
      */
     animateChicken() {
         this.walkinInterval = setInterval(() => {
-          // this.moveLeft();
-          //  this.x -= this.speed;
+            this.moveLeft();
+            this.x -= this.speed;
         }, 1000 / 60);
 
         setInterval(() => {
