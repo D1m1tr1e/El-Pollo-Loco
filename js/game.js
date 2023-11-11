@@ -43,7 +43,7 @@ function hideIngameButtons() {
         document.getElementById('ingame-fullscreen').classList.remove('d-none');
         document.getElementById('ingame-unmute').classList.remove('d-none');
         document.getElementById('ingame-settings').classList.remove('d-none');
-        // document.getElementById('joystick-mobile').classList.remove('d-none');
+        //document.getElementById('joystick-mobile').classList.remove('d-none');
     }
 }
 
